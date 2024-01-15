@@ -1,7 +1,18 @@
+using BeeSoft.Data;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews(options => options
+        .Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+
+builder.Services
+    .AddDbContext<BeeSoftDbContext>(options => options
+        .UseSqlServer(builder.Configuration.GetConnectionString("BeeSoftDb")));
 
 var app = builder.Build();
 
@@ -13,15 +24,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app
+    .UseHttpsRedirection()
+    .UseStaticFiles()
+    .UseRouting()
+    .UseAuthorization()
+    .UseEndpoints(endpoints =>
+    {
+        endpoints.MapDefaultControllerRoute();
+    });
 
 app.Run();
