@@ -13,7 +13,13 @@ public class BeeSoftDbContext : DbContext
 
     public DbSet<Apiary> Apiaries { get; init; }
 
-    public DbSet<Beehive> Beehives { get; init; }
+    public DbSet<Hive> Hives { get; init; }
 
     public DbSet<BeeQueen> BeeQueens { get; init; }
+
+    public DbSet<Harvest> Harvests { get; init; }
+
+    public DbSet<Inspection> Inspections { get; init; }
+
+    public DbSet<Disease> Diseases { get; init; }
 }

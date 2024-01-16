@@ -13,8 +13,8 @@ public class BeeQueen
 
     public bool IsAlive { get; init; }
 
-    [ForeignKey(nameof(Beehive))]
-    public int? BeehiveId { get; init; }
+    [ForeignKey(nameof(Hive))]
+    public int? HiveId { get; init; }
 
-    public Beehive? Beehive { get; init; }
+    public Hive? Hive { get; init; }
 }

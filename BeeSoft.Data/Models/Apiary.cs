@@ -7,11 +7,16 @@ public class Apiary
     [Key]
     public int Id { get; init; }
 
-    public DateOnly? StartOfHoneyCollectionPeriod { get; init; }
+    [Required]
+    [MaxLength(100)]
+    public required string Name { get; init; }
 
-    public DateOnly? ProbableEndOfHoneyCollectionPeriod { get; init; }
+    [Required]
+    [MaxLength(100)]
+    public required string Location { get; init; }
 
-    public decimal TotalHoneyHarvested { get; init; }
+    [Range(0, 1000)]
+    public int Size { get; init; }
 
-    public ICollection<Beehive> Beehives { get; init; } = new HashSet<Beehive>();
+    public ICollection<Hive> Hives { get; init; } = new HashSet<Hive>();
 }
