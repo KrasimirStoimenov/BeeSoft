@@ -1,4 +1,5 @@
 using BeeSoft.Data;
+using BeeSoft.Services.Apiary;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ builder.Services
 builder.Services
     .AddDbContext<BeeSoftDbContext>(options => options
         .UseSqlServer(builder.Configuration.GetConnectionString("BeeSoftDb")));
+
+builder.Services.AddScoped<IApiaryService, ApiaryService>();
 
 var app = builder.Build();
 
