@@ -5,10 +5,10 @@ using BeeSoft.Services.Apiary;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/apiaries")]
 public class ApiariesApiController(IApiaryService apiaryService) : ControllerBase
 {
-    [HttpGet(nameof(this.Create))]
+    [HttpGet]
     public async Task<ActionResult<int>> Create()
     {
         var apiary = await apiaryService.CreateAsync();
