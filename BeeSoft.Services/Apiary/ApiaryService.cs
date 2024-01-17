@@ -18,8 +18,7 @@ public sealed class ApiaryService(BeeSoftDbContext dbContext) : IApiaryService
         var apiary = new Data.Models.Apiary
         {
             Name = "TestApiaryName",
-            Location = "TestApiaryLocation",
-            Size = 1
+            Location = "TestApiaryLocation"
         };
 
         await dbContext.Apiaries.AddAsync(apiary);
