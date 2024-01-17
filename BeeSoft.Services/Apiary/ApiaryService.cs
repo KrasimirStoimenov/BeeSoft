@@ -2,23 +2,34 @@
 
 using System.Threading.Tasks;
 
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+
 using BeeSoft.Data;
+using BeeSoft.Services.Apiary.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public sealed class ApiaryService(BeeSoftDbContext dbContext) : IApiaryService
+public sealed class ApiaryService(BeeSoftDbContext dbContext, IMapper mapper) : IApiaryService
 {
-    public Task GetApiaryByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<ICollection<ApiaryServiceModel>> GetApiaries()
+        => await dbContext.Apiaries
+            .OrderByDescending(p => p.Id)
+            .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
+            .ToListAsync();
 
-    public async Task<int> CreateAsync()
+    public async Task<ApiaryServiceModel> GetByIdAsync(int id)
+        => await dbContext.Apiaries
+                 .Where(p => p.Id == id)
+                 .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
+                 .FirstAsync();
+
+    public async Task<int> CreateAsync(string name, string location)
     {
         var apiary = new Data.Models.Apiary
         {
-            Name = "TestApiaryName",
-            Location = "TestApiaryLocation"
+            Name = name,
+            Location = location
         };
 
         await dbContext.Apiaries.AddAsync(apiary);

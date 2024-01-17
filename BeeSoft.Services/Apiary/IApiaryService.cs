@@ -1,9 +1,13 @@
 ﻿namespace BeeSoft.Services.Apiary;
+using BeeSoft.Services.Apiary.Models;
+
 public interface IApiaryService
 {
-    Task GetApiaryByIdAsync(int id);
+    Task<ICollection<ApiaryServiceModel>> GetApiaries();
 
-    Task<int> CreateAsync();
+    Task<ApiaryServiceModel> GetByIdAsync(int id);
+
+    Task<int> CreateAsync(string name, string location);
 
     Task EditAsync();
 

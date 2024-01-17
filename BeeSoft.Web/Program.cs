@@ -1,5 +1,6 @@
 using BeeSoft.Data;
 using BeeSoft.Services.Apiary;
+using BeeSoft.Services.AutoMappingProfile;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,9 @@ builder.Services
 
 builder.Services
     .AddDbContext<BeeSoftDbContext>(options => options
-        .UseSqlServer(builder.Configuration.GetConnectionString("BeeSoftDb")));
+        .UseSqlServer(builder.Configuration.GetConnectionString("BeeSoftDb")))
+    .AddAutoMapper(options =>
+        options.AddProfile<MappingProfile>());
 
 builder.Services.AddScoped<IApiaryService, ApiaryService>();
 
