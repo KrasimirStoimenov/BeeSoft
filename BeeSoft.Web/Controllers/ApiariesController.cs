@@ -1,42 +1,62 @@
 ﻿namespace BeeSoft.Web.Controllers.Api;
 
 using BeeSoft.Services.Apiary;
+using BeeSoft.Services.Apiary.Models;
 using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
 
 public class ApiariesController(IApiaryService apiaryService) : Controller
 {
-    public async Task<ActionResult> All()
+    public async Task<IActionResult> ApiaryIndex()
     {
         var apiaries = await apiaryService.GetApiaries();
 
         return this.View(apiaries);
     }
 
-    public async Task<ActionResult> Create()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+    public async Task<IActionResult> CreateApiary()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View();
 
     [HttpPost]
-    public async Task<ActionResult<int>> Create(CreateApiaryFormModel apiaryFormModel)
+    public async Task<ActionResult<int>> CreateApiary(CreateApiaryFormModel apiaryFormModel)
     {
-        var apiary = await apiaryService.CreateAsync(apiaryFormModel.Name, apiaryFormModel.Location);
+        if (ModelState.IsValid)
+        {
+            var apiary = await apiaryService.CreateAsync(apiaryFormModel.Name, apiaryFormModel.Location);
 
-        return this.RedirectToAction(nameof(this.All));
+            if (apiary > 0)
+            {
+                return this.RedirectToAction(nameof(this.ApiaryIndex));
+            }
+        }
+
+        return this.View(apiaryFormModel);
     }
 
-    public async Task<ActionResult<bool>> Delete(int id)
+    public async Task<IActionResult> DeleteApiary(int apiaryId)
     {
-        var apiary = await apiaryService.GetByIdAsync(id);
+        var apiary = await apiaryService.GetByIdAsync(apiaryId);
 
-        return this.View(apiary);
+        if (apiary is not null)
+        {
+            return this.View(apiary);
+        }
+
+        return this.NotFound();
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteConfirmed(int id)
+    public async Task<IActionResult> DeleteApiary(ApiaryServiceModel model)
     {
-        await apiaryService.DeleteAsync(id);
+        var isDeleted = await apiaryService.DeleteAsync(model.Id);
+        if (isDeleted)
+        {
+            return this.RedirectToAction(nameof(this.ApiaryIndex));
+        }
 
-        return this.RedirectToAction(nameof(this.All));
+        return BadRequest();
     }
 }

@@ -18,11 +18,11 @@ public sealed class ApiaryService(BeeSoftDbContext dbContext, IMapper mapper) : 
             .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
-    public async Task<ApiaryServiceModel> GetByIdAsync(int id)
+    public async Task<ApiaryServiceModel?> GetByIdAsync(int id)
         => await dbContext.Apiaries
-                 .Where(p => p.Id == id)
-                 .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
-                 .FirstAsync();
+            .Where(p => p.Id == id)
+            .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(string name, string location)
     {

@@ -6,6 +6,7 @@ public class CreateApiaryFormModel
 {
     [Required]
     //TODO: Add Validation for string length
+    [StringLength(maximumLength: 10, MinimumLength = 3)]
     [Display(Name = "Apiary name")]
     public required string Name { get; init; }
 

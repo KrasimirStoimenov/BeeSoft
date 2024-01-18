@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ApiaryServiceModel>
+
+<br />
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Apiaries List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-action="CreateApiary" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Apiary</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Hives
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var apiary in Model)
+            {
+                <tr>
+                    <td>
+                        @apiary.Name
+                    </td>
+                    <td>
+                        @apiary.Location
+                    </td>
+                    <td>
+                        @apiary.Hives.Count
+                    </td>
+                    <td>
+                        <a asp-action="EditApiary" class="btn btn-success" asp-route-apiaryId="@apiary.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="DeleteApiary" class="btn btn-danger" asp-route-apiaryId="@apiary.Id"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
