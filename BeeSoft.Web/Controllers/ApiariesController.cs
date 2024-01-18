@@ -25,15 +25,58 @@ public class ApiariesController(IApiaryService apiaryService) : Controller
     {
         if (ModelState.IsValid)
         {
-            var apiary = await apiaryService.CreateAsync(apiaryFormModel.Name, apiaryFormModel.Location);
+            var apiaryServiceModel = new ApiaryServiceModel
+            {
+                Name = apiaryFormModel.Name,
+                Location = apiaryFormModel.Location,
+            };
 
-            if (apiary > 0)
+            var apiaryId = await apiaryService.CreateAsync(apiaryServiceModel);
+
+            if (apiaryId > 0)
             {
                 return this.RedirectToAction(nameof(this.ApiaryIndex));
             }
         }
 
         return this.View(apiaryFormModel);
+    }
+
+    public async Task<IActionResult> UpdateApiary(int apiaryId)
+    {
+        var apiary = await apiaryService.GetByIdAsync(apiaryId);
+
+        if (apiary is not null)
+        {
+            return this.View(new UpdateApiaryFormModel
+            {
+                Id = apiary.Id,
+                Location = apiary.Location,
+                Name = apiary.Name
+            });
+        }
+
+        return this.NotFound();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateApiary(UpdateApiaryFormModel model)
+    {
+        if (this.ModelState.IsValid)
+        {
+            var apiaryServiceModel = new ApiaryServiceModel
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Location = model.Location,
+            };
+
+            await apiaryService.UpdateAsync(apiaryServiceModel);
+
+            return this.RedirectToAction(nameof(this.ApiaryIndex));
+        }
+
+        return this.View(model);
     }
 
     public async Task<IActionResult> DeleteApiary(int apiaryId)

@@ -7,9 +7,9 @@ public interface IApiaryService
 
     Task<ApiaryServiceModel?> GetByIdAsync(int id);
 
-    Task<int> CreateAsync(string name, string location);
+    Task<int> CreateAsync(ApiaryServiceModel model);
 
-    Task EditAsync();
+    Task UpdateAsync(ApiaryServiceModel model);
 
     Task<bool> DeleteAsync(int id);
 }

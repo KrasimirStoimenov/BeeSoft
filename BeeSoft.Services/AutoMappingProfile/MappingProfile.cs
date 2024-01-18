@@ -9,6 +9,6 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        this.CreateMap<Apiary, ApiaryServiceModel>();
+        this.CreateMap<Apiary, ApiaryServiceModel>().ReverseMap();
     }
 }

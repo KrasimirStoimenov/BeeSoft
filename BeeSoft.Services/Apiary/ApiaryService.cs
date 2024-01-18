@@ -6,6 +6,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
 using BeeSoft.Data;
+using BeeSoft.Data.Models;
 using BeeSoft.Services.Apiary.Models;
 
 using Microsoft.EntityFrameworkCore;
@@ -24,13 +25,9 @@ public sealed class ApiaryService(BeeSoftDbContext dbContext, IMapper mapper) : 
             .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
 
-    public async Task<int> CreateAsync(string name, string location)
+    public async Task<int> CreateAsync(ApiaryServiceModel apiaryServiceModel)
     {
-        var apiary = new Data.Models.Apiary
-        {
-            Name = name,
-            Location = location
-        };
+        var apiary = mapper.Map<Apiary>(apiaryServiceModel);
 
         await dbContext.Apiaries.AddAsync(apiary);
         await dbContext.SaveChangesAsync();
@@ -38,24 +35,34 @@ public sealed class ApiaryService(BeeSoftDbContext dbContext, IMapper mapper) : 
         return apiary.Id;
     }
 
-    public Task EditAsync()
+    public async Task UpdateAsync(ApiaryServiceModel apiaryServiceModel)
     {
-        throw new NotImplementedException();
+        var apiary = mapper.Map<Apiary>(apiaryServiceModel);
+
+        dbContext.Update(apiary);
+        await dbContext.SaveChangesAsync();
     }
 
     public async Task<bool> DeleteAsync(int id)
     {
-        var apiary = await dbContext.Apiaries
-            .FirstOrDefaultAsync(a => a.Id == id);
+        try
+        {
+            var apiary = await dbContext.Apiaries.FirstOrDefaultAsync(a => a.Id == id);
 
-        if (apiary == null)
+            if (apiary == null)
+            {
+                return false;
+            }
+
+
+            dbContext.Apiaries.Remove(apiary);
+            await dbContext.SaveChangesAsync();
+
+            return true;
+        }
+        catch (Exception)
         {
             return false;
         }
-
-        dbContext.Apiaries.Remove(apiary);
-        await dbContext.SaveChangesAsync();
-
-        return true;
     }
 }
