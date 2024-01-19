@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Services.Apiaries.Models;
 
+using ConcreteProducts.Web.Infrastructure.ValidationAttributes;
+
 using static Common.DataAttributeConstants.Hive;
 public sealed record CreateHiveFormModel
 {
@@ -32,9 +34,9 @@ public sealed record CreateHiveFormModel
     [Range(TimesUsedCountMinValue, TimesUsedCountMaxValue)]
     public int TimesUsedCount { get; init; }
 
+    [IsValidApiaryId]
     [Display(Name = "Apiary")]
-    //TODO: ValidateId
     public int ApiaryId { get; init; }
 
-    public IEnumerable<ApiaryServiceModel> Apiaries { get; init; } = new HashSet<ApiaryServiceModel>();
+    public IEnumerable<ApiaryServiceModel> Apiaries { get; set; } = new HashSet<ApiaryServiceModel>();
 }

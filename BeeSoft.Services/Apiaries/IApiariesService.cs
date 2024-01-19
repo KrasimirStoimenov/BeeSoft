@@ -13,4 +13,6 @@ public interface IApiariesService
     Task UpdateAsync(ApiaryServiceModel model);
 
     Task<bool> DeleteAsync(int id);
+
+    Task<bool> IsApiaryExistAsync(int id);
 }
