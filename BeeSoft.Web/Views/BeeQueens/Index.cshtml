@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BeeQueenServiceModel>
+
+<br />
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Bee Queens List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-action="CreateBeeQueen" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Bee Queen</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Age
+                </th>
+                <th>
+                    Is Alive
+                </th>
+                <th>
+                    Hive Id
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var beeQueen in Model)
+            {
+                <tr>
+                    <td>
+                        @beeQueen.Age
+                    </td>
+                    <td>
+                        @beeQueen.IsAlive
+                    </td>
+                    <td>
+                        @beeQueen.HiveId
+                    </td>
+                    <td>
+                        <a asp-action="UpdateBeeQueen" class="btn btn-success" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="DeleteBeeQueen" class="btn btn-danger" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

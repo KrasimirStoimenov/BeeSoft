@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : IHivesService
 {
-    public async Task<ICollection<HiveServiceModel>> GetHives()
+    public async Task<ICollection<HiveServiceModel>> GetHivesAsync()
         => await dbContext.Hives
         .OrderByDescending(x => x.Id)
         .ProjectTo<HiveServiceModel>(mapper.ConfigurationProvider)

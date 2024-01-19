@@ -4,6 +4,7 @@ using AutoMapper;
 
 using BeeSoft.Data.Models;
 using BeeSoft.Services.Apiaries.Models;
+using BeeSoft.Services.BeeQueens.Models;
 using BeeSoft.Services.Hives.Models;
 
 public class MappingProfile : Profile
@@ -12,5 +13,6 @@ public class MappingProfile : Profile
     {
         this.CreateMap<Apiary, ApiaryServiceModel>().ReverseMap();
         this.CreateMap<Hive, HiveServiceModel>().ReverseMap();
+        this.CreateMap<BeeQueen, BeeQueenServiceModel>().ReverseMap();
     }
 }

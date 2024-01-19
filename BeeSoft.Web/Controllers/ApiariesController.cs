@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 public class ApiariesController(IApiariesService apiaryService) : Controller
 {
-    public async Task<IActionResult> ApiariesIndex()
+    public async Task<IActionResult> Index()
     {
-        var apiaries = await apiaryService.GetApiaries();
+        var apiaries = await apiaryService.GetApiariesAsync();
 
         return this.View(apiaries);
     }
@@ -35,7 +35,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
 
             if (apiaryId > 0)
             {
-                return this.RedirectToAction(nameof(this.ApiariesIndex));
+                return this.RedirectToAction(nameof(this.Index));
             }
         }
 
@@ -73,7 +73,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
 
             await apiaryService.UpdateAsync(apiaryServiceModel);
 
-            return this.RedirectToAction(nameof(this.ApiariesIndex));
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         return this.View(model);
@@ -97,7 +97,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
         var isDeleted = await apiaryService.DeleteAsync(model.Id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.ApiariesIndex));
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         return BadRequest();

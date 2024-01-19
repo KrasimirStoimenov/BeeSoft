@@ -4,13 +4,8 @@ using BeeSoft.Data.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public class BeeSoftDbContext : DbContext
+public class BeeSoftDbContext(DbContextOptions<BeeSoftDbContext> options) : DbContext(options)
 {
-    public BeeSoftDbContext(DbContextOptions<BeeSoftDbContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<Apiary> Apiaries { get; init; }
 
     public DbSet<Hive> Hives { get; init; }

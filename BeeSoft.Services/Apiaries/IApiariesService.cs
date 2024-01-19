@@ -4,7 +4,7 @@ using BeeSoft.Services.Apiaries.Models;
 
 public interface IApiariesService
 {
-    Task<ICollection<ApiaryServiceModel>> GetApiaries();
+    Task<ICollection<ApiaryServiceModel>> GetApiariesAsync();
 
     Task<ApiaryServiceModel?> GetByIdAsync(int id);
 

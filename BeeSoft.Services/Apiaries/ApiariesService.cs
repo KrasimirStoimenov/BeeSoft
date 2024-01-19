@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 public sealed class ApiariesService(BeeSoftDbContext dbContext, IMapper mapper) : IApiariesService
 {
-    public async Task<ICollection<ApiaryServiceModel>> GetApiaries()
+    public async Task<ICollection<ApiaryServiceModel>> GetApiariesAsync()
         => await dbContext.Apiaries
             .OrderByDescending(p => p.Id)
             .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)

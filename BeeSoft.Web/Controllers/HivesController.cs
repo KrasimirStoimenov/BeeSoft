@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 public class HivesController(IHivesService hivesService, IApiariesService apiariesService) : Controller
 {
-    public async Task<IActionResult> HivesIndex()
+    public async Task<IActionResult> Index()
     {
-        var hives = await hivesService.GetHives();
+        var hives = await hivesService.GetHivesAsync();
 
         return this.View(hives);
     }
@@ -19,7 +19,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
     public async Task<IActionResult> CreateHive()
         => this.View(new CreateHiveFormModel
         {
-            Apiaries = await apiariesService.GetApiaries()
+            Apiaries = await apiariesService.GetApiariesAsync()
         });
 
     [HttpPost]
@@ -42,7 +42,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
 
             if (hiveId > 0)
             {
-                return this.RedirectToAction(nameof(this.HivesIndex));
+                return this.RedirectToAction(nameof(this.Index));
             }
         }
 
@@ -55,7 +55,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
 
         if (hive is not null)
         {
-            var apiaries = await apiariesService.GetApiaries();
+            var apiaries = await apiariesService.GetApiariesAsync();
             return this.View(new UpdateHiveFormModel
             {
                 Id = hive.Id,
@@ -92,7 +92,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
 
             await hivesService.UpdateAsync(hiveServiceModel);
 
-            return this.RedirectToAction(nameof(this.HivesIndex));
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         return this.View(model);
@@ -116,7 +116,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
         var isDeleted = await hivesService.DeleteAsync(model.Id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.HivesIndex));
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         return BadRequest();

@@ -4,7 +4,7 @@ using BeeSoft.Services.Hives.Models;
 
 public interface IHivesService
 {
-    Task<ICollection<HiveServiceModel>> GetHives();
+    Task<ICollection<HiveServiceModel>> GetHivesAsync();
 
     Task<HiveServiceModel?> GetByIdAsync(int id);
 
