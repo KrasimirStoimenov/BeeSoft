@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 public class ApiariesController(IApiariesService apiaryService) : Controller
 {
-    public async Task<IActionResult> ApiaryIndex()
+    public async Task<IActionResult> ApiariesIndex()
     {
         var apiaries = await apiaryService.GetApiaries();
 

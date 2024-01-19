@@ -2,15 +2,20 @@
 
 using System.ComponentModel.DataAnnotations;
 
+using static Common.DataAttributeConstants.Apiary;
+
 public class CreateApiaryFormModel
 {
     [Required]
-    //TODO: Add Validation for string length
-    [StringLength(maximumLength: 10, MinimumLength = 3)]
     [Display(Name = "Apiary name")]
+    [StringLength(
+        maximumLength: NameMaxLength,
+        MinimumLength = NameMinLength)]
     public required string Name { get; init; }
 
     [Required]
-    //TODO: AddValidation for string length
+    [StringLength(
+        maximumLength: LocationMaxLength,
+        MinimumLength = LocationMinLength)]
     public required string Location { get; init; }
 }

@@ -4,7 +4,9 @@ public class DataAttributeConstants
 {
     public class Apiary
     {
+        public const int NameMinLength = 1;
         public const int NameMaxLength = 100;
+        public const int LocationMinLength = 1;
         public const int LocationMaxLength = 100;
     }
 
