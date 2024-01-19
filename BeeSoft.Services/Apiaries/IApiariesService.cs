@@ -1,7 +1,8 @@
-﻿namespace BeeSoft.Services.Apiary;
-using BeeSoft.Services.Apiary.Models;
+﻿namespace BeeSoft.Services.Apiaries;
 
-public interface IApiaryService
+using BeeSoft.Services.Apiaries.Models;
+
+public interface IApiariesService
 {
     Task<ICollection<ApiaryServiceModel>> GetApiaries();
 

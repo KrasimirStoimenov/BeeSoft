@@ -1,5 +1,5 @@
 using BeeSoft.Data;
-using BeeSoft.Services.Apiary;
+using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.AutoMappingProfile;
 
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +18,7 @@ builder.Services
     .AddAutoMapper(options =>
         options.AddProfile<MappingProfile>());
 
-builder.Services.AddScoped<IApiaryService, ApiaryService>();
+builder.Services.AddScoped<IApiariesService, ApiariesService>();
 
 var app = builder.Build();
 

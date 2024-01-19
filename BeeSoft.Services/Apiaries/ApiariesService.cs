@@ -1,4 +1,4 @@
-﻿namespace BeeSoft.Services.Apiary;
+﻿namespace BeeSoft.Services.Apiaries;
 
 using System.Threading.Tasks;
 
@@ -7,11 +7,11 @@ using AutoMapper.QueryableExtensions;
 
 using BeeSoft.Data;
 using BeeSoft.Data.Models;
-using BeeSoft.Services.Apiary.Models;
+using BeeSoft.Services.Apiaries.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public sealed class ApiaryService(BeeSoftDbContext dbContext, IMapper mapper) : IApiaryService
+public sealed class ApiariesService(BeeSoftDbContext dbContext, IMapper mapper) : IApiariesService
 {
     public async Task<ICollection<ApiaryServiceModel>> GetApiaries()
         => await dbContext.Apiaries

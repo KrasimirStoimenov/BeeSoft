@@ -1,12 +1,12 @@
 ﻿namespace BeeSoft.Web.Controllers.Api;
 
-using BeeSoft.Services.Apiary;
-using BeeSoft.Services.Apiary.Models;
+using BeeSoft.Services.Apiaries;
+using BeeSoft.Services.Apiaries.Models;
 using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
 
-public class ApiariesController(IApiaryService apiaryService) : Controller
+public class ApiariesController(IApiariesService apiaryService) : Controller
 {
     public async Task<IActionResult> ApiaryIndex()
     {

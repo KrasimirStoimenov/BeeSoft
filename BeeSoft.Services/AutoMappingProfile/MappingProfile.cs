@@ -3,7 +3,7 @@
 using AutoMapper;
 
 using BeeSoft.Data.Models;
-using BeeSoft.Services.Apiary.Models;
+using BeeSoft.Services.Apiaries.Models;
 
 public class MappingProfile : Profile
 {

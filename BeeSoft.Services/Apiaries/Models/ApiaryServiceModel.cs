@@ -1,4 +1,4 @@
-﻿namespace BeeSoft.Services.Apiary.Models;
+﻿namespace BeeSoft.Services.Apiaries.Models;
 
 using BeeSoft.Data.Models;
 
