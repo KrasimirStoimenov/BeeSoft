@@ -2,17 +2,19 @@
 
 using System.ComponentModel.DataAnnotations;
 
+using static Common.DataAttributeConstants.Apiary;
+
 public class Apiary
 {
     [Key]
     public int Id { get; init; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(NameMaxLength)]
     public required string Name { get; init; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(LocationMaxLength)]
     public required string Location { get; init; }
 
     public ICollection<Hive> Hives { get; init; } = new HashSet<Hive>();

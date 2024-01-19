@@ -3,28 +3,30 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using static Common.DataAttributeConstants.Hive;
+
 public class Hive
 {
     [Key]
     public int Id { get; init; }
 
-    [Range(1, 1000)]
+    [Range(NumberMinValue, NumberMaxValue)]
     public int Number { get; init; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(TypeMaxLength)]
     public required string Type { get; init; } //(e.g., Langstroth, Top-bar)
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(StatusMaxLength)]
     public required string Status { get; init; } //(e.g., Active, Inactive)
 
-    [MaxLength(100)]
+    [MaxLength(ColorMaxLength)]
     public string? Color { get; init; }
 
     public DateOnly DateBought { get; init; }
 
-    [Range(1, 50)]
+    [Range(TimesUsedCountMinValue, TimesUsedCountMaxValue)]
     public int TimesUsedCount { get; init; }
 
     [ForeignKey(nameof(Apiary))]

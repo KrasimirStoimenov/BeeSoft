@@ -3,6 +3,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using static Common.DataAttributeConstants.Harvest;
+
 public class Harvest
 {
     public int Id { get; init; }
@@ -12,7 +14,7 @@ public class Harvest
     public double HarvestedAmount { get; init; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(HarvestedProductMaxLength)]
     public required string HarvestedProduct { get; init; } //(e.g., Honey, Beeswax)
 
     [ForeignKey(nameof(Hive))]

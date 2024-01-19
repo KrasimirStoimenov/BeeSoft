@@ -3,6 +3,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using static Common.DataAttributeConstants.Inspection;
+
 public class Inspection
 {
     [Key]
@@ -10,13 +12,13 @@ public class Inspection
 
     public DateTime InspectionDate { get; init; }
 
-    [MaxLength(100)]
+    [MaxLength(WeatherConditionsMaxLength)]
     public string? WeatherConditions { get; init; }
 
-    [MaxLength(500)]
+    [MaxLength(ObservationsMaxLength)]
     public required string Observations { get; init; }
 
-    [MaxLength(500)]
+    [MaxLength(ActionsTakenMaxLength)]
     public string? ActionsTaken { get; init; }
 
     [ForeignKey(nameof(Hive))]

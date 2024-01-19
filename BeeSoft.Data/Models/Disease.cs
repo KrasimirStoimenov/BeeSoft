@@ -3,20 +3,23 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using static Common.DataAttributeConstants.Disease;
+
 public class Disease
 {
+    [Key]
     public int Id { get; init; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(NameMaxLength)]
     public required string Name { get; init; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(DescriptionMaxLength)]
     public required string Description { get; init; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(TreatmentMaxLength)]
     public required string Treatment { get; init; }
 
     [ForeignKey(nameof(Hive))]
