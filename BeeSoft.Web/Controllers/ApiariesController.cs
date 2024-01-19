@@ -35,7 +35,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
 
             if (apiaryId > 0)
             {
-                return this.RedirectToAction(nameof(this.ApiaryIndex));
+                return this.RedirectToAction(nameof(this.ApiariesIndex));
             }
         }
 
@@ -73,7 +73,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
 
             await apiaryService.UpdateAsync(apiaryServiceModel);
 
-            return this.RedirectToAction(nameof(this.ApiaryIndex));
+            return this.RedirectToAction(nameof(this.ApiariesIndex));
         }
 
         return this.View(model);
@@ -97,7 +97,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
         var isDeleted = await apiaryService.DeleteAsync(model.Id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.ApiaryIndex));
+            return this.RedirectToAction(nameof(this.ApiariesIndex));
         }
 
         return BadRequest();
