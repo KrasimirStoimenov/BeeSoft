@@ -1,0 +1,86 @@
+﻿@model IEnumerable<HiveServiceModel>
+
+<br />
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Hives List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-action="CreateHive" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Hive</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Color
+                </th>
+                <th>
+                    DateBought
+                </th>
+                <th>
+                    TimesUsedCount
+                </th>
+                <th>
+                    Inspections
+                </th>
+                <th>
+                    Diseases
+                </th>
+                <th>
+                    Harvests
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hive in Model)
+            {
+                <tr>
+                    <td>
+                        @hive.Number
+                    </td>
+                    <td>
+                        @hive.Type
+                    </td>
+                    <td>
+                        @hive.Status
+                    </td>
+                    <td>
+                        @hive.Color
+                    </td>
+                    <td>
+                        @hive.DateBought
+                    </td>
+                    <td>
+                        @hive.TimesUsedCount
+                    </td>
+                    <td>
+                        @hive.Inspections.Count
+                    </td>
+                    <td>
+                        @hive.Diseases.Count
+                    </td>
+                    <td>
+                        @hive.Harvests.Count
+                    </td>
+                    <td>
+                        <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="DeleteHive" class="btn btn-danger" asp-route-hiveId="@hive.Id"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

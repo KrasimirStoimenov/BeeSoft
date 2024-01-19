@@ -1,6 +1,7 @@
 using BeeSoft.Data;
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.AutoMappingProfile;
+using BeeSoft.Services.Hives;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ builder.Services
         options.AddProfile<MappingProfile>());
 
 builder.Services.AddScoped<IApiariesService, ApiariesService>();
+builder.Services.AddScoped<IHivesService, HivesService>();
 
 var app = builder.Build();
 

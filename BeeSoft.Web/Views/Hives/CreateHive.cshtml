@@ -1,0 +1,81 @@
+﻿@model CreateHiveFormModel
+
+@{
+    ViewBag.Title = "Create Hive";
+}
+
+<form asp-action="CreateHive">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-primary">@ViewBag.Title</h1>
+
+        <hr />
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-2">
+                <label asp-for="Number" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Number" type="number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Type" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Status" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="Color" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="DateBought" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="DateBought" type="date" class="form-control" />
+                <span asp-validation-for="DateBought" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="TimesUsedCount" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="TimesUsedCount" type="number" class="form-control" />
+                <span asp-validation-for="TimesUsedCount" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="ApiaryId" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="ApiaryId" class="form-control">
+                    @foreach (var apiary in Model.Apiaries)
+                    {
+                        <option value="@apiary.Id">@apiary.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-5 offset-2">
+                <a asp-action="HiveIndex" class="btn-primary btn form-control ">Back to List</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Create" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

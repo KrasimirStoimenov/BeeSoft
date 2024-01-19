@@ -14,7 +14,9 @@ public class DataAttributeConstants
     {
         public const int NumberMinValue = 1;
         public const int NumberMaxValue = 1000;
+        public const int TypeMinLength = 3;
         public const int TypeMaxLength = 100;
+        public const int StatusMinLength = 3;
         public const int StatusMaxLength = 100;
         public const int ColorMaxLength = 100;
         public const int TimesUsedCountMinValue = 1;
