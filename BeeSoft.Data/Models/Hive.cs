@@ -34,10 +34,7 @@ public class Hive
 
     public required Apiary Apiary { get; init; }
 
-    [ForeignKey(nameof(BeeQueen))]
-    public int? BeeQueenId { get; init; }
-
-    public BeeQueen? BeeQueen { get; init; }
+    public ICollection<BeeQueen> BeeQueens { get; init; } = new HashSet<BeeQueen>();
 
     public ICollection<Inspection> Inspections { get; init; } = new HashSet<Inspection>();
 
