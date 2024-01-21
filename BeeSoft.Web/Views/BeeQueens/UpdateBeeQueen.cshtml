@@ -1,0 +1,79 @@
+﻿@model UpdateBeeQueenFormModel
+
+<form asp-action="UpdateBeeQueen">
+    <input asp-for="Id" hidden />
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-primary">Update Bee Queen</h1>
+
+        <hr />
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-2">
+                <label asp-for="Age" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Age" type="number" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="HiveId" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <select asp-for="HiveId" class="form-control">
+                    @foreach (var hive in Model.Hives)
+                    {
+                        var color = hive.Color;
+                        var hiveIsColorless = string.IsNullOrEmpty(color);
+                        var coloredHiveOption = $"{hive.Number} - {hive.Color}";
+                        if (hive.Id == Model.HiveId)
+                        {
+                            if (@hiveIsColorless)
+                            {
+                                <option value="@hive.Id" selected>@hive.Number</option>
+                            }
+                            else
+                            {
+                                <option value="@hive.Id" selected>@coloredHiveOption</option>
+                            }
+
+                        }
+                        else if (Model.HiveId is not null)
+                        {
+                            if (@hiveIsColorless)
+                            {
+                                <option value="@hive.Id">@hive.Number</option>
+                            }
+                            else
+                            {
+                                <option value="@hive.Id">@coloredHiveOption</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="@hive.Id">Not in hive.</option>
+                        }
+                    }
+                    <option value="0">Not in hive.</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <label asp-for="IsAlive" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="IsAlive" type="checkbox" />
+                <span asp-validation-for="IsAlive" class="text-danger"></span>
+            </div>
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Update" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

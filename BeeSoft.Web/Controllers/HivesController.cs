@@ -74,20 +74,20 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateHive(UpdateHiveFormModel model)
+    public async Task<IActionResult> UpdateHive(UpdateHiveFormModel hiveFormModel)
     {
         if (this.ModelState.IsValid)
         {
             var hiveServiceModel = new HiveServiceModel
             {
-                Id = model.Id,
-                Number = model.Number,
-                Type = model.Type!,
-                Status = model.Status!,
-                Color = model.Color,
-                DateBought = model.DateBought,
-                TimesUsedCount = model.TimesUsedCount,
-                ApiaryId = model.ApiaryId,
+                Id = hiveFormModel.Id,
+                Number = hiveFormModel.Number,
+                Type = hiveFormModel.Type!,
+                Status = hiveFormModel.Status!,
+                Color = hiveFormModel.Color,
+                DateBought = hiveFormModel.DateBought,
+                TimesUsedCount = hiveFormModel.TimesUsedCount,
+                ApiaryId = hiveFormModel.ApiaryId,
             };
 
             await hivesService.UpdateAsync(hiveServiceModel);
@@ -95,7 +95,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
             return this.RedirectToAction(nameof(this.Index));
         }
 
-        return this.View(model);
+        return this.View(hiveFormModel);
     }
 
     public async Task<IActionResult> DeleteHive(int hiveId)

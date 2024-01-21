@@ -1,13 +1,10 @@
-﻿@model CreateBeeQueenFormModel
+﻿@model BeeQueenServiceModel
 
-@{
-    ViewBag.Title = "Create Bee Queen";
-}
-
-<form asp-action="CreateBeeQueen">
+<form asp-action="DeleteBeeQueen">
+    <input asp-for="Id" hidden />
     <br />
     <div class="container border p-3">
-        <h1 class="text-primary">@ViewBag.Title</h1>
+        <h1 class="text-primary">Delete Bee Queen</h1>
 
         <hr />
         <div class="row">
@@ -16,39 +13,32 @@
                 <label asp-for="Age" class="control-label pt-2" style="font-size:20px;"></label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Age" type="number" class="form-control" />
+                <input asp-for="Age" class="form-control" />
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
             <div class="col-2">
                 <label asp-for="HiveId" class="control-label pt-2" style="font-size:20px;"></label>
             </div>
             <div class="col-10 pb-3">
-                <select asp-for="HiveId" class="form-control">
-                    @foreach (var hive in Model.Hives)
-                    {
-                        if (hive.Color is null)
-                        {
-                            <option value="@hive.Id">@hive.Number</option>
-                        }
-                        else
-                        {
-                            <option value="@hive.Id">@hive.Number - @hive.Color</option>
-                        }
-
-                    }
-                    <option value="0">Not in hive.</option>
-                </select>
+                <input asp-for="HiveId" class="form-control" />
+                <span asp-validation-for="HiveId" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="IsAlive" class="control-label pt-2" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="IsAlive" />
+                <span asp-validation-for="IsAlive" class="text-danger"></span>
             </div>
             <div class="col-5 offset-2">
                 <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
             </div>
             <div class="col-5">
-                <input type="submit" value="Create" class="btn btn-success form-control" />
+                <input type="submit" value="Delete" class="btn btn-danger form-control" />
             </div>
         </div>
     </div>
 </form>
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

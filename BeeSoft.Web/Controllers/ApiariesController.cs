@@ -60,15 +60,15 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateApiary(UpdateApiaryFormModel model)
+    public async Task<IActionResult> UpdateApiary(UpdateApiaryFormModel apiaryFormModel)
     {
         if (this.ModelState.IsValid)
         {
             var apiaryServiceModel = new ApiaryServiceModel
             {
-                Id = model.Id,
-                Name = model.Name,
-                Location = model.Location,
+                Id = apiaryFormModel.Id,
+                Name = apiaryFormModel.Name,
+                Location = apiaryFormModel.Location,
             };
 
             await apiaryService.UpdateAsync(apiaryServiceModel);
@@ -76,7 +76,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
             return this.RedirectToAction(nameof(this.Index));
         }
 
-        return this.View(model);
+        return this.View(apiaryFormModel);
     }
 
     public async Task<IActionResult> DeleteApiary(int apiaryId)
