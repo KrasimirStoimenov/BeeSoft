@@ -1,4 +1,4 @@
-﻿namespace ConcreteProducts.Web.Infrastructure.ValidationAttributes
+﻿namespace BeeSoft.Web.Infrastructure.ValidationAttributes
 {
     using System.ComponentModel.DataAnnotations;
 

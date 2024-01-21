@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DiseaseServiceModel>
+
+<br />
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Diseases List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-action="CreateDisease" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Disease</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Treatment
+                </th>
+                <th>
+                    Hive Id
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var disease in Model)
+            {
+                <tr>
+                    <td>
+                        @disease.Name
+                    </td>
+                    <td>
+                        @disease.Description
+                    </td>
+                    <td>
+                        @disease.Treatment
+                    </td>
+                    <td>
+                        @disease.HiveId
+                    </td>
+                    <td>
+                        <a asp-action="UpdateDisease" class="btn btn-success" asp-route-diseaseId="@disease.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="DeleteDisease" class="btn btn-danger" asp-route-diseaseId="@disease.Id"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

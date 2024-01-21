@@ -3,8 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Services.Apiaries.Models;
-
-using ConcreteProducts.Web.Infrastructure.ValidationAttributes;
+using BeeSoft.Web.Infrastructure.ValidationAttributes;
 
 using static Common.DataAttributeConstants.Hive;
 public sealed record CreateHiveFormModel

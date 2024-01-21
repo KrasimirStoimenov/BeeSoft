@@ -3,8 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Services.Hives.Models;
-
-using ConcreteProducts.Web.Infrastructure.ValidationAttributes;
+using BeeSoft.Web.Infrastructure.ValidationAttributes;
 
 using static Common.DataAttributeConstants.BeeQueen;
 
