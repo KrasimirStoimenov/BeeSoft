@@ -2,9 +2,9 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using BeeSoft.Services.Apiaries;
+    using BeeSoft.Services.Hives;
 
-    public class IsValidApiaryId : ValidationAttribute
+    public class IsValidHiveId : ValidationAttribute
     {
         protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
         {
@@ -13,13 +13,13 @@
                 return new ValidationResult("Value for validation is null.");
             }
 
-            var service = validationContext.GetService(typeof(IApiariesService)) as IApiariesService;
+            var service = validationContext.GetService(typeof(IHivesService)) as IHivesService;
             if (service is not null)
             {
-                var apiaryExists = service.IsApiaryExistsAsync((int)value).GetAwaiter().GetResult();
-                if (!apiaryExists)
+                var hiveExists = service.IsHiveExistsAsync((int)value).GetAwaiter().GetResult();
+                if (!hiveExists)
                 {
-                    return new ValidationResult("Apiary does not exist.");
+                    return new ValidationResult("Hive does not exist.");
                 }
 
                 return ValidationResult.Success!;

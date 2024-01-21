@@ -30,7 +30,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
             var beeQueenServiceModel = new BeeQueenServiceModel
             {
                 Age = beeQueenFormModel.Age,
-                HiveId = beeQueenFormModel.HiveId,
+                HiveId = beeQueenFormModel.HiveId != 0 ? beeQueenFormModel.HiveId : null,
                 IsAlive = true,
             };
 

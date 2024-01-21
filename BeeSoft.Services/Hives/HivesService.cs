@@ -66,4 +66,15 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
             return false;
         }
     }
+
+    public async Task<bool> IsHiveExistsAsync(int id)
+    {
+        if (id == 0)
+        {
+            return true;
+        }
+
+        return await dbContext.Hives
+            .AnyAsync(c => c.Id == id);
+    }
 }

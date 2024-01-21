@@ -13,4 +13,7 @@ public interface IHivesService
     Task UpdateAsync(HiveServiceModel model);
 
     Task<bool> DeleteAsync(int id);
+
+    Task<bool> IsHiveExistsAsync(int id);
+
 }
