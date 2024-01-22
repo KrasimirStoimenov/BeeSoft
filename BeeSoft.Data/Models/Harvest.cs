@@ -7,6 +7,7 @@ using static Common.DataAttributeConstants.Harvest;
 
 public class Harvest
 {
+    [Key]
     public int Id { get; init; }
 
     public DateTime HarvestDate { get; init; }

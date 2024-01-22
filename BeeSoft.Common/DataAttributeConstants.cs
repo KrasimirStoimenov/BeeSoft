@@ -47,4 +47,10 @@ public class DataAttributeConstants
     {
         public const int HarvestedProductMaxLength = 100;
     }
+
+    public class Expense
+    {
+        public const int NameMinLength = 3;
+        public const int NameMaxLength = 100;
+    }
 }

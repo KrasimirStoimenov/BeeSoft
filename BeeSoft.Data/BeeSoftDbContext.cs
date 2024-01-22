@@ -17,4 +17,6 @@ public class BeeSoftDbContext(DbContextOptions<BeeSoftDbContext> options) : DbCo
     public DbSet<Inspection> Inspections { get; init; }
 
     public DbSet<Disease> Diseases { get; init; }
+
+    public DbSet<Expense> Expenses { get; init; }
 }
