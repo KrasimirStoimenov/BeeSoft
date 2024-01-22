@@ -3,6 +3,7 @@ using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.AutoMappingProfile;
 using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.Diseases;
+using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Hives;
 
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ builder.Services.AddScoped<IApiariesService, ApiariesService>();
 builder.Services.AddScoped<IHivesService, HivesService>();
 builder.Services.AddScoped<IBeeQueensService, BeeQueensService>();
 builder.Services.AddScoped<IDiseasesService, DiseasesService>();
+builder.Services.AddScoped<IHarvestsService, HarvestsService>();
 
 var app = builder.Build();
 

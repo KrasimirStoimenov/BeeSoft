@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HarvestServiceModel>
+
+<br />
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Harvests List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-action="CreateHarvest" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Harvest</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Harvest Date
+                </th>
+                <th>
+                    Harvested Amount
+                </th>
+                <th>
+                    Harvested Product
+                </th>
+                <th>
+                    Hive Id
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var harvest in Model)
+            {
+                <tr>
+                    <td>
+                        @harvest.HarvestDate
+                    </td>
+                    <td>
+                        @harvest.HarvestedAmount
+                    </td>
+                    <td>
+                        @harvest.HarvestedProduct
+                    </td>
+                    <td>
+                        @harvest.HiveId
+                    </td>
+                    <td>
+                        <a asp-action="UpdateHarvest" class="btn btn-success" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="DeleteHarvest" class="btn btn-danger" asp-route-harvestId="@harvest.Id"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
