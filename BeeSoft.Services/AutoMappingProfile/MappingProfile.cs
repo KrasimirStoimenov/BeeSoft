@@ -8,6 +8,7 @@ using BeeSoft.Services.BeeQueens.Models;
 using BeeSoft.Services.Diseases.Models;
 using BeeSoft.Services.Harvests.Models;
 using BeeSoft.Services.Hives.Models;
+using BeeSoft.Services.Inspections.Models;
 
 public class MappingProfile : Profile
 {
@@ -18,5 +19,6 @@ public class MappingProfile : Profile
         this.CreateMap<BeeQueen, BeeQueenServiceModel>().ReverseMap();
         this.CreateMap<Disease, DiseaseServiceModel>().ReverseMap();
         this.CreateMap<Harvest, HarvestServiceModel>().ReverseMap();
+        this.CreateMap<Inspection, InspectionServiceModel>().ReverseMap();
     }
 }

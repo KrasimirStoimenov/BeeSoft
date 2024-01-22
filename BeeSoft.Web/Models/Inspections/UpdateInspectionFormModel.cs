@@ -1,13 +1,14 @@
-﻿namespace BeeSoft.Data.Models;
+﻿namespace BeeSoft.Web.Models.Inspections;
 
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
+using BeeSoft.Services.Hives.Models;
+using BeeSoft.Web.Infrastructure.ValidationAttributes;
 
 using static Common.DataAttributeConstants.Inspection;
 
-public class Inspection
+public sealed record UpdateInspectionFormModel
 {
-    [Key]
     public int Id { get; init; }
 
     public DateTime InspectionDate { get; init; }
@@ -17,13 +18,14 @@ public class Inspection
 
     [Required]
     [MaxLength(ObservationsMaxLength)]
-    public required string Observations { get; init; }
+    public string? Observations { get; init; }
 
     [MaxLength(ActionsTakenMaxLength)]
     public string? ActionsTaken { get; init; }
 
-    [ForeignKey(nameof(Hive))]
+    [IsValidHiveId]
+    [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public required Hive Hive { get; init; }
+    public IEnumerable<HiveServiceModel> Hives { get; init; } = new HashSet<HiveServiceModel>();
 }

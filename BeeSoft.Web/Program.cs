@@ -5,6 +5,7 @@ using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.Diseases;
 using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Hives;
+using BeeSoft.Services.Inspections;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ builder.Services.AddScoped<IHivesService, HivesService>();
 builder.Services.AddScoped<IBeeQueensService, BeeQueensService>();
 builder.Services.AddScoped<IDiseasesService, DiseasesService>();
 builder.Services.AddScoped<IHarvestsService, HarvestsService>();
+builder.Services.AddScoped<IInspectionsService, InspectionsService>();
 
 var app = builder.Build();
 

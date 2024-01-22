@@ -9,8 +9,6 @@ using static Common.DataAttributeConstants.Harvest;
 
 public sealed record CreateHarvestFormModel
 {
-    public int Id { get; init; }
-
     public DateTime HarvestDate { get; init; } = DateTime.Now;
 
     public double HarvestedAmount { get; init; }
