@@ -3,6 +3,7 @@ using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.AutoMappingProfile;
 using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.Diseases;
+using BeeSoft.Services.Expenses;
 using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Inspections;
@@ -29,6 +30,7 @@ builder.Services.AddScoped<IBeeQueensService, BeeQueensService>();
 builder.Services.AddScoped<IDiseasesService, DiseasesService>();
 builder.Services.AddScoped<IHarvestsService, HarvestsService>();
 builder.Services.AddScoped<IInspectionsService, InspectionsService>();
+builder.Services.AddScoped<IExpensesService, ExpensesService>();
 
 var app = builder.Build();
 
