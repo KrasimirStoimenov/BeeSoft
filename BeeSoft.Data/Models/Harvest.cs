@@ -12,7 +12,7 @@ public class Harvest
 
     public DateTime HarvestDate { get; init; }
 
-    public double HarvestedAmount { get; init; }
+    public decimal HarvestedAmount { get; init; }
 
     [Required]
     [MaxLength(HarvestedProductMaxLength)]

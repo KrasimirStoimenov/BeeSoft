@@ -11,7 +11,7 @@ public sealed record CreateHarvestFormModel
 {
     public DateTime HarvestDate { get; init; } = DateTime.Now;
 
-    public double HarvestedAmount { get; init; }
+    public decimal HarvestedAmount { get; init; }
 
     [Required]
     [MaxLength(HarvestedProductMaxLength)]

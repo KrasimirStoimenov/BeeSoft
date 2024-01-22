@@ -5,7 +5,7 @@ public sealed record HarvestServiceModel
 
     public DateTime HarvestDate { get; init; }
 
-    public double HarvestedAmount { get; init; }
+    public decimal HarvestedAmount { get; init; }
 
     public required string HarvestedProduct { get; init; } //(e.g., Honey, Beeswax)
 
