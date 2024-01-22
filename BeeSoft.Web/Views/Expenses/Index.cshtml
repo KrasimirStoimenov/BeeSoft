@@ -33,7 +33,7 @@
                     <td>
                         @expense.Price
                     </td>
-                    <td>
+                    <td style="text-align:right">
                         <a asp-action="UpdateExpense" class="btn btn-success" asp-route-expenseId="@expense.Id"><i class="bi bi-pencil-square"></i></a>
                         <a asp-action="DeleteExpense" class="btn btn-danger" asp-route-expenseId="@expense.Id"><i class="bi bi-trash-fill"></i></a>
                     </td>
