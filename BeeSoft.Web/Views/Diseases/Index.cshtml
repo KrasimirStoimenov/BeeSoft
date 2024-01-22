@@ -43,7 +43,7 @@
                         @disease.Treatment
                     </td>
                     <td>
-                        @disease.HiveId
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">@disease.HiveId</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateDisease" class="btn btn-success" asp-route-diseaseId="@disease.Id"><i class="bi bi-pencil-square"></i></a>

@@ -37,7 +37,7 @@
                         @apiary.Location
                     </td>
                     <td>
-                        @apiary.Hives.Count
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">@apiary.Hives.Count</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateApiary" class="btn btn-success" asp-route-apiaryId="@apiary.Id"><i class="bi bi-pencil-square"></i></a>

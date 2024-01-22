@@ -43,7 +43,7 @@
                         @harvest.HarvestedProduct
                     </td>
                     <td>
-                        @harvest.HiveId
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">@harvest.HiveId</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateHarvest" class="btn btn-success" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>

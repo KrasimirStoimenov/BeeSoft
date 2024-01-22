@@ -67,13 +67,13 @@
                         @hive.TimesUsedCount
                     </td>
                     <td>
-                        @hive.Inspections.Count
+                        <a class="nav-link" asp-area="" asp-controller="Inspections" asp-action="Index">@hive.Inspections.Count</a>
                     </td>
                     <td>
-                        @hive.Diseases.Count
+                        <a class="nav-link" asp-area="" asp-controller="Diseases" asp-action="Index">@hive.Diseases.Count</a>
                     </td>
                     <td>
-                        @hive.Harvests.Count
+                        <a class="nav-link" asp-area="" asp-controller="Harvests" asp-action="Index">@hive.Harvests.Count</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>
