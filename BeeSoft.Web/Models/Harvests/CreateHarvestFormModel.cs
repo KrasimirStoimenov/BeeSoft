@@ -9,7 +9,12 @@ using static Common.DataAttributeConstants.Harvest;
 
 public sealed record CreateHarvestFormModel
 {
-    public DateTime HarvestDate { get; init; } = DateTime.Now;
+    public CreateHarvestFormModel()
+    {
+        this.HarvestDate = DateTime.Now;
+        this.Hives = new HashSet<HiveServiceModel>();
+    }
+    public DateTime HarvestDate { get; init; }
 
     public decimal HarvestedAmount { get; init; }
 
@@ -21,5 +26,5 @@ public sealed record CreateHarvestFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; } = new HashSet<HiveServiceModel>();
+    public IEnumerable<HiveServiceModel> Hives { get; init; }
 }

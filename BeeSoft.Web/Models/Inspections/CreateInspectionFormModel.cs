@@ -9,7 +9,12 @@ using static Common.DataAttributeConstants.Inspection;
 
 public sealed record CreateInspectionFormModel
 {
-    public DateTime InspectionDate { get; init; } = DateTime.Now;
+    public CreateInspectionFormModel()
+    {
+        this.InspectionDate = DateTime.Now;
+        this.Hives = new HashSet<HiveServiceModel>();
+    }
+    public DateTime InspectionDate { get; init; }
 
     [MaxLength(WeatherConditionsMaxLength)]
     public string? WeatherConditions { get; init; }
@@ -25,5 +30,5 @@ public sealed record CreateInspectionFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; } = new HashSet<HiveServiceModel>();
+    public IEnumerable<HiveServiceModel> Hives { get; init; }
 }

@@ -9,6 +9,11 @@ using static Common.DataAttributeConstants.BeeQueen;
 
 public sealed record CreateBeeQueenFormModel
 {
+    public CreateBeeQueenFormModel()
+    {
+        this.Hives = new HashSet<HiveServiceModel>();
+    }
+
     [Range(AgeMinValue, AgeMaxValue)]
     public int Age { get; init; }
 
@@ -16,5 +21,5 @@ public sealed record CreateBeeQueenFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; } = new HashSet<HiveServiceModel>();
+    public IEnumerable<HiveServiceModel> Hives { get; init; }
 }

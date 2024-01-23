@@ -9,6 +9,11 @@ using static Common.DataAttributeConstants.Harvest;
 
 public sealed record UpdateHarvestFormModel
 {
+    public UpdateHarvestFormModel()
+    {
+        this.Hives = new HashSet<HiveServiceModel>();
+    }
+
     public int Id { get; init; }
 
     public DateTime HarvestDate { get; init; }
@@ -23,5 +28,5 @@ public sealed record UpdateHarvestFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; set; } = new HashSet<HiveServiceModel>();
+    public IEnumerable<HiveServiceModel> Hives { get; set; }
 }

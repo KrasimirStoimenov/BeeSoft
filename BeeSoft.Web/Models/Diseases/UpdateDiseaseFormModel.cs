@@ -9,6 +9,11 @@ using static Common.DataAttributeConstants.Disease;
 
 public sealed record UpdateDiseaseFormModel
 {
+    public UpdateDiseaseFormModel()
+    {
+        this.Hives = new HashSet<HiveServiceModel>();
+    }
+
     public int Id { get; init; }
 
     [Required]
@@ -27,5 +32,5 @@ public sealed record UpdateDiseaseFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; } = new HashSet<HiveServiceModel>();
+    public IEnumerable<HiveServiceModel> Hives { get; init; }
 }
