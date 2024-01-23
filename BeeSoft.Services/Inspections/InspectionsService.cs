@@ -11,19 +11,20 @@ using Microsoft.EntityFrameworkCore;
 
 public sealed class InspectionsService(BeeSoftDbContext dbContext, IMapper mapper) : IInspectionsService
 {
-    public async Task<ICollection<InspectionServiceModel>> GetInspectionsAsync()
+    public async Task<ICollection<InspectionListingServiceModel>> GetInspectionsAsync()
         => await dbContext.Inspections
+            .Include(h => h.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<InspectionServiceModel>(mapper.ConfigurationProvider)
+            .ProjectTo<InspectionListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
-    public async Task<InspectionServiceModel?> GetByIdAsync(int id)
+    public async Task<BaseInspectionServiceModel?> GetByIdAsync(int id)
         => await dbContext.Inspections
                     .Where(p => p.Id == id)
-                    .ProjectTo<InspectionServiceModel>(mapper.ConfigurationProvider)
+                    .ProjectTo<BaseInspectionServiceModel>(mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync();
 
-    public async Task<int> CreateAsync(InspectionServiceModel model)
+    public async Task<int> CreateAsync(BaseInspectionServiceModel model)
     {
         var inspection = mapper.Map<Inspection>(model);
 
@@ -33,7 +34,7 @@ public sealed class InspectionsService(BeeSoftDbContext dbContext, IMapper mappe
         return inspection.Id;
     }
 
-    public async Task UpdateAsync(InspectionServiceModel model)
+    public async Task UpdateAsync(BaseInspectionServiceModel model)
     {
         var inspection = mapper.Map<Inspection>(model);
 

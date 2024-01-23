@@ -27,7 +27,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
     {
         if (ModelState.IsValid)
         {
-            var hiveServiceModel = new HiveServiceModel
+            var hiveServiceModel = new BaseHiveServiceModel
             {
                 Number = hiveFormModel.Number,
                 Type = hiveFormModel.Type!,
@@ -80,7 +80,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
     {
         if (this.ModelState.IsValid)
         {
-            var hiveServiceModel = new HiveServiceModel
+            var hiveServiceModel = new BaseHiveServiceModel
             {
                 Id = hiveFormModel.Id,
                 Number = hiveFormModel.Number,
@@ -114,7 +114,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteHive(HiveServiceModel model)
+    public async Task<IActionResult> DeleteHive(BaseHiveServiceModel model)
     {
         var isDeleted = await hivesService.DeleteAsync(model.Id);
         if (isDeleted)

@@ -11,7 +11,7 @@ public sealed record UpdateInspectionFormModel
 {
     public UpdateInspectionFormModel()
     {
-        this.Hives = new HashSet<HiveServiceModel>();
+        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
     public int Id { get; init; }
 
@@ -31,5 +31,5 @@ public sealed record UpdateInspectionFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

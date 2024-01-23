@@ -12,7 +12,7 @@ public sealed record CreateHarvestFormModel
     public CreateHarvestFormModel()
     {
         this.HarvestDate = DateTime.Now;
-        this.Hives = new HashSet<HiveServiceModel>();
+        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
     public DateTime HarvestDate { get; init; }
 
@@ -26,5 +26,5 @@ public sealed record CreateHarvestFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

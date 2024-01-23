@@ -1,5 +1,5 @@
 ﻿namespace BeeSoft.Services.Harvests.Models;
-public sealed record HarvestServiceModel
+public record BaseHarvestServiceModel
 {
     public int Id { get; init; }
 

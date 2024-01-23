@@ -27,7 +27,7 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
     {
         if (ModelState.IsValid)
         {
-            var harvestServiceModel = new HarvestServiceModel
+            var harvestServiceModel = new BaseHarvestServiceModel
             {
                 HarvestDate = harvestFormModel.HarvestDate,
                 HarvestedAmount = harvestFormModel.HarvestedAmount,
@@ -71,7 +71,7 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
     {
         if (this.ModelState.IsValid)
         {
-            var harvestServiceModel = new HarvestServiceModel
+            var harvestServiceModel = new BaseHarvestServiceModel
             {
                 Id = harvestFormModel.Id,
                 HarvestDate = harvestFormModel.HarvestDate,
@@ -99,7 +99,7 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteHarvest(HarvestServiceModel model)
+    public async Task<IActionResult> DeleteHarvest(BaseHarvestServiceModel model)
     {
         var isDeleted = await harvestsService.DeleteAsync(model.Id);
         if (isDeleted)

@@ -14,19 +14,20 @@ using Microsoft.EntityFrameworkCore;
 
 public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : IHivesService
 {
-    public async Task<ICollection<HiveServiceModel>> GetHivesAsync()
+    public async Task<ICollection<HiveListingServiceModel>> GetHivesAsync()
         => await dbContext.Hives
+        .Include(a => a.Apiary)
         .OrderByDescending(x => x.Number)
-        .ProjectTo<HiveServiceModel>(mapper.ConfigurationProvider)
+        .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
         .ToListAsync();
 
-    public async Task<HiveServiceModel?> GetByIdAsync(int id)
+    public async Task<BaseHiveServiceModel?> GetByIdAsync(int id)
         => await dbContext.Hives
             .Where(p => p.Id == id)
-            .ProjectTo<HiveServiceModel>(mapper.ConfigurationProvider)
+            .ProjectTo<BaseHiveServiceModel>(mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
 
-    public async Task<int> CreateAsync(HiveServiceModel model)
+    public async Task<int> CreateAsync(BaseHiveServiceModel model)
     {
         var hive = mapper.Map<Hive>(model);
 
@@ -36,7 +37,7 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
         return hive.Id;
     }
 
-    public async Task UpdateAsync(HiveServiceModel model)
+    public async Task UpdateAsync(BaseHiveServiceModel model)
     {
         var hive = mapper.Map<Hive>(model);
 

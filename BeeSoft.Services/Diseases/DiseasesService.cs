@@ -11,19 +11,20 @@ using Microsoft.EntityFrameworkCore;
 
 public sealed class DiseasesService(BeeSoftDbContext dbContext, IMapper mapper) : IDiseasesService
 {
-    public async Task<ICollection<DiseaseServiceModel>> GetDiseasesAsync()
+    public async Task<ICollection<DiseaseListingServiceModel>> GetDiseasesAsync()
         => await dbContext.Diseases
+            .Include(h => h.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<DiseaseServiceModel>(mapper.ConfigurationProvider)
+            .ProjectTo<DiseaseListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
-    public async Task<DiseaseServiceModel?> GetByIdAsync(int id)
+    public async Task<BaseDiseaseServiceModel?> GetByIdAsync(int id)
     => await dbContext.Diseases
             .Where(p => p.Id == id)
-            .ProjectTo<DiseaseServiceModel>(mapper.ConfigurationProvider)
+            .ProjectTo<BaseDiseaseServiceModel>(mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
 
-    public async Task<int> CreateAsync(DiseaseServiceModel model)
+    public async Task<int> CreateAsync(BaseDiseaseServiceModel model)
     {
         var disease = mapper.Map<Disease>(model);
 
@@ -33,7 +34,7 @@ public sealed class DiseasesService(BeeSoftDbContext dbContext, IMapper mapper) 
         return disease.Id;
     }
 
-    public async Task UpdateAsync(DiseaseServiceModel model)
+    public async Task UpdateAsync(BaseDiseaseServiceModel model)
     {
         var disease = mapper.Map<Disease>(model);
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HarvestServiceModel>
+﻿@model IEnumerable<HarvestListingServiceModel>
 
 <br />
 <br />
@@ -24,7 +24,7 @@
                     Harvested Product
                 </th>
                 <th>
-                    Hive Id
+                    Hive Number
                 </th>
                 <th></th>
             </tr>
@@ -43,7 +43,7 @@
                         @harvest.HarvestedProduct
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">@harvest.HiveId</a>
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">№@harvest.HiveNumber</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateHarvest" class="btn btn-success" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>

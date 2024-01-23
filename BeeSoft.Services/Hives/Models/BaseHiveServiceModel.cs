@@ -1,7 +1,5 @@
 ﻿namespace BeeSoft.Services.Hives.Models;
-using BeeSoft.Data.Models;
-
-public sealed record HiveServiceModel
+public record BaseHiveServiceModel
 {
     public int Id { get; init; }
 
@@ -18,10 +16,4 @@ public sealed record HiveServiceModel
     public int TimesUsedCount { get; init; }
 
     public int ApiaryId { get; init; }
-
-    public ICollection<Inspection> Inspections { get; init; } = new HashSet<Inspection>();
-
-    public ICollection<Disease> Diseases { get; init; } = new HashSet<Disease>();
-
-    public ICollection<Harvest> Harvests { get; init; } = new HashSet<Harvest>();
 }

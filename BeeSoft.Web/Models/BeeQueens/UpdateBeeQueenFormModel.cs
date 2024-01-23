@@ -12,7 +12,7 @@ public sealed record UpdateBeeQueenFormModel
     public UpdateBeeQueenFormModel()
     {
         this.IsAlive = true;
-        this.Hives = new HashSet<HiveServiceModel>();
+        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
 
     public int Id { get; init; }
@@ -27,5 +27,5 @@ public sealed record UpdateBeeQueenFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

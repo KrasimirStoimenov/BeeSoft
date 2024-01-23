@@ -4,13 +4,13 @@ using BeeSoft.Services.Harvests.Models;
 
 public interface IHarvestsService
 {
-    Task<ICollection<HarvestServiceModel>> GetHarvestsAsync();
+    Task<ICollection<HarvestListingServiceModel>> GetHarvestsAsync();
 
-    Task<HarvestServiceModel?> GetByIdAsync(int id);
+    Task<BaseHarvestServiceModel?> GetByIdAsync(int id);
 
-    Task<int> CreateAsync(HarvestServiceModel model);
+    Task<int> CreateAsync(BaseHarvestServiceModel model);
 
-    Task UpdateAsync(HarvestServiceModel model);
+    Task UpdateAsync(BaseHarvestServiceModel model);
 
     Task<bool> DeleteAsync(int id);
 }

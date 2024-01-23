@@ -11,7 +11,7 @@ public sealed record CreateDiseaseFormModel
 {
     public CreateDiseaseFormModel()
     {
-        this.Hives = new HashSet<HiveServiceModel>();
+        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
 
     [Required]
@@ -30,5 +30,5 @@ public sealed record CreateDiseaseFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

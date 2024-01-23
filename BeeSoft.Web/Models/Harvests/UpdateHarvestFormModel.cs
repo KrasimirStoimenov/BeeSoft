@@ -11,7 +11,7 @@ public sealed record UpdateHarvestFormModel
 {
     public UpdateHarvestFormModel()
     {
-        this.Hives = new HashSet<HiveServiceModel>();
+        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
 
     public int Id { get; init; }
@@ -28,5 +28,5 @@ public sealed record UpdateHarvestFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; set; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; set; }
 }

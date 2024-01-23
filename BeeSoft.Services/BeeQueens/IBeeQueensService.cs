@@ -4,13 +4,13 @@ using BeeSoft.Services.BeeQueens.Models;
 
 public interface IBeeQueensService
 {
-    Task<ICollection<BeeQueenServiceModel>> GetBeeQueensAsync();
+    Task<ICollection<BeeQueenListingServiceModel>> GetBeeQueensAsync();
 
-    Task<BeeQueenServiceModel?> GetByIdAsync(int id);
+    Task<BaseBeeQueenServiceModel?> GetByIdAsync(int id);
 
-    Task<int> CreateAsync(BeeQueenServiceModel model);
+    Task<int> CreateAsync(BaseBeeQueenServiceModel model);
 
-    Task UpdateAsync(BeeQueenServiceModel model);
+    Task UpdateAsync(BaseBeeQueenServiceModel model);
 
     Task<bool> DeleteAsync(int id);
 }

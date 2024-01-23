@@ -4,13 +4,13 @@ using BeeSoft.Services.Hives.Models;
 
 public interface IHivesService
 {
-    Task<ICollection<HiveServiceModel>> GetHivesAsync();
+    Task<ICollection<HiveListingServiceModel>> GetHivesAsync();
 
-    Task<HiveServiceModel?> GetByIdAsync(int id);
+    Task<BaseHiveServiceModel?> GetByIdAsync(int id);
 
-    Task<int> CreateAsync(HiveServiceModel model);
+    Task<int> CreateAsync(BaseHiveServiceModel model);
 
-    Task UpdateAsync(HiveServiceModel model);
+    Task UpdateAsync(BaseHiveServiceModel model);
 
     Task<bool> DeleteAsync(int id);
 

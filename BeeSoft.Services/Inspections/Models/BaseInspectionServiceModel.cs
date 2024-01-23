@@ -1,5 +1,5 @@
 ﻿namespace BeeSoft.Services.Inspections.Models;
-public sealed record InspectionServiceModel
+public record BaseInspectionServiceModel
 {
     public int Id { get; init; }
 

@@ -4,13 +4,13 @@ using BeeSoft.Services.Diseases.Models;
 
 public interface IDiseasesService
 {
-    Task<ICollection<DiseaseServiceModel>> GetDiseasesAsync();
+    Task<ICollection<DiseaseListingServiceModel>> GetDiseasesAsync();
 
-    Task<DiseaseServiceModel?> GetByIdAsync(int id);
+    Task<BaseDiseaseServiceModel?> GetByIdAsync(int id);
 
-    Task<int> CreateAsync(DiseaseServiceModel model);
+    Task<int> CreateAsync(BaseDiseaseServiceModel model);
 
-    Task UpdateAsync(DiseaseServiceModel model);
+    Task UpdateAsync(BaseDiseaseServiceModel model);
 
     Task<bool> DeleteAsync(int id);
 }

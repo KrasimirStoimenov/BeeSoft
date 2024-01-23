@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HiveServiceModel>
+﻿@model IEnumerable<HiveListingServiceModel>
 
 <br />
 <br />
@@ -31,6 +31,9 @@
                 </th>
                 <th>
                     Used Count
+                </th>
+                <th>
+                    Queens
                 </th>
                 <th>
                     Inspections
@@ -70,6 +73,9 @@
                         @hive.TimesUsedCount
                     </td>
                     <td>
+                        <a class="nav-link" asp-area="" asp-controller="BeeQueens" asp-action="Index">@hive.BeeQueens.Count</a>
+                    </td>
+                    <td>
                         <a class="nav-link" asp-area="" asp-controller="Inspections" asp-action="Index">@hive.Inspections.Count</a>
                     </td>
                     <td>
@@ -79,7 +85,7 @@
                         <a class="nav-link" asp-area="" asp-controller="Harvests" asp-action="Index">@hive.Harvests.Count</a>
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="Index">@hive.ApiaryId</a>
+                        <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="Index">@hive.ApiaryName</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>

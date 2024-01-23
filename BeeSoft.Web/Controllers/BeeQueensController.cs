@@ -27,7 +27,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
     {
         if (ModelState.IsValid)
         {
-            var beeQueenServiceModel = new BeeQueenServiceModel
+            var beeQueenServiceModel = new BaseBeeQueenServiceModel
             {
                 Age = beeQueenFormModel.Age,
                 HiveId = beeQueenFormModel.HiveId,
@@ -69,7 +69,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
     {
         if (this.ModelState.IsValid)
         {
-            var beeQueenServiceModel = new BeeQueenServiceModel
+            var beeQueenServiceModel = new BaseBeeQueenServiceModel
             {
                 Id = beeQueenFormModel.Id,
                 Age = beeQueenFormModel.Age,
@@ -98,7 +98,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteBeeQueen(BeeQueenServiceModel model)
+    public async Task<IActionResult> DeleteBeeQueen(BaseBeeQueenServiceModel model)
     {
         var isDeleted = await beeQueensService.DeleteAsync(model.Id);
         if (isDeleted)

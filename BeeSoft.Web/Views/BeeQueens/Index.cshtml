@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BeeQueenServiceModel>
+﻿@model IEnumerable<BeeQueenListingServiceModel>
 
 <br />
 <br />
@@ -21,7 +21,7 @@
                     Is Alive
                 </th>
                 <th>
-                    Hive Id
+                    Hive Number
                 </th>
                 <th></th>
             </tr>
@@ -37,7 +37,7 @@
                         @beeQueen.IsAlive
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">@beeQueen.HiveId</a>
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">№@beeQueen.HiveNumber</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateBeeQueen" class="btn btn-success" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-pencil-square"></i></a>

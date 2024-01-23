@@ -27,7 +27,7 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
     {
         if (ModelState.IsValid)
         {
-            var diseaseServiceModel = new DiseaseServiceModel
+            var diseaseServiceModel = new BaseDiseaseServiceModel
             {
                 Name = diseaseFormModel.Name!,
                 Description = diseaseFormModel.Description!,
@@ -72,7 +72,7 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
     {
         if (this.ModelState.IsValid)
         {
-            var diseaseServiceModel = new DiseaseServiceModel
+            var diseaseServiceModel = new BaseDiseaseServiceModel
             {
                 Id = diseaseFormModel.Id,
                 Name = diseaseFormModel.Name!,
@@ -102,7 +102,7 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteDisease(DiseaseServiceModel model)
+    public async Task<IActionResult> DeleteDisease(BaseDiseaseServiceModel model)
     {
         var isDeleted = await diseasesService.DeleteAsync(model.Id);
         if (isDeleted)

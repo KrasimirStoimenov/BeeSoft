@@ -27,7 +27,7 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
     {
         if (ModelState.IsValid)
         {
-            var inspectionServiceModel = new InspectionServiceModel
+            var inspectionServiceModel = new BaseInspectionServiceModel
             {
                 InspectionDate = inspectionFormModel.InspectionDate,
                 WeatherConditions = inspectionFormModel.WeatherConditions,
@@ -73,7 +73,7 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
     {
         if (this.ModelState.IsValid)
         {
-            var inspectionServiceModel = new InspectionServiceModel
+            var inspectionServiceModel = new BaseInspectionServiceModel
             {
                 Id = inspectionFormModel.Id,
                 InspectionDate = inspectionFormModel.InspectionDate,
@@ -102,7 +102,7 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteInspection(InspectionServiceModel model)
+    public async Task<IActionResult> DeleteInspection(BaseInspectionServiceModel model)
     {
         var isDeleted = await inspectionsService.DeleteAsync(model.Id);
         if (isDeleted)

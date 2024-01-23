@@ -4,13 +4,13 @@ using BeeSoft.Services.Inspections.Models;
 
 public interface IInspectionsService
 {
-    Task<ICollection<InspectionServiceModel>> GetInspectionsAsync();
+    Task<ICollection<InspectionListingServiceModel>> GetInspectionsAsync();
 
-    Task<InspectionServiceModel?> GetByIdAsync(int id);
+    Task<BaseInspectionServiceModel?> GetByIdAsync(int id);
 
-    Task<int> CreateAsync(InspectionServiceModel model);
+    Task<int> CreateAsync(BaseInspectionServiceModel model);
 
-    Task UpdateAsync(InspectionServiceModel model);
+    Task UpdateAsync(BaseInspectionServiceModel model);
 
     Task<bool> DeleteAsync(int id);
 }

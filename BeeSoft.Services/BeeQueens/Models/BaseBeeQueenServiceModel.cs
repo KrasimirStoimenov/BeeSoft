@@ -1,6 +1,6 @@
 ﻿namespace BeeSoft.Services.BeeQueens.Models;
 
-public sealed record BeeQueenServiceModel
+public record BaseBeeQueenServiceModel
 {
     public int Id { get; init; }
 

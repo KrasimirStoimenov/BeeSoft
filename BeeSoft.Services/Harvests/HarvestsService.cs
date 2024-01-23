@@ -11,19 +11,20 @@ using Microsoft.EntityFrameworkCore;
 
 public sealed class HarvestsService(BeeSoftDbContext dbContext, IMapper mapper) : IHarvestsService
 {
-    public async Task<ICollection<HarvestServiceModel>> GetHarvestsAsync()
+    public async Task<ICollection<HarvestListingServiceModel>> GetHarvestsAsync()
         => await dbContext.Harvests
+            .Include(h => h.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<HarvestServiceModel>(mapper.ConfigurationProvider)
+            .ProjectTo<HarvestListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
-    public async Task<HarvestServiceModel?> GetByIdAsync(int id)
+    public async Task<BaseHarvestServiceModel?> GetByIdAsync(int id)
         => await dbContext.Harvests
                 .Where(p => p.Id == id)
-                .ProjectTo<HarvestServiceModel>(mapper.ConfigurationProvider)
+                .ProjectTo<BaseHarvestServiceModel>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
-    public async Task<int> CreateAsync(HarvestServiceModel model)
+    public async Task<int> CreateAsync(BaseHarvestServiceModel model)
     {
         var harvest = mapper.Map<Harvest>(model);
 
@@ -33,7 +34,7 @@ public sealed class HarvestsService(BeeSoftDbContext dbContext, IMapper mapper) 
         return harvest.Id;
     }
 
-    public async Task UpdateAsync(HarvestServiceModel model)
+    public async Task UpdateAsync(BaseHarvestServiceModel model)
     {
         var harvest = mapper.Map<Harvest>(model);
 

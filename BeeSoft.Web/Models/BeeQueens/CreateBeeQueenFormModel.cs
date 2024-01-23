@@ -11,7 +11,7 @@ public sealed record CreateBeeQueenFormModel
 {
     public CreateBeeQueenFormModel()
     {
-        this.Hives = new HashSet<HiveServiceModel>();
+        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
 
     [Range(AgeMinValue, AgeMaxValue)]
@@ -21,5 +21,5 @@ public sealed record CreateBeeQueenFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

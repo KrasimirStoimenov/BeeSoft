@@ -12,7 +12,7 @@ public sealed record CreateInspectionFormModel
     public CreateInspectionFormModel()
     {
         this.InspectionDate = DateTime.Now;
-        this.Hives = new HashSet<HiveServiceModel>();
+        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
     public DateTime InspectionDate { get; init; }
 
@@ -30,5 +30,5 @@ public sealed record CreateInspectionFormModel
     [Display(Name = "Hive")]
     public int HiveId { get; init; }
 
-    public IEnumerable<HiveServiceModel> Hives { get; init; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

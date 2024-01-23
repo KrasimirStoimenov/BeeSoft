@@ -1,6 +1,6 @@
 ﻿namespace BeeSoft.Services.Diseases.Models;
 
-public sealed record DiseaseServiceModel
+public record BaseDiseaseServiceModel
 {
     public int Id { get; init; }
 
