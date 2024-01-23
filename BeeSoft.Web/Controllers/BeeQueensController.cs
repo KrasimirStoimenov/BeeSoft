@@ -30,7 +30,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
             var beeQueenServiceModel = new BeeQueenServiceModel
             {
                 Age = beeQueenFormModel.Age,
-                HiveId = beeQueenFormModel.HiveId != 0 ? beeQueenFormModel.HiveId : null,
+                HiveId = beeQueenFormModel.HiveId,
                 IsAlive = true,
             };
 
@@ -73,7 +73,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
             {
                 Id = beeQueenFormModel.Id,
                 Age = beeQueenFormModel.Age,
-                HiveId = beeQueenFormModel.HiveId != 0 ? beeQueenFormModel.HiveId : null,
+                HiveId = beeQueenFormModel.HiveId,
                 IsAlive = beeQueenFormModel.IsAlive,
             };
 

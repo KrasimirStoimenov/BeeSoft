@@ -38,7 +38,7 @@
                             }
 
                         }
-                        else if (Model.HiveId is not null)
+                        else
                         {
                             if (@hiveIsColorless)
                             {
@@ -49,12 +49,7 @@
                                 <option value="@hive.Id">@coloredHiveOption</option>
                             }
                         }
-                        else
-                        {
-                            <option value="@hive.Id">Not in hive.</option>
-                        }
                     }
-                    <option value="0">Not in hive.</option>
                 </select>
             </div>
             <div class="col-2">

@@ -19,7 +19,7 @@ public sealed record UpdateBeeQueenFormModel
 
     [IsValidHiveId]
     [Display(Name = "Hive")]
-    public int? HiveId { get; init; }
+    public int HiveId { get; init; }
 
     public IEnumerable<HiveServiceModel> Hives { get; init; } = new HashSet<HiveServiceModel>();
 }

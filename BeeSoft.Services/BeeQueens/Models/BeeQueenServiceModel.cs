@@ -8,5 +8,5 @@ public sealed record BeeQueenServiceModel
 
     public bool IsAlive { get; init; }
 
-    public int? HiveId { get; init; }
+    public int HiveId { get; init; }
 }

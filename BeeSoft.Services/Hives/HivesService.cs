@@ -68,15 +68,8 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
     }
 
     public async Task<bool> IsHiveExistsAsync(int id)
-    {
-        if (id == 0)
-        {
-            return true;
-        }
-
-        return await dbContext.Hives
+        => await dbContext.Hives
             .AnyAsync(c => c.Id == id);
-    }
 
     public async Task<bool> IsHiveWithNumberAlreadyExists(int hiveNumber)
         => await dbContext.Hives

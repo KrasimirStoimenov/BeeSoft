@@ -16,7 +16,7 @@ public class BeeQueen
     public bool IsAlive { get; init; }
 
     [ForeignKey(nameof(Hive))]
-    public int? HiveId { get; init; }
+    public int HiveId { get; init; }
 
-    public Hive? Hive { get; init; }
+    public required Hive Hive { get; init; }
 }
