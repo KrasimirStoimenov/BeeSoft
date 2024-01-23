@@ -1,4 +1,4 @@
-﻿namespace BeeSoft.Web.Infrastructure.ValidationAttributes
+﻿namespace BeeSoft.Web.Infrastructure.ValidationAttributes.Apiaries
 {
     using System.ComponentModel.DataAnnotations;
 

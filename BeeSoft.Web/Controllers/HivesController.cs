@@ -46,6 +46,8 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
             }
         }
 
+        hiveFormModel.Apiaries = await apiariesService.GetApiariesAsync();
+
         return this.View(hiveFormModel);
     }
 
@@ -95,6 +97,7 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
             return this.RedirectToAction(nameof(this.Index));
         }
 
+        hiveFormModel.Apiaries = await apiariesService.GetApiariesAsync();
         return this.View(hiveFormModel);
     }
 

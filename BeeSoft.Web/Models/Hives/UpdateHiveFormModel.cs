@@ -3,12 +3,17 @@
 using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Services.Apiaries.Models;
-using BeeSoft.Web.Infrastructure.ValidationAttributes;
+using BeeSoft.Web.Infrastructure.ValidationAttributes.Apiaries;
 
 using static Common.DataAttributeConstants.Hive;
 
 public sealed record UpdateHiveFormModel
 {
+    public UpdateHiveFormModel()
+    {
+        this.Apiaries = new HashSet<ApiaryServiceModel>();
+    }
+
     public int Id { get; init; }
 
     [Range(NumberMinValue, NumberMaxValue)]
@@ -38,5 +43,5 @@ public sealed record UpdateHiveFormModel
     [Display(Name = "Apiary")]
     public int ApiaryId { get; init; }
 
-    public IEnumerable<ApiaryServiceModel> Apiaries { get; init; } = new HashSet<ApiaryServiceModel>();
+    public IEnumerable<ApiaryServiceModel> Apiaries { get; set; }
 }

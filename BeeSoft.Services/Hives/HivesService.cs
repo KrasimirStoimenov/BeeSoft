@@ -16,7 +16,7 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
 {
     public async Task<ICollection<HiveServiceModel>> GetHivesAsync()
         => await dbContext.Hives
-        .OrderByDescending(x => x.Id)
+        .OrderByDescending(x => x.Number)
         .ProjectTo<HiveServiceModel>(mapper.ConfigurationProvider)
         .ToListAsync();
 
@@ -77,4 +77,8 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
         return await dbContext.Hives
             .AnyAsync(c => c.Id == id);
     }
+
+    public async Task<bool> IsHiveWithNumberAlreadyExists(int hiveNumber)
+        => await dbContext.Hives
+            .AnyAsync(h => h.Number == hiveNumber);
 }

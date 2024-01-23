@@ -1,4 +1,4 @@
-﻿namespace BeeSoft.Web.Infrastructure.ValidationAttributes
+﻿namespace BeeSoft.Web.Infrastructure.ValidationAttributes.Hives
 {
     using System.ComponentModel.DataAnnotations;
 

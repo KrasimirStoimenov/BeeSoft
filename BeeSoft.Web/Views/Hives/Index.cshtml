@@ -13,7 +13,7 @@
     </div>
     <table class="table">
         <thead>
-            <tr>
+            <tr style ="text-align:center">
                 <th>
                     Number
                 </th>
@@ -27,10 +27,10 @@
                     Color
                 </th>
                 <th>
-                    DateBought
+                    Date Bought
                 </th>
                 <th>
-                    TimesUsedCount
+                    Used Count
                 </th>
                 <th>
                     Inspections
@@ -41,13 +41,16 @@
                 <th>
                     Harvests
                 </th>
+                <th>
+                    Apiary
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var hive in Model)
             {
-                <tr>
+                <tr style="text-align:center">
                     <td>
                         @hive.Number
                     </td>
@@ -74,6 +77,9 @@
                     </td>
                     <td>
                         <a class="nav-link" asp-area="" asp-controller="Harvests" asp-action="Index">@hive.Harvests.Count</a>
+                    </td>
+                    <td>
+                        <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="Index">@hive.ApiaryId</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>

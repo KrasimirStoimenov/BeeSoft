@@ -16,4 +16,5 @@ public interface IHivesService
 
     Task<bool> IsHiveExistsAsync(int id);
 
+    Task<bool> IsHiveWithNumberAlreadyExists(int hiveNumber);
 }
