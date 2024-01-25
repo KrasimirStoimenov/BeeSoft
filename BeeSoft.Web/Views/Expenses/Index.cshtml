@@ -15,6 +15,9 @@
         <thead>
             <tr>
                 <th>
+                    Date
+                </th>
+                <th>
                     Name
                 </th>
                 <th>
@@ -27,6 +30,9 @@
             @foreach (var expense in Model)
             {
                 <tr>
+                    <td>
+                        @expense.Date
+                    </td>
                     <td>
                         @expense.Name
                     </td>

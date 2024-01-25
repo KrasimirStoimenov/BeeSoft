@@ -6,11 +6,18 @@ using static Common.DataAttributeConstants.Expense;
 
 public sealed record CreateExpenseFormModel
 {
+    public CreateExpenseFormModel()
+    {
+        this.Date = DateOnly.FromDateTime(DateTime.Now);
+    }
+
     [Required]
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength)]
-    public required string Name { get; init; }
+    public string? Name { get; init; }
 
     public decimal Price { get; init; }
+
+    public DateOnly Date { get; init; }
 }

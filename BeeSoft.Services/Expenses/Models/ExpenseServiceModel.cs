@@ -7,4 +7,6 @@ public sealed record ExpenseServiceModel
     public required string Name { get; init; }
 
     public decimal Price { get; init; }
+
+    public DateOnly Date { get; init; }
 }

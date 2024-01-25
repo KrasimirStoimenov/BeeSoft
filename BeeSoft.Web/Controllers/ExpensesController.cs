@@ -18,7 +18,7 @@ public class ExpensesController(IExpensesService expensesService) : Controller
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
     public async Task<IActionResult> CreateExpense()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
-        => this.View();
+        => this.View(new CreateExpenseFormModel());
 
     [HttpPost]
     public async Task<ActionResult<int>> CreateExpense(CreateExpenseFormModel expenseFormModel)
@@ -27,8 +27,9 @@ public class ExpensesController(IExpensesService expensesService) : Controller
         {
             var expenseServiceModel = new ExpenseServiceModel
             {
-                Name = expenseFormModel.Name,
+                Name = expenseFormModel.Name!,
                 Price = expenseFormModel.Price,
+                Date = expenseFormModel.Date,
             };
 
             var expenseId = await expensesService.CreateAsync(expenseServiceModel);
@@ -53,6 +54,7 @@ public class ExpensesController(IExpensesService expensesService) : Controller
                 Id = expense.Id,
                 Name = expense.Name,
                 Price = expense.Price,
+                Date = expense.Date,
             });
         }
 
@@ -69,6 +71,7 @@ public class ExpensesController(IExpensesService expensesService) : Controller
                 Id = expenseFormModel.Id,
                 Name = expenseFormModel.Name,
                 Price = expenseFormModel.Price,
+                Date = expenseFormModel.Date,
             };
 
             await expensesService.UpdateAsync(expenseServiceModel);

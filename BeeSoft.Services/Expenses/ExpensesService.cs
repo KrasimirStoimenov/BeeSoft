@@ -13,7 +13,7 @@ public sealed class ExpensesService(BeeSoftDbContext dbContext, IMapper mapper) 
 {
     public async Task<ICollection<ExpenseServiceModel>> GetExpensesAsync()
         => await dbContext.Expenses
-            .OrderByDescending(x => x.Id)
+            .OrderByDescending(x => x.Date)
             .ProjectTo<ExpenseServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
