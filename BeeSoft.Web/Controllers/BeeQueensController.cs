@@ -19,7 +19,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
     public async Task<IActionResult> CreateBeeQueen()
         => this.View(new CreateBeeQueenFormModel
         {
-            Hives = await hivesService.GetHivesAsync()
+            Hives = await hivesService.GetHivesWithoutQueenAsync()
         });
 
     [HttpPost]

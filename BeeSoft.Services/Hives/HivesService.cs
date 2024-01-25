@@ -16,10 +16,18 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
 {
     public async Task<ICollection<HiveListingServiceModel>> GetHivesAsync()
         => await dbContext.Hives
-        .Include(a => a.Apiary)
-        .OrderByDescending(x => x.Number)
-        .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
-        .ToListAsync();
+            .Include(a => a.Apiary)
+            .OrderByDescending(x => x.Number)
+            .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
+            .ToListAsync();
+
+    public async Task<ICollection<BaseHiveServiceModel>> GetHivesWithoutQueenAsync()
+        => await dbContext.Hives
+            .Include(bq => bq.BeeQueens)
+            .Where(h => h.BeeQueens.Count == 0 || h.BeeQueens.Any(bq => !bq.IsAlive))
+            .OrderByDescending(x => x.Number)
+            .ProjectTo<BaseHiveServiceModel>(mapper.ConfigurationProvider)
+            .ToListAsync();
 
     public async Task<BaseHiveServiceModel?> GetByIdAsync(int id)
         => await dbContext.Hives

@@ -24,6 +24,10 @@
             </div>
             <div class="col-10 pb-3">
                 <select asp-for="HiveId" class="form-control">
+                    @if (!Model.Hives.Any())
+                    {
+                        <option>"All hives have queens."</option>
+                    }
                     @foreach (var hive in Model.Hives)
                     {
                         if (hive.Color is null)
@@ -34,7 +38,6 @@
                         {
                             <option value="@hive.Id">@hive.Number - @hive.Color</option>
                         }
-
                     }
                 </select>
             </div>
