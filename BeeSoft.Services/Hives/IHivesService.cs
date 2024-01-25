@@ -6,6 +6,8 @@ public interface IHivesService
 {
     Task<ICollection<HiveListingServiceModel>> GetHivesAsync();
 
+    Task<ICollection<HiveListingServiceModel>> GetHivesInApiaryAsync(int apiaryId);
+
     Task<ICollection<BaseHiveServiceModel>> GetHivesWithoutQueenAsync();
 
     Task<BaseHiveServiceModel?> GetByIdAsync(int id);

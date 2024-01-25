@@ -1,0 +1,89 @@
+﻿@model HivesInApiaryViewModel
+
+<br />
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Hives in apiary: @Model.ApiaryName</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr style="text-align:center">
+                <th>
+                    Number
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Color
+                </th>
+                <th>
+                    Date Bought
+                </th>
+                <th>
+                    Used Count
+                </th>
+                <th>
+                    Queens
+                </th>
+                <th>
+                    Inspections
+                </th>
+                <th>
+                    Diseases
+                </th>
+                <th>
+                    Harvests
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hive in Model.Hives)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @hive.Number
+                    </td>
+                    <td>
+                        @hive.Type
+                    </td>
+                    <td>
+                        @hive.Status
+                    </td>
+                    <td>
+                        @hive.Color
+                    </td>
+                    <td>
+                        @hive.DateBought
+                    </td>
+                    <td>
+                        @hive.TimesUsedCount
+                    </td>
+                    <td>
+                        <a class="nav-link" asp-area="" asp-controller="BeeQueens" asp-action="Index">@hive.BeeQueens.Count</a>
+                    </td>
+                    <td>
+                        <a class="nav-link" asp-area="" asp-controller="Inspections" asp-action="Index">@hive.Inspections.Count</a>
+                    </td>
+                    <td>
+                        <a class="nav-link" asp-area="" asp-controller="Diseases" asp-action="Index">@hive.Diseases.Count</a>
+                    </td>
+                    <td>
+                        <a class="nav-link" asp-area="" asp-controller="Harvests" asp-action="Index">@hive.Harvests.Count</a>
+                    </td>
+                    <td style="text-align:right">
+                        <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="DeleteHive" class="btn btn-danger" asp-route-hiveId="@hive.Id"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
