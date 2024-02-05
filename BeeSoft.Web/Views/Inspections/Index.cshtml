@@ -49,7 +49,7 @@
                         @inspection.ActionsTaken
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">№@inspection.HiveNumber</a>
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="HiveInspections" asp-route-hiveId="@inspection.HiveId">№@inspection.HiveNumber</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateInspection" class="btn btn-success" asp-route-inspectionId="@inspection.Id"><i class="bi bi-pencil-square"></i></a>

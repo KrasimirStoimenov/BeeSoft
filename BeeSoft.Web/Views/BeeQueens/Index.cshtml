@@ -37,7 +37,7 @@
                         @beeQueen.IsAlive
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">№@beeQueen.HiveNumber</a>
+                        <a class="nav-link" asp-controller="Hives" asp-action="HiveBeeQueens" asp-route-hiveId="@beeQueen.HiveId">№@beeQueen.HiveNumber</a>
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateBeeQueen" class="btn btn-success" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-pencil-square"></i></a>
