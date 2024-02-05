@@ -1,13 +1,17 @@
 ﻿namespace BeeSoft.Web.Controllers;
 
 using BeeSoft.Services.Apiaries;
+using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Hives.Models;
 using BeeSoft.Web.Models.Hives;
 
 using Microsoft.AspNetCore.Mvc;
 
-public class HivesController(IHivesService hivesService, IApiariesService apiariesService) : Controller
+public class HivesController(
+    IHivesService hivesService,
+    IApiariesService apiariesService,
+    IBeeQueensService beeQueensService) : Controller
 {
     public async Task<IActionResult> Index()
     {
@@ -123,6 +127,22 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
         }
 
         return BadRequest();
+    }
+
+    public async Task<IActionResult> HiveBeeQueens(int hiveId)
+    {
+        var hive = await hivesService.GetByIdAsync(hiveId);
+        var beeQueens = await beeQueensService.GetBeeQueensInHiveAsync(hiveId);
+        if (hive is not null)
+        {
+            return this.View(new HiveBeeQueensViewModel
+            {
+                HiveNumber = hive.Number,
+                BeeQueens = beeQueens,
+            });
+        }
+
+        return this.NotFound();
     }
 
 }

@@ -1,0 +1,40 @@
+﻿@model HiveBeeQueensViewModel
+
+<br />
+<br />
+<div class="container p-3 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Bee Queens in hive: №@Model.HiveNumber</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr style="text-align:center">
+                <th>
+                    Age
+                </th>
+                <th>
+                    Is Alive
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var beeQueen in Model.BeeQueens)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @beeQueen.Age
+                    </td>
+                    <td>
+                        @beeQueen.IsAlive
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+    </div>
+</div>

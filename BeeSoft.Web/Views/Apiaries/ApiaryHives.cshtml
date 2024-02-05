@@ -67,7 +67,7 @@
                         @hive.TimesUsedCount
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="BeeQueens" asp-action="Index">@hive.BeeQueens.Count</a>
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="HiveBeeQueens" asp-route-hiveId="@hive.Id">@hive.BeeQueens.Count</a>
                     </td>
                     <td>
                         <a class="nav-link" asp-area="" asp-controller="Inspections" asp-action="Index">@hive.Inspections.Count</a>
@@ -82,4 +82,7 @@
             }
         </tbody>
     </table>
+    <div>
+        <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+    </div>
 </div>

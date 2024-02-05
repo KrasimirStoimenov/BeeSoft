@@ -29,7 +29,6 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
             .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
-
     public async Task<ICollection<BaseHiveServiceModel>> GetHivesWithoutQueenAsync()
         => await dbContext.Hives
             .Include(bq => bq.BeeQueens)

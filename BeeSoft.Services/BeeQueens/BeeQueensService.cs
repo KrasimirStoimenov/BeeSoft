@@ -21,6 +21,13 @@ public sealed class BeeQueensService(BeeSoftDbContext dbContext, IMapper mapper)
             .ProjectTo<BeeQueenListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
+    public async Task<ICollection<BeeQueenListingServiceModel>> GetBeeQueensInHiveAsync(int hiveId)
+        => await dbContext.BeeQueens
+            .Where(x => x.HiveId == hiveId)
+            .Include(a => a.Hive)
+            .ProjectTo<BeeQueenListingServiceModel>(mapper.ConfigurationProvider)
+            .ToListAsync();
+
     public async Task<BaseBeeQueenServiceModel?> GetByIdAsync(int id)
         => await dbContext.BeeQueens
             .Where(p => p.Id == id)
@@ -67,4 +74,5 @@ public sealed class BeeQueensService(BeeSoftDbContext dbContext, IMapper mapper)
             return false;
         }
     }
+
 }

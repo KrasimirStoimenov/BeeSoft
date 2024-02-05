@@ -6,6 +6,8 @@ public interface IBeeQueensService
 {
     Task<ICollection<BeeQueenListingServiceModel>> GetBeeQueensAsync();
 
+    Task<ICollection<BeeQueenListingServiceModel>> GetBeeQueensInHiveAsync(int hiveId);
+
     Task<BaseBeeQueenServiceModel?> GetByIdAsync(int id);
 
     Task<int> CreateAsync(BaseBeeQueenServiceModel model);
