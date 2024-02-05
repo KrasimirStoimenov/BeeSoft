@@ -24,13 +24,13 @@ builder.Services
     .AddAutoMapper(options =>
         options.AddProfile<MappingProfile>());
 
-builder.Services.AddScoped<IApiariesService, ApiariesService>();
-builder.Services.AddScoped<IHivesService, HivesService>();
-builder.Services.AddScoped<IBeeQueensService, BeeQueensService>();
-builder.Services.AddScoped<IDiseasesService, DiseasesService>();
-builder.Services.AddScoped<IHarvestsService, HarvestsService>();
-builder.Services.AddScoped<IInspectionsService, InspectionsService>();
-builder.Services.AddScoped<IExpensesService, ExpensesService>();
+builder.Services.AddTransient<IApiariesService, ApiariesService>();
+builder.Services.AddTransient<IHivesService, HivesService>();
+builder.Services.AddTransient<IBeeQueensService, BeeQueensService>();
+builder.Services.AddTransient<IDiseasesService, DiseasesService>();
+builder.Services.AddTransient<IHarvestsService, HarvestsService>();
+builder.Services.AddTransient<IInspectionsService, InspectionsService>();
+builder.Services.AddTransient<IExpensesService, ExpensesService>();
 
 var app = builder.Build();
 

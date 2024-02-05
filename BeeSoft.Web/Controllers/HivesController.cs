@@ -16,22 +16,6 @@ public class HivesController(IHivesService hivesService, IApiariesService apiari
         return this.View(hives);
     }
 
-    public async Task<IActionResult> HivesInApiary(int apiaryId)
-    {
-        var apiary = await apiariesService.GetByIdAsync(apiaryId);
-        var hives = await hivesService.GetHivesInApiaryAsync(apiaryId);
-        if (apiary is not null)
-        {
-            return this.View(new HivesInApiaryViewModel
-            {
-                ApiaryName = apiary.Name,
-                Hives = hives,
-            });
-        }
-
-        return this.NotFound();
-    }
-
     public async Task<IActionResult> CreateHive()
         => this.View(new CreateHiveFormModel
         {

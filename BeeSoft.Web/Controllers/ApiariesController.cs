@@ -2,17 +2,34 @@
 
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.Apiaries.Models;
+using BeeSoft.Services.Hives;
 using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
 
-public class ApiariesController(IApiariesService apiaryService) : Controller
+public class ApiariesController(IApiariesService apiariesService, IHivesService hivesService) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var apiaries = await apiaryService.GetApiariesAsync();
+        var apiaries = await apiariesService.GetApiariesAsync();
 
         return this.View(apiaries);
+    }
+
+    public async Task<IActionResult> ApiaryHives(int apiaryId)
+    {
+        var apiary = await apiariesService.GetByIdAsync(apiaryId);
+        var hives = await hivesService.GetHivesInApiaryAsync(apiaryId);
+        if (apiary is not null)
+        {
+            return this.View(new ApiaryHivesViewModel
+            {
+                ApiaryName = apiary.Name,
+                Hives = hives,
+            });
+        }
+
+        return this.NotFound();
     }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
@@ -31,7 +48,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
                 Location = apiaryFormModel.Location,
             };
 
-            var apiaryId = await apiaryService.CreateAsync(apiaryServiceModel);
+            var apiaryId = await apiariesService.CreateAsync(apiaryServiceModel);
 
             if (apiaryId > 0)
             {
@@ -44,7 +61,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
 
     public async Task<IActionResult> UpdateApiary(int apiaryId)
     {
-        var apiary = await apiaryService.GetByIdAsync(apiaryId);
+        var apiary = await apiariesService.GetByIdAsync(apiaryId);
 
         if (apiary is not null)
         {
@@ -71,7 +88,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
                 Location = apiaryFormModel.Location,
             };
 
-            await apiaryService.UpdateAsync(apiaryServiceModel);
+            await apiariesService.UpdateAsync(apiaryServiceModel);
 
             return this.RedirectToAction(nameof(this.Index));
         }
@@ -81,7 +98,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
 
     public async Task<IActionResult> DeleteApiary(int apiaryId)
     {
-        var apiary = await apiaryService.GetByIdAsync(apiaryId);
+        var apiary = await apiariesService.GetByIdAsync(apiaryId);
 
         if (apiary is not null)
         {
@@ -94,7 +111,7 @@ public class ApiariesController(IApiariesService apiaryService) : Controller
     [HttpPost]
     public async Task<IActionResult> DeleteApiary(ApiaryServiceModel model)
     {
-        var isDeleted = await apiaryService.DeleteAsync(model.Id);
+        var isDeleted = await apiariesService.DeleteAsync(model.Id);
         if (isDeleted)
         {
             return this.RedirectToAction(nameof(this.Index));
