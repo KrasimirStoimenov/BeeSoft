@@ -18,11 +18,18 @@ public sealed class DiseasesService(BeeSoftDbContext dbContext, IMapper mapper) 
             .ProjectTo<DiseaseListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
+    public async Task<ICollection<DiseaseListingServiceModel>> GetDiseasesForHiveAsync(int hiveId)
+        => await dbContext.Diseases
+            .Where(x => x.HiveId == hiveId)
+            .Include(a => a.Hive)
+            .ProjectTo<DiseaseListingServiceModel>(mapper.ConfigurationProvider)
+            .ToListAsync();
+
     public async Task<BaseDiseaseServiceModel?> GetByIdAsync(int id)
-    => await dbContext.Diseases
-            .Where(p => p.Id == id)
-            .ProjectTo<BaseDiseaseServiceModel>(mapper.ConfigurationProvider)
-            .FirstOrDefaultAsync();
+        => await dbContext.Diseases
+                .Where(p => p.Id == id)
+                .ProjectTo<BaseDiseaseServiceModel>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(BaseDiseaseServiceModel model)
     {

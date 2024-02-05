@@ -1,0 +1,45 @@
+﻿@model HiveDiseasesViewModel
+
+<br />
+<br />
+<div class="container p-3 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Inspections for hive: №@Model.HiveNumber</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr style="text-align:center">
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Treatment
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var disease in Model.Diseases)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @disease.Name
+                    </td>
+                    <td>
+                        @disease.Description
+                    </td>
+                    <td>
+                        @disease.Treatment
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a class="btn-primary btn form-control" onclick="history.go(-1);">Back</a>
+    </div>
+</div>
