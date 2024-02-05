@@ -2,14 +2,12 @@
 
 using BeeSoft.Services.BeeQueens.Models;
 
-public sealed record HiveBeeQueensViewModel
+public sealed record HiveBeeQueensViewModel : BaseHiveViewModel
 {
     public HiveBeeQueensViewModel()
     {
         this.BeeQueens = new HashSet<BeeQueenListingServiceModel>();
     }
-
-    public int HiveNumber { get; init; }
 
     public IEnumerable<BeeQueenListingServiceModel> BeeQueens { get; init; }
 }

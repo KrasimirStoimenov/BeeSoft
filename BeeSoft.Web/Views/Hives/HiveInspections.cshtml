@@ -1,0 +1,51 @@
+﻿@model HiveInspectionsViewModel
+
+<br />
+<br />
+<div class="container p-3 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Inspections for hive: №@Model.HiveNumber</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr style="text-align:center">
+                <th>
+                    Inspection Date
+                </th>
+                <th>
+                    Weather Conditions
+                </th>
+                <th>
+                    Observations
+                </th>
+                <th>
+                    Actions Taken
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var inspection in Model.Inspections)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @inspection.InspectionDate
+                    </td>
+                    <td>
+                        @inspection.WeatherConditions
+                    </td>
+                    <td>
+                        @inspection.Observations
+                    </td>
+                    <td>
+                        @inspection.ActionsTaken
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a class="btn-primary btn form-control" onclick="history.go(-1);">Back</a>
+    </div>
+</div>

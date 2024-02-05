@@ -4,6 +4,7 @@ using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Hives.Models;
+using BeeSoft.Services.Inspections;
 using BeeSoft.Web.Models.Hives;
 
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 public class HivesController(
     IHivesService hivesService,
     IApiariesService apiariesService,
-    IBeeQueensService beeQueensService) : Controller
+    IBeeQueensService beeQueensService,
+    IInspectionsService inspectionsService) : Controller
 {
     public async Task<IActionResult> Index()
     {
@@ -139,6 +141,22 @@ public class HivesController(
             {
                 HiveNumber = hive.Number,
                 BeeQueens = beeQueens,
+            });
+        }
+
+        return this.NotFound();
+    }
+
+    public async Task<IActionResult> HiveInspections(int hiveId)
+    {
+        var hive = await hivesService.GetByIdAsync(hiveId);
+        var inspections = await inspectionsService.GetInspectionsForHiveAsync(hiveId);
+        if (hive is not null)
+        {
+            return this.View(new HiveInspectionsViewModel
+            {
+                HiveNumber = hive.Number,
+                Inspections = inspections,
             });
         }
 

@@ -6,6 +6,8 @@ public interface IInspectionsService
 {
     Task<ICollection<InspectionListingServiceModel>> GetInspectionsAsync();
 
+    Task<ICollection<InspectionListingServiceModel>> GetInspectionsForHiveAsync(int hiveId);
+
     Task<BaseInspectionServiceModel?> GetByIdAsync(int id);
 
     Task<int> CreateAsync(BaseInspectionServiceModel model);

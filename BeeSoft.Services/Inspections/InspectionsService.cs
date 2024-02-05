@@ -18,11 +18,18 @@ public sealed class InspectionsService(BeeSoftDbContext dbContext, IMapper mappe
             .ProjectTo<InspectionListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
+    public async Task<ICollection<InspectionListingServiceModel>> GetInspectionsForHiveAsync(int hiveId)
+        => await dbContext.Inspections
+            .Where(x => x.HiveId == hiveId)
+            .Include(a => a.Hive)
+            .ProjectTo<InspectionListingServiceModel>(mapper.ConfigurationProvider)
+            .ToListAsync();
+
     public async Task<BaseInspectionServiceModel?> GetByIdAsync(int id)
         => await dbContext.Inspections
-                    .Where(p => p.Id == id)
-                    .ProjectTo<BaseInspectionServiceModel>(mapper.ConfigurationProvider)
-                    .FirstOrDefaultAsync();
+              .Where(p => p.Id == id)
+              .ProjectTo<BaseInspectionServiceModel>(mapper.ConfigurationProvider)
+              .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(BaseInspectionServiceModel model)
     {

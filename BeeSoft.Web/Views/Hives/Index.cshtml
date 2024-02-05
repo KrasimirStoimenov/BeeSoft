@@ -76,7 +76,7 @@
                         <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="HiveBeeQueens" asp-route-hiveId="@hive.Id">@hive.BeeQueens.Count</a>
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Inspections" asp-action="Index">@hive.Inspections.Count</a>
+                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="HiveInspections" asp-route-hiveId="@hive.Id">@hive.Inspections.Count</a>
                     </td>
                     <td>
                         <a class="nav-link" asp-area="" asp-controller="Diseases" asp-action="Index">@hive.Diseases.Count</a>
