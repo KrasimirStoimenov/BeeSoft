@@ -18,6 +18,13 @@ public sealed class HarvestsService(BeeSoftDbContext dbContext, IMapper mapper) 
             .ProjectTo<HarvestListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
+    public async Task<ICollection<HarvestListingServiceModel>> GetHarvestsForHiveAsync(int hiveId)
+        => await dbContext.Harvests
+            .Where(x => x.HiveId == hiveId)
+            .Include(a => a.Hive)
+            .ProjectTo<HarvestListingServiceModel>(mapper.ConfigurationProvider)
+            .ToListAsync();
+
     public async Task<BaseHarvestServiceModel?> GetByIdAsync(int id)
         => await dbContext.Harvests
                 .Where(p => p.Id == id)

@@ -3,6 +3,7 @@
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.Diseases;
+using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Hives.Models;
 using BeeSoft.Services.Inspections;
@@ -15,7 +16,8 @@ public class HivesController(
     IApiariesService apiariesService,
     IBeeQueensService beeQueensService,
     IInspectionsService inspectionsService,
-    IDiseasesService diseasesService) : Controller
+    IDiseasesService diseasesService,
+    IHarvestsService harvestsService) : Controller
 {
     public async Task<IActionResult> Index()
     {
@@ -175,6 +177,22 @@ public class HivesController(
             {
                 HiveNumber = hive.Number,
                 Diseases = diseases,
+            });
+        }
+
+        return this.NotFound();
+    }
+
+    public async Task<IActionResult> HiveHarvests(int hiveId)
+    {
+        var hive = await hivesService.GetByIdAsync(hiveId);
+        var harvests = await harvestsService.GetHarvestsForHiveAsync(hiveId);
+        if (hive is not null)
+        {
+            return this.View(new HiveHarvestsViewModel
+            {
+                HiveNumber = hive.Number,
+                Harvests = harvests,
             });
         }
 

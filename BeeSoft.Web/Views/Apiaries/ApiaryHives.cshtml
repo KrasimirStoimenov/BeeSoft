@@ -67,16 +67,16 @@
                         @hive.TimesUsedCount
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="HiveBeeQueens" asp-route-hiveId="@hive.Id">@hive.BeeQueens.Count</a>
+                        <a class="nav-link" asp-controller="Hives" asp-action="HiveBeeQueens" asp-route-hiveId="@hive.Id">@hive.BeeQueens.Count</a>
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="HiveInspections" asp-route-hiveId="@hive.Id">@hive.Inspections.Count</a>
+                        <a class="nav-link" asp-controller="Hives" asp-action="HiveInspections" asp-route-hiveId="@hive.Id">@hive.Inspections.Count</a>
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="HiveDiseases" asp-route-hiveId="@hive.Id">@hive.Diseases.Count</a>
+                        <a class="nav-link" asp-controller="Hives" asp-action="HiveDiseases" asp-route-hiveId="@hive.Id">@hive.Diseases.Count</a>
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Harvests" asp-action="Index">@hive.Harvests.Count</a>
+                        <a class="nav-link" asp-controller="Hives" asp-action="HiveHarvests" asp-route-hiveId="@hive.Id">@hive.Harvests.Count</a>
                     </td>
                 </tr>
             }

@@ -1,39 +1,39 @@
-﻿@model HiveDiseasesViewModel
+﻿@model HiveHarvestsViewModel
 
 <br />
 <br />
 <div class="container p-3 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Diseases for hive: №@Model.HiveNumber</h1>
+            <h1 class="text-primary">Harvests for hive: №@Model.HiveNumber</h1>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr style="text-align:center">
                 <th>
-                    Name
+                    Harvest Date
                 </th>
                 <th>
-                    Description
+                    Harvested Amount
                 </th>
                 <th>
-                    Treatment
+                    Harvested Product
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var disease in Model.Diseases)
+            @foreach (var harvest in Model.Harvests)
             {
                 <tr style="text-align:center">
                     <td>
-                        @disease.Name
+                        @harvest.HarvestDate
                     </td>
                     <td>
-                        @disease.Description
+                        @harvest.HarvestedAmount
                     </td>
                     <td>
-                        @disease.Treatment
+                        @harvest.HarvestedProduct
                     </td>
                 </tr>
             }

@@ -6,6 +6,8 @@ public interface IHarvestsService
 {
     Task<ICollection<HarvestListingServiceModel>> GetHarvestsAsync();
 
+    Task<ICollection<HarvestListingServiceModel>> GetHarvestsForHiveAsync(int hiveId);
+
     Task<BaseHarvestServiceModel?> GetByIdAsync(int id);
 
     Task<int> CreateAsync(BaseHarvestServiceModel model);
