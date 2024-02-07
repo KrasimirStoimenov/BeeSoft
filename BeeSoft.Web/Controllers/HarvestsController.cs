@@ -7,13 +7,25 @@ using BeeSoft.Web.Models.Harvests;
 
 using Microsoft.AspNetCore.Mvc;
 
+using static Common.DataAttributeConstants.Paging;
+
 public class HarvestsController(IHarvestsService harvestsService, IHivesService hivesService) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
         var harvests = await harvestsService.GetHarvestsAsync();
 
-        return this.View(harvests);
+        var harvestsViewModel = new ListAllHarvestsViewModel
+        {
+            Harvests = harvests
+                .Skip((page - 1) * ItemsPerPage)
+                .Take(ItemsPerPage),
+            PageNumber = page,
+            Count = harvests.Count,
+            ItemsPerPage = ItemsPerPage,
+        };
+
+        return this.View(harvestsViewModel);
     }
 
     public async Task<IActionResult> CreateHarvest()
