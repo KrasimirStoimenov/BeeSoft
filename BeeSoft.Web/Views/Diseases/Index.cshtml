@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DiseaseListingServiceModel>
+﻿@model ListAllDiseasesViewModel
 
 <br />
 <br />
@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var disease in Model)
+            @foreach (var disease in Model.Diseases)
             {
                 <tr>
                     <td>
@@ -54,3 +54,5 @@
         </tbody>
     </table>
 </div>
+
+<partial name="_PagingPartial" model="@this.Model" />

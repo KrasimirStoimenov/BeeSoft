@@ -7,13 +7,25 @@ using BeeSoft.Web.Models.Diseases;
 
 using Microsoft.AspNetCore.Mvc;
 
+using static Common.DataAttributeConstants.Paging;
+
 public class DiseasesController(IDiseasesService diseasesService, IHivesService hivesService) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
         var diseases = await diseasesService.GetDiseasesAsync();
 
-        return this.View(diseases);
+        var diseasesViewModel = new ListAllDiseasesViewModel
+        {
+            Diseases = diseases
+                .Skip((page - 1) * ItemsPerPage)
+                .Take(ItemsPerPage),
+            PageNumber = page,
+            Count = diseases.Count,
+            ItemsPerPage = ItemsPerPage,
+        };
+
+        return this.View(diseasesViewModel);
     }
 
     public async Task<IActionResult> CreateDisease()
