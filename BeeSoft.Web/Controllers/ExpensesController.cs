@@ -6,13 +6,25 @@ using BeeSoft.Web.Models.Expenses;
 
 using Microsoft.AspNetCore.Mvc;
 
+using static Common.DataAttributeConstants.Paging;
+
 public class ExpensesController(IExpensesService expensesService) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
         var expenses = await expensesService.GetExpensesAsync();
 
-        return this.View(expenses);
+        var expensesViewModel = new ListAllExpensesViewModel
+        {
+            Expenses = expenses
+                .Skip((page - 1) * ItemsPerPage)
+                .Take(ItemsPerPage),
+            PageNumber = page,
+            Count = expenses.Count,
+            ItemsPerPage = ItemsPerPage,
+        };
+
+        return this.View(expensesViewModel);
     }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
