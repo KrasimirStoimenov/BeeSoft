@@ -32,7 +32,7 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
     public async Task<ICollection<BaseHiveServiceModel>> GetHivesWithoutQueenAsync()
         => await dbContext.Hives
             .Include(bq => bq.BeeQueens)
-            .Where(h => h.BeeQueens.Count == 0 || h.BeeQueens.Any(bq => !bq.IsAlive))
+            .Where(h => h.BeeQueens.Count == 0 || h.BeeQueens.All(bq => !bq.IsAlive))
             .OrderByDescending(x => x.Number)
             .ProjectTo<BaseHiveServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
