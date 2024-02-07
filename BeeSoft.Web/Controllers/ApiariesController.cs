@@ -7,7 +7,7 @@ using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.DataAttributeConstants.Common;
+using static Common.DataAttributeConstants.Paging;
 
 public class ApiariesController(IApiariesService apiariesService, IHivesService hivesService) : Controller
 {

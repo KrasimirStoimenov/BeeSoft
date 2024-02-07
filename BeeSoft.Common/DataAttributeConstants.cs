@@ -2,7 +2,7 @@
 
 public class DataAttributeConstants
 {
-    public class Common
+    public class Paging
     {
         public const int ItemsPerPage = 10;
     }

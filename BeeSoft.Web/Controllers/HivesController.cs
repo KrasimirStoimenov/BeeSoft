@@ -11,6 +11,8 @@ using BeeSoft.Web.Models.Hives;
 
 using Microsoft.AspNetCore.Mvc;
 
+using static Common.DataAttributeConstants.Paging;
+
 public class HivesController(
     IHivesService hivesService,
     IApiariesService apiariesService,
@@ -19,11 +21,20 @@ public class HivesController(
     IDiseasesService diseasesService,
     IHarvestsService harvestsService) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
         var hives = await hivesService.GetHivesAsync();
 
-        return this.View(hives);
+        var hivesViewModel = new ListAllHivesViewModel
+        {
+            Hives = hives
+                .Skip((page - 1) * ItemsPerPage)
+                .Take(ItemsPerPage),
+            PageNumber = page,
+            Count = hives.Count,
+            ItemsPerPage = ItemsPerPage,
+        };
+        return this.View(hivesViewModel);
     }
 
     public async Task<IActionResult> CreateHive()
