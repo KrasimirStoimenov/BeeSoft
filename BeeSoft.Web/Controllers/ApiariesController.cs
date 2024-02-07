@@ -7,13 +7,25 @@ using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
 
+using static Common.DataAttributeConstants.Common;
+
 public class ApiariesController(IApiariesService apiariesService, IHivesService hivesService) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
         var apiaries = await apiariesService.GetApiariesAsync();
 
-        return this.View(apiaries);
+        var apiariesViewModel = new ListAllApiariesViewModel
+        {
+            Apiaries = apiaries
+                .Skip((page - 1) * ItemsPerPage)
+                .Take(ItemsPerPage),
+            PageNumber = page,
+            Count = apiaries.Count,
+            ItemsPerPage = ItemsPerPage,
+        };
+
+        return this.View(apiariesViewModel);
     }
 
     public async Task<IActionResult> ApiaryHives(int apiaryId)
