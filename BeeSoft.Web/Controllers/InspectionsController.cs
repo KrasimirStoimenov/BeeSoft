@@ -7,13 +7,25 @@ using BeeSoft.Web.Models.Inspections;
 
 using Microsoft.AspNetCore.Mvc;
 
+using static Common.DataAttributeConstants.Paging;
+
 public class InspectionsController(IInspectionsService inspectionsService, IHivesService hivesService) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
         var inspections = await inspectionsService.GetInspectionsAsync();
 
-        return this.View(inspections);
+        var inspectionsViewModel = new ListAllInspectionsViewModel
+        {
+            Inspections = inspections
+                .Skip((page - 1) * ItemsPerPage)
+                .Take(ItemsPerPage),
+            PageNumber = page,
+            Count = inspections.Count,
+            ItemsPerPage = ItemsPerPage,
+        };
+
+        return this.View(inspectionsViewModel);
     }
 
     public async Task<IActionResult> CreateInspection()

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<InspectionListingServiceModel>
+﻿@model ListAllInspectionsViewModel
 
 <br />
 <br />
@@ -33,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var inspection in Model)
+            @foreach (var inspection in Model.Inspections)
             {
                 <tr>
                     <td>
@@ -60,3 +60,5 @@
         </tbody>
     </table>
 </div>
+
+<partial name="_PagingPartial" model="@this.Model" />
