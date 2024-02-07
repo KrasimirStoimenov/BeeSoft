@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BeeQueenListingServiceModel>
+﻿@model ListAllBeeQueensViewModel
 
 <br />
 <br />
@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var beeQueen in Model)
+            @foreach (var beeQueen in Model.BeeQueens)
             {
                 <tr>
                     <td>
@@ -48,3 +48,5 @@
         </tbody>
     </table>
 </div>
+
+<partial name="_PagingPartial" model="@this.Model" />

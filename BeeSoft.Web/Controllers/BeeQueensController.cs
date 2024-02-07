@@ -7,13 +7,25 @@ using BeeSoft.Web.Models.BeeQueens;
 
 using Microsoft.AspNetCore.Mvc;
 
+using static Common.DataAttributeConstants.Paging;
+
 public class BeeQueensController(IBeeQueensService beeQueensService, IHivesService hivesService) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int page = 1)
     {
         var beeQueens = await beeQueensService.GetBeeQueensAsync();
 
-        return this.View(beeQueens);
+        var beeQueensViewModel = new ListAllBeeQueensViewModel
+        {
+            BeeQueens = beeQueens
+                .Skip((page - 1) * ItemsPerPage)
+                .Take(ItemsPerPage),
+            PageNumber = page,
+            Count = beeQueens.Count,
+            ItemsPerPage = ItemsPerPage,
+        };
+
+        return this.View(beeQueensViewModel);
     }
 
     public async Task<IActionResult> CreateBeeQueen()
