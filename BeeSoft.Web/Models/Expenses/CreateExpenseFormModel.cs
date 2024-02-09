@@ -8,7 +8,7 @@ public sealed record CreateExpenseFormModel
 {
     public CreateExpenseFormModel()
     {
-        this.Date = DateOnly.FromDateTime(DateTime.Now);
+        this.Date = DateTime.Now;
     }
 
     [Required]
@@ -19,5 +19,5 @@ public sealed record CreateExpenseFormModel
 
     public decimal Price { get; init; }
 
-    public DateOnly Date { get; init; }
+    public DateTime Date { get; init; }
 }

@@ -8,5 +8,5 @@ public sealed record ExpenseServiceModel
 
     public decimal Price { get; init; }
 
-    public DateOnly Date { get; init; }
+    public DateTime Date { get; init; }
 }

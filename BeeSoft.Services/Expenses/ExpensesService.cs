@@ -19,9 +19,9 @@ public sealed class ExpensesService(BeeSoftDbContext dbContext, IMapper mapper) 
 
     public async Task<ExpenseServiceModel?> GetByIdAsync(int id)
         => await dbContext.Expenses
-                .Where(p => p.Id == id)
-                .ProjectTo<ExpenseServiceModel>(mapper.ConfigurationProvider)
-                .FirstOrDefaultAsync();
+            .Where(p => p.Id == id)
+            .ProjectTo<ExpenseServiceModel>(mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(ExpenseServiceModel model)
     {
