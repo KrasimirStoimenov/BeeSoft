@@ -52,6 +52,11 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [HttpPost]
     public async Task<ActionResult<int>> CreateApiary(CreateApiaryFormModel apiaryFormModel)
     {
+        var apiaryWithSameNameAndLocationAlreadyExists = await apiariesService.IsApiaryExistsAsync(apiaryFormModel.Name, apiaryFormModel.Location);
+        if (apiaryWithSameNameAndLocationAlreadyExists)
+        {
+            this.ModelState.AddModelError("NameAndLocationAlreadyExists", $"Apiary with name: '{apiaryFormModel.Name}' in location: '{apiaryFormModel.Location}' already exists.");
+        }
         if (ModelState.IsValid)
         {
             var apiaryServiceModel = new ApiaryServiceModel

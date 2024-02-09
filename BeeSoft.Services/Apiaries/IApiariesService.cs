@@ -15,4 +15,6 @@ public interface IApiariesService
     Task<bool> DeleteAsync(int id);
 
     Task<bool> IsApiaryExistsAsync(int id);
+
+    Task<bool> IsApiaryExistsAsync(string name, string location);
 }

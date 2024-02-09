@@ -68,5 +68,9 @@ public sealed class ApiariesService(BeeSoftDbContext dbContext, IMapper mapper) 
 
     public async Task<bool> IsApiaryExistsAsync(int id)
         => await dbContext.Apiaries
-            .AnyAsync(c => c.Id == id);
+            .AnyAsync(a => a.Id == id);
+
+    public async Task<bool> IsApiaryExistsAsync(string name, string location)
+        => await dbContext.Apiaries
+            .AnyAsync(a => a.Name == name && a.Location == location);
 }
