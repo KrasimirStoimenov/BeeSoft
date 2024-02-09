@@ -12,11 +12,11 @@
     </script>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cannotCreateBeeQueenModal" tabindex="-1" aria-labelledby="cannotCreateBeeQueenModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cannot Create Bee Queen</h5>
+                    <h5 class="modal-title" id="cannotCreateBeeQueenModalLabel">Cannot Create Bee Queen</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -51,10 +51,6 @@ else
                 </div>
                 <div class="col-10 pb-3">
                     <select asp-for="HiveId" class="form-control">
-                        @if (!Model.Hives.Any())
-                        {
-                            <option>"All hives have queens."</option>
-                        }
                         @foreach (var hive in Model.Hives)
                         {
                             if (hive.Color is null)
@@ -84,7 +80,7 @@ else
 
     <script>
         function openModal() {
-            let modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            let modal = new bootstrap.Modal(document.getElementById('cannotCreateBeeQueenModal'));
             modal.show();
 
             let closeBtn = document.getElementById('closeModalBtn');
