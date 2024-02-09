@@ -3,55 +3,95 @@
 @{
     ViewBag.Title = "Create Bee Queen";
 }
+@if (!Model.Hives.Any())
+{
+    <script>
+        window.onload = function () {
+            openModal();
+        };
+    </script>
 
-<form asp-action="CreateBeeQueen">
-    <br />
-    <div class="container border p-3">
-        <h1 class="text-primary">@ViewBag.Title</h1>
-
-        <hr />
-        <div class="row">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="col-2">
-                <label asp-for="Age" class="control-label pt-2" style="font-size:20px;"></label>
-            </div>
-            <div class="col-10 pb-3">
-                <input asp-for="Age" type="number" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-            <div class="col-2">
-                <label asp-for="HiveId" class="control-label pt-2" style="font-size:20px;"></label>
-            </div>
-            <div class="col-10 pb-3">
-                <select asp-for="HiveId" class="form-control">
-                    @if (!Model.Hives.Any())
-                    {
-                        <option>"All hives have queens."</option>
-                    }
-                    @foreach (var hive in Model.Hives)
-                    {
-                        if (hive.Color is null)
-                        {
-                            <option value="@hive.Id">@hive.Number</option>
-                        }
-                        else
-                        {
-                            <option value="@hive.Id">@hive.Number - @hive.Color</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="col-5 offset-2">
-                <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
-            </div>
-            <div class="col-5">
-                <input type="submit" value="Create" class="btn btn-success form-control" />
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cannot Create Bee Queen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Sorry, you cannot create any more bee queens at the moment. All hives has bee queens. Please try again later.
+                </div>
+                <div class="modal-footer">
+                    <button id="closeModalBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</form>
+}
+else
+{
+    <form asp-action="CreateBeeQueen">
+        <br />
+        <div class="container border p-3">
+            <h1 class="text-primary">@ViewBag.Title</h1>
 
+            <hr />
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-2">
+                    <label asp-for="Age" class="control-label pt-2" style="font-size:20px;"></label>
+                </div>
+                <div class="col-10 pb-3">
+                    <input asp-for="Age" type="number" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="col-2">
+                    <label asp-for="HiveId" class="control-label pt-2" style="font-size:20px;"></label>
+                </div>
+                <div class="col-10 pb-3">
+                    <select asp-for="HiveId" class="form-control">
+                        @if (!Model.Hives.Any())
+                        {
+                            <option>"All hives have queens."</option>
+                        }
+                        @foreach (var hive in Model.Hives)
+                        {
+                            if (hive.Color is null)
+                            {
+                                <option value="@hive.Id">@hive.Number</option>
+                            }
+                            else
+                            {
+                                <option value="@hive.Id">@hive.Number - @hive.Color</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-5 offset-2">
+                    <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+                </div>
+                <div class="col-5">
+                    <input type="submit" value="Create" class="btn btn-success form-control" />
+                </div>
+            </div>
+        </div>
+    </form>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function openModal() {
+            let modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            modal.show();
+
+            let closeBtn = document.getElementById('closeModalBtn');
+            closeBtn.addEventListener('click', function () {
+                // Redirect the user to the specific page
+                window.location.href = '@Url.Action("Index", "BeeQueens")';
+            });
+        }
+    </script>
 }
