@@ -1,4 +1,4 @@
-﻿@model ListAllBeeQueensViewModel
+﻿@model ListAllViewModel<BeeQueenListingServiceModel>
 
 <br />
 <br />
@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var beeQueen in Model.BeeQueens)
+            @foreach (var beeQueen in Model.Items)
             {
                 <tr>
                     <td>

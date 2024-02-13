@@ -1,4 +1,4 @@
-﻿@model ListAllExpensesViewModel
+﻿@model ListAllViewModel<ExpenseServiceModel>
 
 <br />
 <br />
@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var expense in Model.Expenses)
+            @foreach (var expense in Model.Items)
             {
                 <tr>
                     <td>

@@ -3,6 +3,7 @@
 using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Harvests.Models;
 using BeeSoft.Services.Hives;
+using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Harvests;
 
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
     {
         var harvests = await harvestsService.GetHarvestsAsync();
 
-        var harvestsViewModel = new ListAllHarvestsViewModel
+        var harvestsViewModel = new ListAllViewModel<HarvestListingServiceModel>
         {
-            Harvests = harvests
+            Items = harvests
                 .Skip((page - 1) * ItemsPerPage)
                 .Take(ItemsPerPage),
             PageNumber = page,

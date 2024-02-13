@@ -1,4 +1,4 @@
-﻿@model ListAllHivesViewModel
+﻿@model ListAllViewModel<HiveListingServiceModel>
 
 <br />
 <br />
@@ -51,7 +51,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var hive in Model.Hives)
+            @foreach (var hive in Model.Items)
             {
                 <tr style="text-align:center">
                     <td>

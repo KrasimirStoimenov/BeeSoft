@@ -7,6 +7,7 @@ using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Hives.Models;
 using BeeSoft.Services.Inspections;
+using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Hives;
 
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,9 @@ public class HivesController(
     {
         var hives = await hivesService.GetHivesAsync();
 
-        var hivesViewModel = new ListAllHivesViewModel
+        var hivesViewModel = new ListAllViewModel<HiveListingServiceModel>
         {
-            Hives = hives
+            Items = hives
                 .Skip((page - 1) * ItemsPerPage)
                 .Take(ItemsPerPage),
             PageNumber = page,

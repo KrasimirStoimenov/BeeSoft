@@ -3,6 +3,7 @@
 using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.BeeQueens.Models;
 using BeeSoft.Services.Hives;
+using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.BeeQueens;
 
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
     {
         var beeQueens = await beeQueensService.GetBeeQueensAsync();
 
-        var beeQueensViewModel = new ListAllBeeQueensViewModel
+        var beeQueensViewModel = new ListAllViewModel<BeeQueenListingServiceModel>
         {
-            BeeQueens = beeQueens
+            Items = beeQueens
                 .Skip((page - 1) * ItemsPerPage)
                 .Take(ItemsPerPage),
             PageNumber = page,

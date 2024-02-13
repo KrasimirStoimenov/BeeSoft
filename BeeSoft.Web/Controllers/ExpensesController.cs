@@ -2,6 +2,7 @@
 
 using BeeSoft.Services.Expenses;
 using BeeSoft.Services.Expenses.Models;
+using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Expenses;
 
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,9 @@ public class ExpensesController(IExpensesService expensesService) : Controller
     {
         var expenses = await expensesService.GetExpensesAsync();
 
-        var expensesViewModel = new ListAllExpensesViewModel
+        var expensesViewModel = new ListAllViewModel<ExpenseServiceModel>
         {
-            Expenses = expenses
+            Items = expenses
                 .Skip((page - 1) * ItemsPerPage)
                 .Take(ItemsPerPage),
             PageNumber = page,

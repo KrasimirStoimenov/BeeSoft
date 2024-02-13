@@ -1,4 +1,4 @@
-﻿@model ListAllDiseasesViewModel
+﻿@model ListAllViewModel<DiseaseListingServiceModel>
 
 <br />
 <br />
@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var disease in Model.Diseases)
+            @foreach (var disease in Model.Items)
             {
                 <tr>
                     <td>

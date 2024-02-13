@@ -1,4 +1,4 @@
-﻿@model ListAllApiariesViewModel
+﻿@model ListAllViewModel<ApiaryServiceModel>
 
 <br />
 <br />
@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var apiary in Model.Apiaries)
+            @foreach (var apiary in Model.Items)
             {
                 <tr>
                     <td>

@@ -1,4 +1,4 @@
-﻿@model ListAllHarvestsViewModel
+﻿@model ListAllViewModel<HarvestListingServiceModel>
 
 <br />
 <br />
@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var harvest in Model.Harvests)
+            @foreach (var harvest in Model.Items)
             {
                 <tr>
                     <td>

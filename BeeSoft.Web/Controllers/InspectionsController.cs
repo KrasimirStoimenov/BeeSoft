@@ -3,6 +3,7 @@
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Inspections;
 using BeeSoft.Services.Inspections.Models;
+using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Inspections;
 
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
     {
         var inspections = await inspectionsService.GetInspectionsAsync();
 
-        var inspectionsViewModel = new ListAllInspectionsViewModel
+        var inspectionsViewModel = new ListAllViewModel<InspectionListingServiceModel>
         {
-            Inspections = inspections
+            Items = inspections
                 .Skip((page - 1) * ItemsPerPage)
                 .Take(ItemsPerPage),
             PageNumber = page,

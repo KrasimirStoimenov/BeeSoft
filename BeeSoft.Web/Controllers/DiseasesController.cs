@@ -3,6 +3,7 @@
 using BeeSoft.Services.Diseases;
 using BeeSoft.Services.Diseases.Models;
 using BeeSoft.Services.Hives;
+using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Diseases;
 
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
     {
         var diseases = await diseasesService.GetDiseasesAsync();
 
-        var diseasesViewModel = new ListAllDiseasesViewModel
+        var diseasesViewModel = new ListAllViewModel<DiseaseListingServiceModel>
         {
-            Diseases = diseases
+            Items = diseases
                 .Skip((page - 1) * ItemsPerPage)
                 .Take(ItemsPerPage),
             PageNumber = page,

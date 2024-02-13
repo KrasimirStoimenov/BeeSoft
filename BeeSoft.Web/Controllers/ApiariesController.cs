@@ -3,6 +3,7 @@
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.Apiaries.Models;
 using BeeSoft.Services.Hives;
+using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     {
         var apiaries = await apiariesService.GetApiariesAsync();
 
-        var apiariesViewModel = new ListAllApiariesViewModel
+        var apiariesViewModel = new ListAllViewModel<ApiaryServiceModel>
         {
-            Apiaries = apiaries
+            Items = apiaries
                 .Skip((page - 1) * ItemsPerPage)
                 .Take(ItemsPerPage),
             PageNumber = page,
