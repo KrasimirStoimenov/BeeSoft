@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Services.Hives.Models;
 using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
+using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Harvest;
+using static Common.ErrorMessageResourceNameConstants;
 
 public sealed record CreateHarvestFormModel
 {
@@ -18,7 +20,9 @@ public sealed record CreateHarvestFormModel
 
     public decimal HarvestedAmount { get; init; }
 
-    [Required]
+    [Required(
+       ErrorMessageResourceName = RequiredFieldErrorMessageName,
+       ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(HarvestedProductMaxLength)]
     public string? HarvestedProduct { get; init; }
 

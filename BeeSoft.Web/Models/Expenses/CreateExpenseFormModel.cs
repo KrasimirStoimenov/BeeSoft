@@ -2,7 +2,10 @@
 
 using System.ComponentModel.DataAnnotations;
 
+using BeeSoft.Web.Resources;
+
 using static Common.DataAttributeConstants.Expense;
+using static Common.ErrorMessageResourceNameConstants;
 
 public sealed record CreateExpenseFormModel
 {
@@ -11,10 +14,14 @@ public sealed record CreateExpenseFormModel
         this.Date = DateTime.Now;
     }
 
-    [Required]
+    [Required(
+        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: NameMaxLength,
-        MinimumLength = NameMinLength)]
+        MinimumLength = NameMinLength,
+        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public string? Name { get; init; }
 
     public decimal Price { get; init; }

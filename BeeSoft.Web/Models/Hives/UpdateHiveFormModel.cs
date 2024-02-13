@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Services.Apiaries.Models;
 using BeeSoft.Web.Infrastructure.ValidationAttributes.Apiaries;
+using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Hive;
+using static Common.ErrorMessageResourceNameConstants;
 
 public sealed record UpdateHiveFormModel
 {
@@ -19,16 +21,24 @@ public sealed record UpdateHiveFormModel
     [Range(NumberMinValue, NumberMaxValue)]
     public int Number { get; init; }
 
-    [Required]
+    [Required(
+        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: TypeMaxLength,
-        MinimumLength = TypeMinLength)]
+        MinimumLength = TypeMinLength,
+        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public string? Type { get; init; }
 
-    [Required]
+    [Required(
+       ErrorMessageResourceName = RequiredFieldErrorMessageName,
+       ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: StatusMaxLength,
-        MinimumLength = StatusMinLength)]
+        MinimumLength = StatusMinLength,
+        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public string? Status { get; init; }
 
     [MaxLength(ColorMaxLength)]

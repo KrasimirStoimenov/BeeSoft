@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Services.Hives.Models;
 using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
+using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Inspection;
+using static Common.ErrorMessageResourceNameConstants;
 
 public sealed record UpdateInspectionFormModel
 {
@@ -20,7 +22,9 @@ public sealed record UpdateInspectionFormModel
     [MaxLength(WeatherConditionsMaxLength)]
     public string? WeatherConditions { get; init; }
 
-    [Required]
+    [Required(
+        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(ObservationsMaxLength)]
     public string? Observations { get; init; }
 
