@@ -18,7 +18,11 @@ public sealed record UpdateHiveFormModel
 
     public int Id { get; init; }
 
-    [Range(NumberMinValue, NumberMaxValue)]
+    [Range(
+        NumberMinValue,
+        NumberMaxValue,
+        ErrorMessageResourceName = RangeErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int Number { get; init; }
 
     [Required(
@@ -27,7 +31,7 @@ public sealed record UpdateHiveFormModel
     [StringLength(
         maximumLength: TypeMaxLength,
         MinimumLength = TypeMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Type { get; init; }
 
@@ -37,7 +41,7 @@ public sealed record UpdateHiveFormModel
     [StringLength(
         maximumLength: StatusMaxLength,
         MinimumLength = StatusMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Status { get; init; }
 
@@ -46,11 +50,17 @@ public sealed record UpdateHiveFormModel
 
     public DateOnly DateBought { get; init; }
 
-    [Range(TimesUsedCountMinValue, TimesUsedCountMaxValue)]
+    [Range(
+        TimesUsedCountMinValue,
+        TimesUsedCountMaxValue,
+        ErrorMessageResourceName = RangeErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int TimesUsedCount { get; init; }
 
-    [IsValidApiaryId]
     [Display(Name = "Apiary")]
+    [IsValidApiaryId(
+        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int ApiaryId { get; init; }
 
     public IEnumerable<ApiaryServiceModel> Apiaries { get; set; }

@@ -16,7 +16,7 @@ public class CreateApiaryFormModel
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Name { get; init; }
 
@@ -26,7 +26,7 @@ public class CreateApiaryFormModel
     [StringLength(
         maximumLength: LocationMaxLength,
         MinimumLength = LocationMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Location { get; init; }
 }

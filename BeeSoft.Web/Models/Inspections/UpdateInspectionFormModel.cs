@@ -31,8 +31,10 @@ public sealed record UpdateInspectionFormModel
     [MaxLength(ActionsTakenMaxLength)]
     public string? ActionsTaken { get; init; }
 
-    [IsValidHiveId]
     [Display(Name = "Hive")]
+    [IsValidHiveId(
+        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 
     public IEnumerable<BaseHiveServiceModel> Hives { get; init; }

@@ -19,7 +19,7 @@
                 var hiveExists = service.IsHiveExistsAsync((int)value).GetAwaiter().GetResult();
                 if (!hiveExists)
                 {
-                    return new ValidationResult("Hive does not exist.");
+                    return new ValidationResult(string.Empty);
                 }
 
                 return ValidationResult.Success!;

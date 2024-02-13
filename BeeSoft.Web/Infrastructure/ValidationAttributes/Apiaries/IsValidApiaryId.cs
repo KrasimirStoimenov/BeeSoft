@@ -19,7 +19,7 @@
                 var apiaryExists = service.IsApiaryExistsAsync((int)value).GetAwaiter().GetResult();
                 if (!apiaryExists)
                 {
-                    return new ValidationResult("Apiary does not exist.");
+                    return new ValidationResult(string.Empty);
                 }
 
                 return ValidationResult.Success!;

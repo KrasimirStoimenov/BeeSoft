@@ -26,8 +26,10 @@ public sealed record CreateHarvestFormModel
     [MaxLength(HarvestedProductMaxLength)]
     public string? HarvestedProduct { get; init; }
 
-    [IsValidHiveId]
     [Display(Name = "Hive")]
+    [IsValidHiveId(
+        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 
     public IEnumerable<BaseHiveServiceModel> Hives { get; init; }

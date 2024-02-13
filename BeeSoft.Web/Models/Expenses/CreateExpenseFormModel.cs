@@ -20,7 +20,7 @@ public sealed record CreateExpenseFormModel
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Name { get; init; }
 

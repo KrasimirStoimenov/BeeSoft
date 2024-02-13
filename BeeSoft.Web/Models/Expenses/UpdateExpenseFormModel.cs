@@ -17,7 +17,7 @@ public sealed record UpdateExpenseFormModel
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Name { get; init; }
 

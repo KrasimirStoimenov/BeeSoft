@@ -18,8 +18,14 @@ public sealed record CreateHiveFormModel
         this.Apiaries = new HashSet<ApiaryServiceModel>();
     }
 
-    [IsValidHiveNumber]
-    [Range(NumberMinValue, NumberMaxValue)]
+    [IsValidHiveNumber(
+        ErrorMessageResourceName = AlreadyExistingHiveNumberErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
+    [Range(
+        NumberMinValue,
+        NumberMaxValue,
+        ErrorMessageResourceName = RangeErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int Number { get; init; }
 
     [Required(
@@ -28,7 +34,7 @@ public sealed record CreateHiveFormModel
     [StringLength(
         maximumLength: TypeMaxLength,
         MinimumLength = TypeMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Type { get; init; }
 
@@ -38,7 +44,7 @@ public sealed record CreateHiveFormModel
     [StringLength(
         maximumLength: StatusMaxLength,
         MinimumLength = StatusMinLength,
-        ErrorMessageResourceName = DefaultStringLengthErrorMessageName,
+        ErrorMessageResourceName = StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Status { get; init; }
 
@@ -49,11 +55,17 @@ public sealed record CreateHiveFormModel
     public DateOnly DateBought { get; init; }
 
     [Display(Name = "Times Used")]
-    [Range(TimesUsedCountMinValue, TimesUsedCountMaxValue)]
+    [Range(
+        TimesUsedCountMinValue,
+        TimesUsedCountMaxValue,
+        ErrorMessageResourceName = RangeErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int TimesUsedCount { get; init; }
 
-    [IsValidApiaryId]
     [Display(Name = "Apiary")]
+    [IsValidApiaryId(
+        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int ApiaryId { get; init; }
 
     public IEnumerable<ApiaryServiceModel> Apiaries { get; set; }

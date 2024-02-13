@@ -61,11 +61,29 @@ namespace BeeSoft.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} should be between {2} and {1} characters long..
+        ///   Looks up a localized string similar to Already exists hive with that number..
         /// </summary>
-        public static string DefaultStringLengthErrorMessage {
+        public static string AlreadyExistingHiveNumber {
             get {
-                return ResourceManager.GetString("DefaultStringLengthErrorMessage", resourceCulture);
+                return ResourceManager.GetString("AlreadyExistingHiveNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not exist..
+        /// </summary>
+        public static string NotExistingItemErrorMessage {
+            get {
+                return ResourceManager.GetString("NotExistingItemErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field {0} must be between {1} and {2}..
+        /// </summary>
+        public static string RangeErrorMessage {
+            get {
+                return ResourceManager.GetString("RangeErrorMessage", resourceCulture);
             }
         }
         
@@ -75,6 +93,15 @@ namespace BeeSoft.Web.Resources {
         public static string RequiredFieldErrorMessage {
             get {
                 return ResourceManager.GetString("RequiredFieldErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} should be between {2} and {1} characters long..
+        /// </summary>
+        public static string StringLengthErrorMessage {
+            get {
+                return ResourceManager.GetString("StringLengthErrorMessage", resourceCulture);
             }
         }
     }

@@ -34,8 +34,10 @@ public sealed record CreateDiseaseFormModel
     [MaxLength(TreatmentMaxLength)]
     public string? Treatment { get; init; }
 
-    [IsValidHiveId]
     [Display(Name = "Hive")]
+    [IsValidHiveId(
+        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 
     public IEnumerable<BaseHiveServiceModel> Hives { get; init; }

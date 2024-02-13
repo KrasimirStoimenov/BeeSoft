@@ -19,7 +19,7 @@
                 var hiveNumberExists = service.IsHiveWithNumberAlreadyExists((int)value).GetAwaiter().GetResult();
                 if (hiveNumberExists)
                 {
-                    return new ValidationResult($"Already exists hive with number: {value}");
+                    return new ValidationResult(string.Empty);
                 }
 
                 return ValidationResult.Success!;

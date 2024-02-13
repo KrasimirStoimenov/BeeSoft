@@ -117,10 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DefaultStringLengthErrorMessage" xml:space="preserve">
-    <value>{0} трябва да бъде между {2} и {1} симбвола.</value>
+  <data name="AlreadyExistingHiveNumber" xml:space="preserve">
+    <value>Вече съществува кошер с този номер.</value>
+  </data>
+  <data name="NotExistingItemErrorMessage" xml:space="preserve">
+    <value>{0} не съществува.</value>
+  </data>
+  <data name="RangeErrorMessage" xml:space="preserve">
+    <value>Полето {0} трябва да бъде между {1} и {2}.</value>
   </data>
   <data name="RequiredFieldErrorMessage" xml:space="preserve">
     <value>{0} полето е задължително.</value>
+  </data>
+  <data name="StringLengthErrorMessage" xml:space="preserve">
+    <value>{0} трябва да бъде между {2} и {1} симбвола.</value>
   </data>
 </root>
