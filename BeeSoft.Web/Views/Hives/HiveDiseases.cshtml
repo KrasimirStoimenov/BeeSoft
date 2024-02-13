@@ -1,4 +1,4 @@
-﻿@model HiveDiseasesViewModel
+﻿@model HiveResourcesViewModel<DiseaseListingServiceModel>
 
 <br />
 <br />
@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var disease in Model.Diseases)
+            @foreach (var disease in Model.Resources)
             {
                 <tr style="text-align:center">
                     <td>

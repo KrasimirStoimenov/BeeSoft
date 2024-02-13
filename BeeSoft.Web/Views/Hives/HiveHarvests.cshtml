@@ -1,4 +1,4 @@
-﻿@model HiveHarvestsViewModel
+﻿@model HiveResourcesViewModel<HarvestListingServiceModel>
 
 <br />
 <br />
@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var harvest in Model.Harvests)
+            @foreach (var harvest in Model.Resources)
             {
                 <tr style="text-align:center">
                     <td>

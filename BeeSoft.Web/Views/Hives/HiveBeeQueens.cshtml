@@ -1,4 +1,4 @@
-﻿@model HiveBeeQueensViewModel
+﻿@model HiveResourcesViewModel<BeeQueenListingServiceModel>
 
 <br />
 <br />
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var beeQueen in Model.BeeQueens)
+            @foreach (var beeQueen in Model.Resources)
             {
                 <tr style="text-align:center">
                     <td>

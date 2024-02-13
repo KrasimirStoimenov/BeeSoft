@@ -1,4 +1,4 @@
-﻿@model HiveInspectionsViewModel
+﻿@model HiveResourcesViewModel<InspectionListingServiceModel>
 
 <br />
 <br />
@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var inspection in Model.Inspections)
+            @foreach (var inspection in Model.Resources)
             {
                 <tr style="text-align:center">
                     <td>

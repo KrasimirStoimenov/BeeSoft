@@ -2,11 +2,15 @@
 
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.BeeQueens;
+using BeeSoft.Services.BeeQueens.Models;
 using BeeSoft.Services.Diseases;
+using BeeSoft.Services.Diseases.Models;
 using BeeSoft.Services.Harvests;
+using BeeSoft.Services.Harvests.Models;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Hives.Models;
 using BeeSoft.Services.Inspections;
+using BeeSoft.Services.Inspections.Models;
 using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Hives;
 
@@ -153,10 +157,10 @@ public class HivesController(
         var beeQueens = await beeQueensService.GetBeeQueensInHiveAsync(hiveId);
         if (hive is not null)
         {
-            return this.View(new HiveBeeQueensViewModel
+            return this.View(new HiveResourcesViewModel<BeeQueenListingServiceModel>
             {
                 HiveNumber = hive.Number,
-                BeeQueens = beeQueens,
+                Resources = beeQueens,
             });
         }
 
@@ -169,10 +173,10 @@ public class HivesController(
         var inspections = await inspectionsService.GetInspectionsForHiveAsync(hiveId);
         if (hive is not null)
         {
-            return this.View(new HiveInspectionsViewModel
+            return this.View(new HiveResourcesViewModel<InspectionListingServiceModel>
             {
                 HiveNumber = hive.Number,
-                Inspections = inspections,
+                Resources = inspections,
             });
         }
 
@@ -185,10 +189,10 @@ public class HivesController(
         var diseases = await diseasesService.GetDiseasesForHiveAsync(hiveId);
         if (hive is not null)
         {
-            return this.View(new HiveDiseasesViewModel
+            return this.View(new HiveResourcesViewModel<DiseaseListingServiceModel>
             {
                 HiveNumber = hive.Number,
-                Diseases = diseases,
+                Resources = diseases,
             });
         }
 
@@ -201,10 +205,10 @@ public class HivesController(
         var harvests = await harvestsService.GetHarvestsForHiveAsync(hiveId);
         if (hive is not null)
         {
-            return this.View(new HiveHarvestsViewModel
+            return this.View(new HiveResourcesViewModel<HarvestListingServiceModel>
             {
                 HiveNumber = hive.Number,
-                Harvests = harvests,
+                Resources = harvests,
             });
         }
 
