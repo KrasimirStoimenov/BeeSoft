@@ -22,7 +22,7 @@ public sealed record CreateInspectionFormModel
     public string? WeatherConditions { get; init; }
 
     [Required(
-        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(ObservationsMaxLength)]
     public string? Observations { get; init; }
@@ -32,7 +32,7 @@ public sealed record CreateInspectionFormModel
 
     [Display(Name = "Hive")]
     [IsValidHiveId(
-        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 

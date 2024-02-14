@@ -13,22 +13,22 @@ public class UpdateApiaryFormModel
 
     [Display(Name = "Apiary name")]
     [Required(
-            ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+            ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
             ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength,
-        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Name { get; init; }
 
     [Required(
-        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: LocationMaxLength,
         MinimumLength = LocationMinLength,
-        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Location { get; init; }
 }

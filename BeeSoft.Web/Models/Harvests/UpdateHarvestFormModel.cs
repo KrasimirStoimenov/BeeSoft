@@ -23,14 +23,14 @@ public sealed record UpdateHarvestFormModel
     public decimal HarvestedAmount { get; init; }
 
     [Required(
-        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(HarvestedProductMaxLength)]
     public string? HarvestedProduct { get; init; }
 
     [Display(Name = "Hive")]
     [IsValidHiveId(
-        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 

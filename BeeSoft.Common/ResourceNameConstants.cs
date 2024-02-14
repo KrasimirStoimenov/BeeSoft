@@ -2,7 +2,7 @@
 
 public sealed class ResourceNameConstants
 {
-    public sealed class ErrorMessages
+    public sealed class ErrorMessage
     {
         public const string RequiredFieldErrorMessageName = "RequiredFieldErrorMessage";
         public const string StringLengthErrorMessageName = "StringLengthErrorMessage";

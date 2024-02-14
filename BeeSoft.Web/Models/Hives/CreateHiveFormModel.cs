@@ -20,32 +20,32 @@ public sealed record CreateHiveFormModel
     }
 
     [IsValidHiveNumber(
-        ErrorMessageResourceName = ErrorMessages.AlreadyExistingHiveNumberErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.AlreadyExistingHiveNumberErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [Range(
         NumberMinValue,
         NumberMaxValue,
-        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int Number { get; init; }
 
     [Required(
-        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: TypeMaxLength,
         MinimumLength = TypeMinLength,
-        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Type { get; init; }
 
     [Required(
-        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: StatusMaxLength,
         MinimumLength = StatusMinLength,
-        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Status { get; init; }
 
@@ -59,13 +59,13 @@ public sealed record CreateHiveFormModel
     [Range(
         TimesUsedCountMinValue,
         TimesUsedCountMaxValue,
-        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int TimesUsedCount { get; init; }
 
     [Display(Name = "Apiary")]
     [IsValidApiaryId(
-        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int ApiaryId { get; init; }
 

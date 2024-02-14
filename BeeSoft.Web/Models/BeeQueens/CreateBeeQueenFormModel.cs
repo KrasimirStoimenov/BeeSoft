@@ -19,13 +19,13 @@ public sealed record CreateBeeQueenFormModel
     [Range(
         AgeMinValue,
         AgeMaxValue,
-        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int Age { get; init; }
 
     [Display(Name = "Hive")]
     [IsValidHiveId(
-        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 

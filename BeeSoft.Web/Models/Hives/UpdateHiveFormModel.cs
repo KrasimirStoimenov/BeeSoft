@@ -21,27 +21,27 @@ public sealed record UpdateHiveFormModel
     [Range(
         NumberMinValue,
         NumberMaxValue,
-        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int Number { get; init; }
 
     [Required(
-        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: TypeMaxLength,
         MinimumLength = TypeMinLength,
-        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Type { get; init; }
 
     [Required(
-       ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+       ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
        ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: StatusMaxLength,
         MinimumLength = StatusMinLength,
-        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Status { get; init; }
 
@@ -53,13 +53,13 @@ public sealed record UpdateHiveFormModel
     [Range(
         TimesUsedCountMinValue,
         TimesUsedCountMaxValue,
-        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int TimesUsedCount { get; init; }
 
     [Display(Name = "Apiary")]
     [IsValidApiaryId(
-        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int ApiaryId { get; init; }
 

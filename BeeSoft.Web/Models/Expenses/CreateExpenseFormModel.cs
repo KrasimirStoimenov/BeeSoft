@@ -15,12 +15,12 @@ public sealed record CreateExpenseFormModel
     }
 
     [Required(
-        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength,
-        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessage.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Name { get; init; }
 
