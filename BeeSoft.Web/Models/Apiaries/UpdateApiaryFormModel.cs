@@ -3,6 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Web.Resources;
+using BeeSoft.Web.Resources.Models.Apiaries;
 
 using static Common.DataAttributeConstants.Apiary;
 using static Common.ResourceNameConstants;
@@ -11,7 +12,9 @@ public class UpdateApiaryFormModel
 {
     public int Id { get; init; }
 
-    [Display(Name = "Apiary name")]
+    [Display(
+        Name = CommonResourceName.Name,
+        ResourceType = typeof(SharedResource))]
     [Required(
             ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
             ErrorMessageResourceType = typeof(SharedResource))]
@@ -22,6 +25,9 @@ public class UpdateApiaryFormModel
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Name { get; init; }
 
+    [Display(
+        Name = ApiaryResourceName.Location,
+        ResourceType = typeof(ApiaryResource))]
     [Required(
         ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]

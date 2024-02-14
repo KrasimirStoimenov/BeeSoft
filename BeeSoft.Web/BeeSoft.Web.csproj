@@ -19,6 +19,41 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Models\Apiaries\ApiaryResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ApiaryResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Models\BeeQueens\BeeQueenResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BeeQueenResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Models\Diseases\DiseaseResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DiseaseResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Models\Expenses\ExpenseResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ExpenseResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Models\Harvests\HarvestResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HarvestResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Models\Hives\HiveResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HiveResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Models\Inspections\InspectionResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InspectionResource.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\SharedResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -27,14 +62,38 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Models\Apiaries\ApiaryResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApiaryResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Models\BeeQueens\BeeQueenResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BeeQueenResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Models\Diseases\DiseaseResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiseaseResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Models\Expenses\ExpenseResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExpenseResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Models\Harvests\HarvestResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HarvestResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Models\Hives\HiveResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HiveResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Models\Inspections\InspectionResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InspectionResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SharedResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Models\" />
   </ItemGroup>
 
 </Project>

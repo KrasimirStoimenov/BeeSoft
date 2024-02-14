@@ -17,6 +17,9 @@ public sealed record UpdateInspectionFormModel
     }
     public int Id { get; init; }
 
+    [Display(
+        Name = CommonResourceName.Date,
+        ResourceType = typeof(SharedResource))]
     public DateTime InspectionDate { get; init; }
 
     [MaxLength(WeatherConditionsMaxLength)]
@@ -31,7 +34,9 @@ public sealed record UpdateInspectionFormModel
     [MaxLength(ActionsTakenMaxLength)]
     public string? ActionsTaken { get; init; }
 
-    [Display(Name = "Hive")]
+    [Display(
+        Name = CommonResourceName.Hive,
+        ResourceType = typeof(SharedResource))]
     [IsValidHiveId(
         ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]

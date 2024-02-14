@@ -3,6 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 
 using BeeSoft.Web.Resources;
+using BeeSoft.Web.Resources.Models.Expenses;
 
 using static Common.DataAttributeConstants.Expense;
 using static Common.ResourceNameConstants;
@@ -11,6 +12,9 @@ public sealed record UpdateExpenseFormModel
 {
     public int Id { get; init; }
 
+    [Display(
+        Name = CommonResourceName.Name,
+        ResourceType = typeof(SharedResource))]
     [Required(
         ErrorMessageResourceName = ErrorMessage.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
@@ -21,7 +25,13 @@ public sealed record UpdateExpenseFormModel
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Name { get; init; }
 
+    [Display(
+        Name = ExpenseResourceName.Price,
+        ResourceType = typeof(ExpenseResource))]
     public decimal Price { get; init; }
 
+    [Display(
+        Name = CommonResourceName.Date,
+        ResourceType = typeof(SharedResource))]
     public DateTime Date { get; init; }
 }

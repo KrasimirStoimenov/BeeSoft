@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BeeSoft.Web.Resources {
+namespace BeeSoft.Web.Resources.Models.Hives {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace BeeSoft.Web.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SharedResource {
+    public class HiveResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SharedResource() {
+        internal HiveResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BeeSoft.Web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BeeSoft.Web.Resources.SharedResource", typeof(SharedResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BeeSoft.Web.Resources.Models.Hives.HiveResource", typeof(HiveResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,56 @@ namespace BeeSoft.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Already exists hive with that number..
+        ///   Looks up a localized string similar to Date bought.
         /// </summary>
-        public static string AlreadyExistingHiveNumber {
+        public static string BoughtDate {
             get {
-                return ResourceManager.GetString("AlreadyExistingHiveNumber", resourceCulture);
+                return ResourceManager.GetString("BoughtDate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apiary.
+        ///   Looks up a localized string similar to Color.
         /// </summary>
-        public static string Apiary {
+        public static string Color {
             get {
-                return ResourceManager.GetString("Apiary", resourceCulture);
+                return ResourceManager.GetString("Color", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date.
+        ///   Looks up a localized string similar to Number.
         /// </summary>
-        public static string Date {
+        public static string Number {
             get {
-                return ResourceManager.GetString("Date", resourceCulture);
+                return ResourceManager.GetString("Number", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hive.
+        ///   Looks up a localized string similar to Status.
         /// </summary>
-        public static string Hive {
+        public static string Status {
             get {
-                return ResourceManager.GetString("Hive", resourceCulture);
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Times used.
         /// </summary>
-        public static string Name {
+        public static string TimesUsed {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("TimesUsed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} does not exist..
+        ///   Looks up a localized string similar to Type.
         /// </summary>
-        public static string NotExistingItemErrorMessage {
+        public static string Type {
             get {
-                return ResourceManager.GetString("NotExistingItemErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The field {0} must be between {1} and {2}..
-        /// </summary>
-        public static string RangeErrorMessage {
-            get {
-                return ResourceManager.GetString("RangeErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The &apos;{0}&apos; field is required..
-        /// </summary>
-        public static string RequiredFieldErrorMessage {
-            get {
-                return ResourceManager.GetString("RequiredFieldErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} should be between {2} and {1} characters long..
-        /// </summary>
-        public static string StringLengthErrorMessage {
-            get {
-                return ResourceManager.GetString("StringLengthErrorMessage", resourceCulture);
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
     }
