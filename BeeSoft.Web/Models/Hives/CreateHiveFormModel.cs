@@ -8,7 +8,8 @@ using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Hive;
-using static Common.ErrorMessageResourceNameConstants;
+using static Common.ResourceNameConstants;
+
 public sealed record CreateHiveFormModel
 {
     public CreateHiveFormModel()
@@ -19,32 +20,32 @@ public sealed record CreateHiveFormModel
     }
 
     [IsValidHiveNumber(
-        ErrorMessageResourceName = AlreadyExistingHiveNumberErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.AlreadyExistingHiveNumberErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [Range(
         NumberMinValue,
         NumberMaxValue,
-        ErrorMessageResourceName = RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int Number { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: TypeMaxLength,
         MinimumLength = TypeMinLength,
-        ErrorMessageResourceName = StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Type { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: StatusMaxLength,
         MinimumLength = StatusMinLength,
-        ErrorMessageResourceName = StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public string? Status { get; init; }
 
@@ -58,13 +59,13 @@ public sealed record CreateHiveFormModel
     [Range(
         TimesUsedCountMinValue,
         TimesUsedCountMaxValue,
-        ErrorMessageResourceName = RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int TimesUsedCount { get; init; }
 
     [Display(Name = "Apiary")]
     [IsValidApiaryId(
-        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int ApiaryId { get; init; }
 

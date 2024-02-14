@@ -7,7 +7,7 @@ using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.BeeQueen;
-using static Common.ErrorMessageResourceNameConstants;
+using static Common.ResourceNameConstants;
 
 public sealed record UpdateBeeQueenFormModel
 {
@@ -22,7 +22,7 @@ public sealed record UpdateBeeQueenFormModel
     [Range(
         AgeMinValue,
         AgeMaxValue,
-        ErrorMessageResourceName = RangeErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RangeErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int Age { get; init; }
 
@@ -31,7 +31,7 @@ public sealed record UpdateBeeQueenFormModel
 
     [Display(Name = "Hive")]
     [IsValidHiveId(
-        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 

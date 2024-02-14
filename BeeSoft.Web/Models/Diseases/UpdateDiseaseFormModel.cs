@@ -7,7 +7,7 @@ using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Disease;
-using static Common.ErrorMessageResourceNameConstants;
+using static Common.ResourceNameConstants;
 
 public sealed record UpdateDiseaseFormModel
 {
@@ -19,26 +19,26 @@ public sealed record UpdateDiseaseFormModel
     public int Id { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(NameMaxLength)]
     public string? Name { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(DescriptionMaxLength)]
     public string? Description { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(TreatmentMaxLength)]
     public string? Treatment { get; init; }
 
     [Display(Name = "Hive")]
     [IsValidHiveId(
-        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 

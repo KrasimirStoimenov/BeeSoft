@@ -7,7 +7,7 @@ using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Inspection;
-using static Common.ErrorMessageResourceNameConstants;
+using static Common.ResourceNameConstants;
 
 public sealed record UpdateInspectionFormModel
 {
@@ -23,7 +23,7 @@ public sealed record UpdateInspectionFormModel
     public string? WeatherConditions { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(ObservationsMaxLength)]
     public string? Observations { get; init; }
@@ -33,7 +33,7 @@ public sealed record UpdateInspectionFormModel
 
     [Display(Name = "Hive")]
     [IsValidHiveId(
-        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 

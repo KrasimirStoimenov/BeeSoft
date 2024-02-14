@@ -5,19 +5,19 @@ using System.ComponentModel.DataAnnotations;
 using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Expense;
-using static Common.ErrorMessageResourceNameConstants;
+using static Common.ResourceNameConstants;
 
 public sealed record UpdateExpenseFormModel
 {
     public int Id { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength,
-        ErrorMessageResourceName = StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Name { get; init; }
 

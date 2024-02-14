@@ -7,7 +7,7 @@ using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Harvest;
-using static Common.ErrorMessageResourceNameConstants;
+using static Common.ResourceNameConstants;
 
 public sealed record UpdateHarvestFormModel
 {
@@ -23,14 +23,14 @@ public sealed record UpdateHarvestFormModel
     public decimal HarvestedAmount { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [MaxLength(HarvestedProductMaxLength)]
     public string? HarvestedProduct { get; init; }
 
     [Display(Name = "Hive")]
     [IsValidHiveId(
-        ErrorMessageResourceName = NotExistingItemErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
 

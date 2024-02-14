@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using BeeSoft.Web.Resources;
 
 using static Common.DataAttributeConstants.Apiary;
-using static Common.ErrorMessageResourceNameConstants;
+using static Common.ResourceNameConstants;
 
 public class UpdateApiaryFormModel
 {
@@ -13,22 +13,22 @@ public class UpdateApiaryFormModel
 
     [Display(Name = "Apiary name")]
     [Required(
-            ErrorMessageResourceName = RequiredFieldErrorMessageName,
+            ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
             ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: NameMaxLength,
         MinimumLength = NameMinLength,
-        ErrorMessageResourceName = StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Name { get; init; }
 
     [Required(
-        ErrorMessageResourceName = RequiredFieldErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.RequiredFieldErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     [StringLength(
         maximumLength: LocationMaxLength,
         MinimumLength = LocationMinLength,
-        ErrorMessageResourceName = StringLengthErrorMessageName,
+        ErrorMessageResourceName = ErrorMessages.StringLengthErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public required string Location { get; init; }
 }
