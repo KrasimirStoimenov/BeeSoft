@@ -41,7 +41,25 @@
                         <li class="nav-item pt-lg-1">
                             <a class="nav-link" asp-area="" asp-controller="Expenses" asp-action="Index">Expenses</a>
                         </li>
+
                     </ul>
+                    <div class="form-check form-switch">
+                        @{
+                            string? culture;
+                            Context.Request.Cookies.TryGetValue(".AspNetCore.Culture", out culture);
+
+                            if (culture is not null && culture.Contains("bg-BG"))
+                            {
+                                <input class="form-check-input" type="checkbox" id="flexCultureSwitch" checked onclick="changeCulture()">
+                                <label class="form-check-label" for="flexCultureSwitch">BG</label>
+                            }
+                            else
+                            {
+                                <input class="form-check-input" type="checkbox" id="flexCultureSwitch" onclick="changeCulture()">
+                                <label class="form-check-label" for="flexCultureSwitch">BG</label>
+                            }
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
@@ -63,3 +81,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

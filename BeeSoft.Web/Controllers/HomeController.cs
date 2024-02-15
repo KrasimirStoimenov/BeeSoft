@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 using BeeSoft.Web.Models;
 
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 public class HomeController() : Controller
@@ -21,5 +22,17 @@ public class HomeController() : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    [HttpGet]
+    public IActionResult SetLanguage(string culture)
+    {
+        Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+            new CookieOptions { Expires = DateTimeOffset.UtcNow.AddDays(1) }
+        );
+
+        return Ok();
     }
 }
