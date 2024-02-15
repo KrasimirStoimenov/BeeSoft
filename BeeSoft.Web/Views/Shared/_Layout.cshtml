@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,25 +23,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item pt-lg-1">
-                            <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="Index">Apiaries</a>
+                            <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="Index">@Localizer["Apiaries"]</a>
                         </li>
                         <li class="nav-item pt-lg-1">
-                            <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">Hives</a>
+                            <a class="nav-link" asp-area="" asp-controller="Hives" asp-action="Index">@Localizer["Hives"]</a>
                         </li>
                         <li class="nav-item pt-lg-1">
-                            <a class="nav-link" asp-area="" asp-controller="BeeQueens" asp-action="Index">Bee Queens</a>
+                            <a class="nav-link" asp-area="" asp-controller="BeeQueens" asp-action="Index">@Localizer["BeeQueens"]</a>
                         </li>
                         <li class="nav-item pt-lg-1">
-                            <a class="nav-link" asp-area="" asp-controller="Diseases" asp-action="Index">Diseases</a>
+                            <a class="nav-link" asp-area="" asp-controller="Diseases" asp-action="Index">@Localizer["Diseases"]</a>
                         </li>
                         <li class="nav-item pt-lg-1">
-                            <a class="nav-link" asp-area="" asp-controller="Harvests" asp-action="Index">Harvests</a>
+                            <a class="nav-link" asp-area="" asp-controller="Harvests" asp-action="Index">@Localizer["Harvests"]</a>
                         </li>
                         <li class="nav-item pt-lg-1">
-                            <a class="nav-link" asp-area="" asp-controller="Inspections" asp-action="Index">Inspections</a>
+                            <a class="nav-link" asp-area="" asp-controller="Inspections" asp-action="Index">@Localizer["Inspections"]</a>
                         </li>
                         <li class="nav-item pt-lg-1">
-                            <a class="nav-link" asp-area="" asp-controller="Expenses" asp-action="Index">Expenses</a>
+                            <a class="nav-link" asp-area="" asp-controller="Expenses" asp-action="Index">@Localizer["Expenses"]</a>
                         </li>
 
                     </ul>

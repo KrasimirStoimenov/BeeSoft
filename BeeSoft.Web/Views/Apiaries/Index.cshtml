@@ -1,27 +1,28 @@
 ﻿@model ListAllViewModel<ApiaryServiceModel>
+@inject IViewLocalizer Localizer
 
 <br />
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Apiaries List</h1>
+            <h1 class="text-primary">@Localizer["ApiariesList"]</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateApiary" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Apiary</a>
+            <a asp-action="CreateApiary" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewApiary"]</a>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    Name
+                    @Localizer["Name"]
                 </th>
                 <th>
-                    Location
+                    @Localizer["Location"]
                 </th>
                 <th>
-                    Hives
+                    @Localizer["Hives"]
                 </th>
                 <th></th>
             </tr>

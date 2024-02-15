@@ -12,6 +12,7 @@ using BeeSoft.Services.Inspections;
 
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddControllersWithViews(options => options
         .Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
-    .AddViewLocalization()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 
 builder.Services
