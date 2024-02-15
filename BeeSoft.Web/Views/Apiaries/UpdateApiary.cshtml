@@ -24,10 +24,10 @@
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
             <div class="col-5 offset-2">
-                <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+                <partial name="_BackButtonPartial" />
             </div>
             <div class="col-5">
-                <input type="submit" value="Update" class="btn btn-success form-control" />
+                <partial name="_UpdateButtonPartial" />
             </div>
         </div>
     </div>
