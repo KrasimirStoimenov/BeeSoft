@@ -1,8 +1,10 @@
 ﻿@model CreateBeeQueenFormModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = "Create Bee Queen";
+    ViewBag.Title = @Localizer["CreateBeeQueen"];
 }
+
 @if (!Model.Hives.Any())
 {
     <script>
@@ -16,14 +18,14 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cannotCreateBeeQueenModalLabel">Cannot Create Bee Queen</h5>
+                    <h5 class="modal-title" id="cannotCreateBeeQueenModalLabel">@Localizer["CannotCreateBeeQueen"]</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Sorry, you cannot create any more bee queens at the moment. All hives has bee queens. Please try again later.
+                    @Localizer["CannotCreateBeeQueenErrorMessage"]
                 </div>
                 <div class="modal-footer">
-                    <button id="closeModalBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="closeModalBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">@Localizer["Close"]</button>
                 </div>
             </div>
         </div>

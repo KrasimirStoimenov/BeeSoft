@@ -1,27 +1,32 @@
 ﻿@model ListAllViewModel<ExpenseServiceModel>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["ExpensesList"];
+}
 
 <br />
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Expenses List</h1>
+            <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateExpense" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Expense</a>
+            <a asp-action="CreateExpense" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewExpense"]</a>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    Date
+                    @Localizer["Date"]
                 </th>
                 <th>
-                    Name
+                    @Localizer["Name"]
                 </th>
                 <th>
-                    Price
+                    @Localizer["Price"]
                 </th>
                 <th></th>
             </tr>

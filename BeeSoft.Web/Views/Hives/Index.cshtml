@@ -1,51 +1,56 @@
 ﻿@model ListAllViewModel<HiveListingServiceModel>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["HivesList"];
+}
 
 <br />
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Hives List</h1>
+            <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateHive" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Hive</a>
+            <a asp-action="CreateHive" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHive"]</a>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr style ="text-align:center">
                 <th>
-                    Number
+                    @Localizer["Number"]
                 </th>
                 <th>
-                    Type
+                    @Localizer["Type"]
                 </th>
                 <th>
-                    Status
+                    @Localizer["Status"]
                 </th>
                 <th>
-                    Color
+                    @Localizer["Color"]
                 </th>
                 <th>
-                    Date Bought
+                    @Localizer["BoughtDate"]
                 </th>
                 <th>
-                    Used Count
+                    @Localizer["TimesUsed"]
                 </th>
                 <th>
-                    Queens
+                    @Localizer["Queens"]
                 </th>
                 <th>
-                    Inspections
+                    @Localizer["Inspections"]
                 </th>
                 <th>
-                    Diseases
+                    @Localizer["Diseases"]
                 </th>
                 <th>
-                    Harvests
+                    @Localizer["Harvests"]
                 </th>
                 <th>
-                    Apiary
+                    @Localizer["Apiary"]
                 </th>
                 <th></th>
             </tr>

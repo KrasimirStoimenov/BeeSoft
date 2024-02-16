@@ -70,7 +70,7 @@ namespace BeeSoft.Web.Resources.Models.BeeQueens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Queen is alive.
+        ///   Looks up a localized string similar to Bee queen is alive.
         /// </summary>
         public static string IsAlive {
             get {

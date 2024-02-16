@@ -121,7 +121,7 @@
     <value>Пчелини</value>
   </data>
   <data name="BeeQueens" xml:space="preserve">
-    <value>Майки</value>
+    <value>Пчелни майки</value>
   </data>
   <data name="Diseases" xml:space="preserve">
     <value>Болести</value>
@@ -136,6 +136,6 @@
     <value>Кошери</value>
   </data>
   <data name="Inspections" xml:space="preserve">
-    <value>Инспекции</value>
+    <value>Прегледи</value>
   </data>
 </root>

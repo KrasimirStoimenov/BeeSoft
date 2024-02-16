@@ -1,10 +1,15 @@
 ﻿@model BaseInspectionServiceModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["DeleteInspection"];
+}
 
 <form asp-action="DeleteInspection">
     <input asp-for="Id" hidden />
     <br />
     <div class="container border p-3">
-        <h1 class="text-primary">Delete Inspection</h1>
+        <h1 class="text-primary">@ViewBag.Title</h1>
 
         <hr />
         <div class="row">

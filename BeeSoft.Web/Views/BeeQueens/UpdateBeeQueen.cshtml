@@ -1,10 +1,15 @@
 ﻿@model UpdateBeeQueenFormModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["UpdateBeeQueen"];
+}
 
 <form asp-action="UpdateBeeQueen">
     <input asp-for="Id" hidden />
     <br />
     <div class="container border p-3">
-        <h1 class="text-primary">Update Bee Queen</h1>
+        <h1 class="text-primary">@ViewBag.Title</h1>
 
         <hr />
         <div class="row">
@@ -53,7 +58,7 @@
                 </select>
             </div>
             <div class="col-2">
-                <label asp-for="IsAlive" class="control-label pt-1" style="font-size:20px;"></label>
+                <label asp-for="IsAlive" class="control-label" style="font-size:20px;"></label>
             </div>
             <div class="col-10 pb-3">
                 <input asp-for="IsAlive" type="checkbox" />

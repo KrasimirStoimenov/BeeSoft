@@ -1,33 +1,38 @@
 ﻿@model ListAllViewModel<InspectionListingServiceModel>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["InspectionsList"];
+}
 
 <br />
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Inspections List</h1>
+            <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateInspection" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Inspection</a>
+            <a asp-action="CreateInspection" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewInspection"]</a>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    Inspection Date
+                    @Localizer["InspectionDate"]
                 </th>
                 <th>
-                    Weather Conditions
+                    @Localizer["WeatherConditions"]
                 </th>
                 <th>
-                    Observations
+                    @Localizer["Observations"]
                 </th>
                 <th>
-                    Actions Taken
+                    @Localizer["ActionsTaken"]
                 </th>
                 <th>
-                    Hive Number
+                    @Localizer["HiveNumber"]
                 </th>
                 <th></th>
             </tr>

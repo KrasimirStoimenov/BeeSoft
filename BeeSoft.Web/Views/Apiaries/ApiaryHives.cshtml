@@ -1,45 +1,50 @@
 ﻿@model ApiaryHivesViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["HivesInApiary"];
+}
 
 <br />
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Hives in apiary: @Model.ApiaryName</h1>
+            <h1 class="text-primary">@ViewBag.Title: @Model.ApiaryName</h1>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr style="text-align:center">
                 <th>
-                    Number
+                    @Localizer["Number"]
                 </th>
                 <th>
-                    Type
+                    @Localizer["Type"]
                 </th>
                 <th>
-                    Status
+                    @Localizer["Status"]
                 </th>
                 <th>
-                    Color
+                    @Localizer["Color"]
                 </th>
                 <th>
-                    Date Bought
+                    @Localizer["BoughtDate"]
                 </th>
                 <th>
-                    Used Count
+                    @Localizer["TimesUsed"]
                 </th>
                 <th>
-                    Queens
+                    @Localizer["Queens"]
                 </th>
                 <th>
-                    Inspections
+                    @Localizer["Inspections"]
                 </th>
                 <th>
-                    Diseases
+                    @Localizer["Diseases"]
                 </th>
                 <th>
-                    Harvests
+                    @Localizer["Harvests"]
                 </th>
                 <th></th>
             </tr>

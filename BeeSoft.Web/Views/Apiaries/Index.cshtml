@@ -1,12 +1,16 @@
 ﻿@model ListAllViewModel<ApiaryServiceModel>
 @inject IViewLocalizer Localizer
 
+@{
+    ViewBag.Title = @Localizer["ApiariesList"];
+}
+
 <br />
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">@Localizer["ApiariesList"]</h1>
+            <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
             <a asp-action="CreateApiary" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewApiary"]</a>

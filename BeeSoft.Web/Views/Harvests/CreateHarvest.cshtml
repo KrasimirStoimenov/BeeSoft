@@ -1,7 +1,8 @@
 ﻿@model CreateHarvestFormModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = "Create Harvest";
+    ViewBag.Title = @Localizer["CreateHarvest"];
 }
 
 <form asp-action="CreateHarvest">

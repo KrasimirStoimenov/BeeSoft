@@ -1,7 +1,8 @@
 ﻿@model CreateApiaryFormModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = "Create apiary";
+    ViewBag.Title = @Localizer["CreateApiary"];
 }
 
 <form asp-action="CreateApiary">

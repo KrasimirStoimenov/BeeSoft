@@ -1,7 +1,8 @@
 ﻿@model CreateHiveFormModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = "Create Hive";
+    ViewBag.Title = @Localizer["CreateHive"];
 }
 
 <form asp-action="CreateHive">

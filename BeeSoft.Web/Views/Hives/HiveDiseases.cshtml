@@ -1,24 +1,29 @@
 ﻿@model HiveResourcesViewModel<DiseaseListingServiceModel>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["DiseasesForHive"];
+}
 
 <br />
 <br />
 <div class="container p-3 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Diseases for hive: №@Model.HiveNumber</h1>
+            <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr style="text-align:center">
                 <th>
-                    Name
+                    @Localizer["Name"]
                 </th>
                 <th>
-                    Description
+                    @Localizer["Description"]
                 </th>
                 <th>
-                    Treatment
+                    @Localizer["Treatment"]
                 </th>
             </tr>
         </thead>

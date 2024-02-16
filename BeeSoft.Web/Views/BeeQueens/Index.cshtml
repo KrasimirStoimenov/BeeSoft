@@ -1,27 +1,32 @@
 ﻿@model ListAllViewModel<BeeQueenListingServiceModel>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["BeeQueensList"];
+}
 
 <br />
 <br />
 <div class="container p-4 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Bee Queens List</h1>
+            <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateBeeQueen" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> Create New Bee Queen</a>
+            <a asp-action="CreateBeeQueen" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewBeeQueen"]</a>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    Age
+                    @Localizer["Age"]
                 </th>
                 <th>
-                    Is Alive
+                    @Localizer["IsAlive"]
                 </th>
                 <th>
-                    Hive Number
+                    @Localizer["HiveNumber"]
                 </th>
                 <th></th>
             </tr>
@@ -34,7 +39,14 @@
                         @beeQueen.Age
                     </td>
                     <td>
-                        @beeQueen.IsAlive
+                        @if (beeQueen.IsAlive)
+                        {
+                            @Localizer["Yes"]
+                        }
+                        else
+                        {
+                            @Localizer["No"]
+                        }
                     </td>
                     <td>
                         <a class="nav-link" asp-controller="Hives" asp-action="HiveBeeQueens" asp-route-hiveId="@beeQueen.HiveId">№@beeQueen.HiveNumber</a>

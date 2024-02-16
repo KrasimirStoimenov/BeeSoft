@@ -136,7 +136,7 @@
     <value>{0} не съществува.</value>
   </data>
   <data name="RangeErrorMessage" xml:space="preserve">
-    <value>Полето {0} трябва да бъде между {1} и {2}.</value>
+    <value>Полето '{0}' трябва да бъде между {1} и {2}.</value>
   </data>
   <data name="RequiredFieldErrorMessage" xml:space="preserve">
     <value>Полето '{0}' е задължително.</value>

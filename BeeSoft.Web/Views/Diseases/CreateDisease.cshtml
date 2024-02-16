@@ -1,7 +1,8 @@
 ﻿@model CreateDiseaseFormModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = "Create Disease";
+    ViewBag.Title = @Localizer["CreateDisease"];
 }
 
 <form asp-action="CreateDisease">

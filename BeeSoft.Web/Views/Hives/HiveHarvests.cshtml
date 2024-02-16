@@ -1,24 +1,29 @@
 ﻿@model HiveResourcesViewModel<HarvestListingServiceModel>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["HarvestsForHive"];
+}
 
 <br />
 <br />
 <div class="container p-3 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Harvests for hive: №@Model.HiveNumber</h1>
+            <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr style="text-align:center">
                 <th>
-                    Harvest Date
+                    @Localizer["HarvestDate"]
                 </th>
                 <th>
-                    Harvested Amount
+                    @Localizer["HarvestedAmount"]
                 </th>
                 <th>
-                    Harvested Product
+                    @Localizer["HarvestedProduct"]
                 </th>
             </tr>
         </thead>

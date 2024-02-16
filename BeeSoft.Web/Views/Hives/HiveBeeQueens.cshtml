@@ -1,21 +1,26 @@
 ﻿@model HiveResourcesViewModel<BeeQueenListingServiceModel>
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["BeeQueensInHive"];
+}
 
 <br />
 <br />
 <div class="container p-3 border">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Bee Queens in hive: №@Model.HiveNumber</h1>
+            <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
         </div>
     </div>
     <table class="table">
         <thead>
             <tr style="text-align:center">
                 <th>
-                    Age
+                    @Localizer["Age"]
                 </th>
                 <th>
-                    Is Alive
+                    @Localizer["IsAlive"]
                 </th>
             </tr>
         </thead>
@@ -27,7 +32,14 @@
                         @beeQueen.Age
                     </td>
                     <td>
-                        @beeQueen.IsAlive
+                        @if (beeQueen.IsAlive)
+                        {
+                            @Localizer["Yes"]
+                        }
+                        else
+                        {
+                            @Localizer["No"]
+                        }
                     </td>
                 </tr>
             }

@@ -1,10 +1,15 @@
 ﻿@model BaseHarvestServiceModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["DeleteHarvest"];
+}
 
 <form asp-action="DeleteHarvest">
     <input asp-for="Id" hidden />
     <br />
     <div class="container border p-3">
-        <h1 class="text-primary">Delete Harvest</h1>
+        <h1 class="text-primary">@ViewBag.Title</h1>
 
         <hr />
         <div class="row">
