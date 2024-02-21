@@ -2,9 +2,10 @@
 
 using BeeSoft.Data.Models;
 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public class BeeSoftDbContext(DbContextOptions<BeeSoftDbContext> options) : DbContext(options)
+public class BeeSoftDbContext(DbContextOptions<BeeSoftDbContext> options) : IdentityDbContext(options)
 {
     public DbSet<Apiary> Apiaries { get; init; }
 

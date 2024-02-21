@@ -10,6 +10,7 @@ using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Inspections;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -19,14 +20,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services
-    .AddControllersWithViews(options => options
-        .Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
-    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-    .AddDataAnnotationsLocalization();
-
-builder.Services
     .AddDbContext<BeeSoftDbContext>(options => options
         .UseSqlServer(builder.Configuration.GetConnectionString("BeeSoftDb")))
+    .AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services
+    .AddDefaultIdentity<IdentityUser>(options =>
+    {
+        options.Password.RequireDigit = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+    })
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BeeSoftDbContext>();
+
+builder.Services
     .AddAutoMapper(options =>
         options.AddProfile<MappingProfile>());
 
@@ -43,6 +52,12 @@ builder.Services
         opt.SupportedCultures = supportedCultures;
         opt.SupportedUICultures = supportedCultures;
     });
+
+builder.Services
+    .AddControllersWithViews(options => options
+        .Filters.Add(new AutoValidateAntiforgeryTokenAttribute()))
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
 
 builder.Services.AddTransient<IApiariesService, ApiariesService>();
 builder.Services.AddTransient<IHivesService, HivesService>();
@@ -71,6 +86,7 @@ app
     .UseEndpoints(endpoints =>
     {
         endpoints.MapDefaultControllerRoute();
+        endpoints.MapRazorPages();
     });
 
 app.Run();
