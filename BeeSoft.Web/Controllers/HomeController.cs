@@ -10,7 +10,12 @@ public class HomeController() : Controller
 {
     public IActionResult Index()
     {
-        return View();
+        if (this.User.Identity.IsAuthenticated)
+        {
+            return Redirect("Apiaries/Index");
+        }
+
+        return Redirect("Identity/Account/Login");
     }
 
     public IActionResult Privacy()
