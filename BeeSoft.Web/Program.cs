@@ -9,6 +9,7 @@ using BeeSoft.Services.Expenses;
 using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Hives;
 using BeeSoft.Services.Inspections;
+using BeeSoft.Web.Infrastructure.Extensions;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -68,6 +69,8 @@ builder.Services.AddTransient<IInspectionsService, InspectionsService>();
 builder.Services.AddTransient<IExpensesService, ExpensesService>();
 
 var app = builder.Build();
+
+app.ApplyMigrations();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
