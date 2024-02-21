@@ -8,9 +8,9 @@ using BeeSoft.Web.Models.Diseases;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.DataAttributeConstants.Paging;
+using static Common.GlobalConstants;
 
-public class DiseasesController(IDiseasesService diseasesService, IHivesService hivesService) : Controller
+public class DiseasesController(IDiseasesService diseasesService, IHivesService hivesService) : AdministratorController
 {
     public async Task<IActionResult> Index(int page = 1)
     {

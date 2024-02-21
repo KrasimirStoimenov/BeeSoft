@@ -1,83 +1,82 @@
-﻿namespace BeeSoft.Web.Infrastructure.Extensions
+﻿namespace BeeSoft.Web.Infrastructure.Extensions;
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+using BeeSoft.Data;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+using static BeeSoft.Common.GlobalConstants;
+
+public static class ApplicationBuilderExtensions
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using BeeSoft.Data;
-
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
-
-    public static class ApplicationBuilderExtensions
+    public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app)
     {
-        private const string AdministratorRoleName = "Administrator";
+        using var serviceScope = app.ApplicationServices.CreateScope();
+        var services = serviceScope.ServiceProvider;
 
-        public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app)
+        var dbContext = services.GetRequiredService<BeeSoftDbContext>();
+        dbContext.Database.Migrate();
+
+        SeedRoles(services);
+        SeedAdministrator(services);
+
+        return app;
+    }
+
+    private static void SeedRoles(IServiceProvider services)
+    {
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+        if (roleManager.Roles.Any())
         {
-            using var serviceScope = app.ApplicationServices.CreateScope();
-            var services = serviceScope.ServiceProvider;
-
-            var dbContext = services.GetRequiredService<BeeSoftDbContext>();
-            dbContext.Database.Migrate();
-
-            SeedRoles(services);
-            SeedAdministrator(services);
-
-            return app;
+            return;
         }
 
-        private static void SeedRoles(IServiceProvider services)
-        {
-            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-            if (roleManager.Roles.Any())
+        Task
+            .Run(async () =>
             {
-                return;
-            }
+                await roleManager.CreateAsync(new IdentityRole(AdministratorRoleName));
+            })
+            .GetAwaiter()
+            .GetResult();
+    }
 
-            Task
-                .Run(async () =>
-                {
-                    await roleManager.CreateAsync(new IdentityRole(AdministratorRoleName));
-                })
-                .GetAwaiter()
-                .GetResult();
-        }
+    private static void SeedAdministrator(IServiceProvider services)
+    {
+        const string adminUsername = "admin";
+        const string adminEmail = "admin@bs.com";
+        const string adminPassword = "adminBs24";
 
-        private static void SeedAdministrator(IServiceProvider services)
+        var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+        if (userManager.Users.Any(u => u.UserName == adminUsername))
         {
-            const string adminUsername = "admin";
-            const string adminEmail = "admin@bs.com";
-            const string adminPassword = "adminBs24";
-
-            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-            if (userManager.Users.Any(u => u.UserName == adminUsername))
-            {
-                return;
-            }
-
-            Task
-                .Run(async () =>
-                {
-                    var role = await roleManager.FindByNameAsync(AdministratorRoleName);
-
-                    var user = new IdentityUser
-                    {
-                        UserName = adminUsername,
-                        Email = adminEmail,
-                    };
-
-                    await userManager.CreateAsync(user, adminPassword);
-
-                    await userManager.AddToRoleAsync(user, role!.Name!);
-                })
-                .GetAwaiter()
-                .GetResult();
+            return;
         }
+
+        Task
+            .Run(async () =>
+            {
+                var role = await roleManager.FindByNameAsync(AdministratorRoleName);
+
+                var user = new IdentityUser
+                {
+                    UserName = adminUsername,
+                    Email = adminEmail,
+                };
+
+                await userManager.CreateAsync(user, adminPassword);
+
+                await userManager.AddToRoleAsync(user, role!.Name!);
+            })
+            .GetAwaiter()
+            .GetResult();
     }
 }

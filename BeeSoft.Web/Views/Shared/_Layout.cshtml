@@ -16,7 +16,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div class="navbar-brand"><img width="60" src="/images/logoBee.png">BeeSoft</div>
-                @if (this.User.IsInRole("Administrator"))
+                @if (this.User.IsInRole(AdministratorRoleName))
                 {
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">

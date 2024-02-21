@@ -8,9 +8,9 @@ using BeeSoft.Web.Models.Inspections;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.DataAttributeConstants.Paging;
+using static Common.GlobalConstants;
 
-public class InspectionsController(IInspectionsService inspectionsService, IHivesService hivesService) : Controller
+public class InspectionsController(IInspectionsService inspectionsService, IHivesService hivesService) : AdministratorController
 {
     public async Task<IActionResult> Index(int page = 1)
     {

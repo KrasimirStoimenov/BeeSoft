@@ -3,8 +3,11 @@ using System.Diagnostics;
 
 using BeeSoft.Web.Models;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+
+using static BeeSoft.Common.GlobalConstants;
 
 public class HomeController() : Controller
 {
@@ -29,6 +32,7 @@ public class HomeController() : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
+    [Authorize(Roles = AdministratorRoleName)]
     [HttpGet]
     public IActionResult SetLanguage(string culture)
     {

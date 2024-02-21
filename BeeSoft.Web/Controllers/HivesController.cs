@@ -16,7 +16,7 @@ using BeeSoft.Web.Models.Hives;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.DataAttributeConstants.Paging;
+using static Common.GlobalConstants;
 
 public class HivesController(
     IHivesService hivesService,
@@ -24,7 +24,7 @@ public class HivesController(
     IBeeQueensService beeQueensService,
     IInspectionsService inspectionsService,
     IDiseasesService diseasesService,
-    IHarvestsService harvestsService) : Controller
+    IHarvestsService harvestsService) : AdministratorController
 {
     public async Task<IActionResult> Index(int page = 1)
     {

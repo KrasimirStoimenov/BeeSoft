@@ -8,9 +8,9 @@ using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.DataAttributeConstants.Paging;
+using static Common.GlobalConstants;
 
-public class ApiariesController(IApiariesService apiariesService, IHivesService hivesService) : Controller
+public class ApiariesController(IApiariesService apiariesService, IHivesService hivesService) : AdministratorController
 {
     public async Task<IActionResult> Index(int page = 1)
     {

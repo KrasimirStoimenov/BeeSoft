@@ -7,9 +7,9 @@ using BeeSoft.Web.Models.Expenses;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.DataAttributeConstants.Paging;
+using static Common.GlobalConstants;
 
-public class ExpensesController(IExpensesService expensesService) : Controller
+public class ExpensesController(IExpensesService expensesService) : AdministratorController
 {
     public async Task<IActionResult> Index(int page = 1)
     {

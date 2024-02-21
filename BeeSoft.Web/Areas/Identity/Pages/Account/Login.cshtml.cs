@@ -97,7 +97,7 @@ namespace BeeSoft.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Administrator logged in.");
-                    return LocalRedirect("~/Apiaries/Index");
+                    return LocalRedirect(returnUrl ?? "~/Apiaries/Index");
                 }
                 if (result.RequiresTwoFactor)
                 {

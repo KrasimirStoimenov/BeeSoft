@@ -8,9 +8,9 @@ using BeeSoft.Web.Models.Harvests;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.DataAttributeConstants.Paging;
+using static Common.GlobalConstants;
 
-public class HarvestsController(IHarvestsService harvestsService, IHivesService hivesService) : Controller
+public class HarvestsController(IHarvestsService harvestsService, IHivesService hivesService) : AdministratorController
 {
     public async Task<IActionResult> Index(int page = 1)
     {

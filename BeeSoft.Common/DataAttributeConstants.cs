@@ -2,11 +2,6 @@
 
 public class DataAttributeConstants
 {
-    public class Paging
-    {
-        public const int ItemsPerPage = 10;
-    }
-
     public class Apiary
     {
         public const int NameMinLength = 1;
