@@ -15,7 +15,7 @@ public class HomeController() : Controller
     {
         if (this.User.Identity.IsAuthenticated)
         {
-            return Redirect("Apiaries/Index");
+            return Redirect("Apiaries");
         }
 
         return Redirect("Identity/Account/Login");
