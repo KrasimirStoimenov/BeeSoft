@@ -1,9 +1,72 @@
-﻿@{
+﻿@model IList<ApiaryHivesViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to BeeSoft</h1>
-    <h2>Please Login as administrator to use the application.</h2>
-    <a class="btn-primary btn form-control" asp-area="Identity" asp-page="/Account/Login">Login</a>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="accordion">
+            <div class="accordion-item">
+                @{
+                    string accordionCollapse = string.Empty;
+                    string buttonAccordionCollapse = string.Empty;
+                    string ariaExpanded = string.Empty;
+                    if (i == 0)
+                    {
+                        accordionCollapse = "accordion-collapse collapse show";
+                        buttonAccordionCollapse = "accordion-button";
+                        ariaExpanded = "true";
+                    }
+                    else
+                    {
+                        accordionCollapse = "accordion-collapse collapse";
+                        buttonAccordionCollapse = "accordion-button collapsed";
+                        ariaExpanded = "false";
+                    }
+
+                    var hivesInApiary = Model[i].Hives.ToList();
+                }
+                <h2 class="accordion-header">
+                    <button class="@buttonAccordionCollapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-@i" aria-expanded="@ariaExpanded" aria-controls="panelsStayOpen-@i">
+                        @Model[i].ApiaryName
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-@i" class="@accordionCollapse">
+                    <div class="accordion-body">
+                        @if (hivesInApiary.Count > 0)
+                        {
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                @for (int y = 0; y < hivesInApiary.Count; y++)
+                                {
+                                    var currentHive = hivesInApiary[y];
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img height="200" src="/images/hive.jpg" class="card-img-top" alt="hive">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Hive №@currentHive.Number</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-body-secondary">TODO: Add go to hive details page</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                                "There is no hives in that apiary"
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
