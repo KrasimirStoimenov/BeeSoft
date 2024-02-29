@@ -27,7 +27,7 @@
                                 var currentHive = hivesInApiary[y];
                                 <div class="col">
                                     <div class="card h-100">
-                                        <a asp-controller="Hives" asp-action="Details"><img height="200" src="/images/hive.jpg" class="card-img-top" alt="hive"></a>
+                                        <a asp-controller="Hives" asp-action="Details" asp-route-hiveId="@currentHive.Id"><img height="200" src="/images/hive.jpg" class="card-img-top" alt="hive"></a>
                                         
                                         <div class="card-body">
                                             <h5 class="card-title">№@currentHive.Number</h5>

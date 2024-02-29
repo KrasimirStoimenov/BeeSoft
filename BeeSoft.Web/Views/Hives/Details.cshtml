@@ -1,0 +1,39 @@
+﻿@model HiveDetailsViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = @Localizer["Hive"];
+
+    var hiveColor = Model.Color is null ? "N/A" : Model.Color;
+}
+
+<h1 style="margin-top:20px;margin-bottom:50px">@ViewBag.Title №@Model.Number</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <img src="/images/hive.jpg" class="img-fluid" height="400" width="400" alt="hive">
+        </div>
+        <div class="col-md-6 mb-4">
+            <p class="lead fw-bold">@Localizer["Details"]</p>
+            <hr />
+
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Type"]</span> - @Model.Type
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Status"]</span> - @Model.Status
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Color"]</span> - @hiveColor
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["BoughtDate"]</span> - @Model.DateBought
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["TimesUsed"]</span> - @Model.TimesUsedCount
+            </div>
+        </div>
+    </div>
+</div>
+

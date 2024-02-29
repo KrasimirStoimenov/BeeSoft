@@ -151,6 +151,28 @@ public class HivesController(
         return BadRequest();
     }
 
+    public async Task<IActionResult> Details(int hiveId)
+    {
+        var hive = await hivesService.GetByIdAsync(hiveId);
+
+        if (hive is not null)
+        {
+            var hiveDetailsViewModel = new HiveDetailsViewModel
+            {
+                Number = hive.Number,
+                Status = hive.Status,
+                Type = hive.Type,
+                Color = hive.Color,
+                DateBought = hive.DateBought,
+                TimesUsedCount = hive.TimesUsedCount,
+            };
+
+            return View(hiveDetailsViewModel);
+        }
+
+        return this.BadRequest();
+    }
+
     public async Task<IActionResult> HiveBeeQueens(int hiveId)
     {
         var hive = await hivesService.GetByIdAsync(hiveId);
@@ -214,5 +236,4 @@ public class HivesController(
 
         return this.NotFound();
     }
-
 }
