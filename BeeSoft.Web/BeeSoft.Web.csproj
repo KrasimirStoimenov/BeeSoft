@@ -106,8 +106,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Resources\Resources\" />
-  </ItemGroup>
-
 </Project>

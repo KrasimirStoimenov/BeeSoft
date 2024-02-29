@@ -1,12 +1,13 @@
 ﻿@model IList<ApiaryHivesViewModel>
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to BeeSoft</h1>
-    <h4 class="text-start">Apiaries with hives:</h4>
+    <h1 class="display-4">BeeSoft</h1>
+    <h4 class="text-start">@Localizer["ApiariesWithHives"]:</h4>
     @for (int i = 0; i < Model.Count; i++)
     {
         var hivesInApiary = Model[i].Hives.ToList();
@@ -32,7 +33,7 @@
                                             <h5 class="card-title">№@currentHive.Number</h5>
                                         </div>
                                         <div class="card-footer">
-                                            <a class="btn btn-light form-control text-end" asp-controller="Hives" asp-action="Details">Click for details</a>
+                                            <a class="btn btn-light form-control text-end" asp-controller="Hives" asp-action="Details" asp-route-hiveId="@currentHive.Id">@Localizer["ClickForDetails"]</a>
                                         </div>
                                     </div>
                                 </div>
