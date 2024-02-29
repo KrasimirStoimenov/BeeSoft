@@ -21,7 +21,7 @@ public class HomeController(IApiariesService apiariesService, IHivesService hive
             ICollection<ApiaryHivesViewModel> apiariesWithHivesViewModel = new List<ApiaryHivesViewModel>();
 
             var apiaries = await apiariesService.GetApiariesAsync();
-            foreach (var apiary in apiaries)
+            foreach (var apiary in apiaries.Where(x => x.Hives.Count > 0))
             {
                 var hives = await hivesService.GetHivesInApiaryAsync(apiary.Id);
 
