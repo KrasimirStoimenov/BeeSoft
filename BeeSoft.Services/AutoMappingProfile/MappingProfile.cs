@@ -20,6 +20,8 @@ public class MappingProfile : Profile
         this.CreateMap<Hive, BaseHiveServiceModel>().ReverseMap();
         this.CreateMap<Hive, HiveListingServiceModel>()
             .ForMember(x => x.ApiaryName, opts => opts.MapFrom(a => a.Apiary.Name));
+        this.CreateMap<Hive, HiveDetailsServiceModel>()
+            .ForMember(x => x.ApiaryName, opts => opts.MapFrom(a => a.Apiary.Name));
 
         this.CreateMap<BeeQueen, BaseBeeQueenServiceModel>().ReverseMap();
         this.CreateMap<BeeQueen, BeeQueenListingServiceModel>()

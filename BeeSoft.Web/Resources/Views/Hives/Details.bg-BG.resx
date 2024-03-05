@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Apiary" xml:space="preserve">
+    <value>Пчелин</value>
+  </data>
   <data name="BoughtDate" xml:space="preserve">
     <value>Дата на закупуване</value>
   </data>
@@ -126,8 +129,20 @@
   <data name="Details" xml:space="preserve">
     <value>Детайли</value>
   </data>
+  <data name="Diseases" xml:space="preserve">
+    <value>Болести</value>
+  </data>
+  <data name="Harvests" xml:space="preserve">
+    <value>Реколти</value>
+  </data>
   <data name="Hive" xml:space="preserve">
     <value>Кошер</value>
+  </data>
+  <data name="Inspections" xml:space="preserve">
+    <value>Прегледи</value>
+  </data>
+  <data name="Queens" xml:space="preserve">
+    <value>Пчелни майки</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Статус</value>

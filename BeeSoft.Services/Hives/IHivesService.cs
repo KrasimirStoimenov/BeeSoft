@@ -12,6 +12,8 @@ public interface IHivesService
 
     Task<BaseHiveServiceModel?> GetByIdAsync(int id);
 
+    Task<HiveDetailsServiceModel?> GetDetailsByIdAsync(int id);
+
     Task<int> CreateAsync(BaseHiveServiceModel model);
 
     Task UpdateAsync(BaseHiveServiceModel model);

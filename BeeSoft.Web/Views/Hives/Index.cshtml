@@ -38,18 +38,6 @@
                     @Localizer["TimesUsed"]
                 </th>
                 <th>
-                    @Localizer["Queens"]
-                </th>
-                <th>
-                    @Localizer["Inspections"]
-                </th>
-                <th>
-                    @Localizer["Diseases"]
-                </th>
-                <th>
-                    @Localizer["Harvests"]
-                </th>
-                <th>
                     @Localizer["Apiary"]
                 </th>
                 <th></th>
@@ -60,7 +48,7 @@
             {
                 <tr style="text-align:center">
                     <td>
-                        @hive.Number
+                        <a class="nav-link" asp-action="Details" asp-route-hiveId="@hive.Id">@hive.Number</a>
                     </td>
                     <td>
                         @hive.Type
@@ -76,18 +64,6 @@
                     </td>
                     <td>
                         @hive.TimesUsedCount
-                    </td>
-                    <td>
-                        <a class="nav-link" asp-action="HiveBeeQueens" asp-route-hiveId="@hive.Id">@hive.BeeQueens.Count</a>
-                    </td>
-                    <td>
-                        <a class="nav-link" asp-action="HiveInspections" asp-route-hiveId="@hive.Id">@hive.Inspections.Count</a>
-                    </td>
-                    <td>
-                        <a class="nav-link" asp-action="HiveDiseases" asp-route-hiveId="@hive.Id">@hive.Diseases.Count</a>
-                    </td>
-                    <td>
-                        <a class="nav-link" asp-action="HiveHarvests" asp-route-hiveId="@hive.Id">@hive.Harvests.Count</a>
                     </td>
                     <td>
                         <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@hive.ApiaryId">@hive.ApiaryName</a>

@@ -153,21 +153,11 @@ public class HivesController(
 
     public async Task<IActionResult> Details(int hiveId)
     {
-        var hive = await hivesService.GetByIdAsync(hiveId);
+        var hive = await hivesService.GetDetailsByIdAsync(hiveId);
 
         if (hive is not null)
         {
-            var hiveDetailsViewModel = new HiveDetailsViewModel
-            {
-                Number = hive.Number,
-                Status = hive.Status,
-                Type = hive.Type,
-                Color = hive.Color,
-                DateBought = hive.DateBought,
-                TimesUsedCount = hive.TimesUsedCount,
-            };
-
-            return View(hiveDetailsViewModel);
+            return View(hive);
         }
 
         return this.BadRequest();

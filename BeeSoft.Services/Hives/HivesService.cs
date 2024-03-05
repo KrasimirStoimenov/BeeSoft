@@ -17,7 +17,7 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
     public async Task<ICollection<HiveListingServiceModel>> GetHivesAsync()
         => await dbContext.Hives
             .Include(a => a.Apiary)
-            .OrderByDescending(x => x.Number)
+            .OrderByDescending(x => x.Id)
             .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
@@ -25,7 +25,6 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
         => await dbContext.Hives
             .Where(x => x.ApiaryId == apiaryId)
             .Include(a => a.Apiary)
-            .OrderByDescending(x => x.Number)
             .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
@@ -33,7 +32,6 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
         => await dbContext.Hives
             .Include(bq => bq.BeeQueens)
             .Where(h => h.BeeQueens.Count == 0 || h.BeeQueens.All(bq => !bq.IsAlive))
-            .OrderByDescending(x => x.Number)
             .ProjectTo<BaseHiveServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
@@ -41,6 +39,13 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
         => await dbContext.Hives
             .Where(p => p.Id == id)
             .ProjectTo<BaseHiveServiceModel>(mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync();
+
+    public async Task<HiveDetailsServiceModel?> GetDetailsByIdAsync(int id)
+        => await dbContext.Hives
+            .Include(a => a.Apiary)
+            .Where(p => p.Id == id)
+            .ProjectTo<HiveDetailsServiceModel>(mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(BaseHiveServiceModel model)
@@ -91,4 +96,5 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
     public async Task<bool> IsHiveWithNumberAlreadyExists(int hiveNumber)
         => await dbContext.Hives
             .AnyAsync(h => h.Number == hiveNumber);
+
 }

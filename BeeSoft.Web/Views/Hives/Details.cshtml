@@ -1,10 +1,11 @@
-﻿@model HiveDetailsViewModel
+﻿@model HiveDetailsServiceModel
 @inject IViewLocalizer Localizer
 
 @{
     ViewBag.Title = @Localizer["Hive"];
 
     var hiveColor = Model.Color is null ? "N/A" : Model.Color;
+    var hiveId = Model.Id;
 }
 
 <h1 style="margin-top:20px;margin-bottom:50px">@ViewBag.Title №@Model.Number</h1>
@@ -32,6 +33,21 @@
             </div>
             <div class="mb-4">
                 <span class="fw-bold">@Localizer["TimesUsed"]</span> - @Model.TimesUsedCount
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Queens"] - <a asp-action="HiveBeeQueens" asp-route-hiveId="@hiveId">@Model.BeeQueens.Count</a></span>
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Inspections"] - <a asp-action="HiveInspections" asp-route-hiveId="@hiveId">@Model.Inspections.Count</a></span>
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Diseases"] - <a asp-action="HiveDiseases" asp-route-hiveId="@hiveId">@Model.Diseases.Count</a></span>
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Harvests"] - <a asp-action="HiveHarvests" asp-route-hiveId="@hiveId">@Model.Harvests.Count</a></span>
+            </div>
+            <div class="mb-4">
+                <span class="fw-bold">@Localizer["Apiary"] - <a asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@Model.ApiaryId">@Model.ApiaryName</a></span>
             </div>
         </div>
     </div>
