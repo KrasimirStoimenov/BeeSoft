@@ -15,7 +15,7 @@ using static BeeSoft.Common.GlobalConstants;
 
 public static class ApplicationBuilderExtensions
 {
-    public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app)
+    public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app, IConfiguration configuration)
     {
         using var serviceScope = app.ApplicationServices.CreateScope();
         var services = serviceScope.ServiceProvider;
@@ -24,7 +24,7 @@ public static class ApplicationBuilderExtensions
         dbContext.Database.Migrate();
 
         SeedRoles(services);
-        SeedAdministrator(services);
+        SeedAdministrator(services, configuration);
 
         return app;
     }
@@ -47,11 +47,11 @@ public static class ApplicationBuilderExtensions
             .GetResult();
     }
 
-    private static void SeedAdministrator(IServiceProvider services)
+    private static void SeedAdministrator(IServiceProvider services, IConfiguration configuration)
     {
-        const string adminUsername = "admin";
-        const string adminEmail = "admin@bs.com";
-        const string adminPassword = "adminBs24";
+        string adminUsername = configuration["AdminCredentials:Username"]!;
+        string adminEmail = configuration["AdminCredentials:Email"]!;
+        string adminPassword = configuration["AdminCredentials:Password"]!;
 
         var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
