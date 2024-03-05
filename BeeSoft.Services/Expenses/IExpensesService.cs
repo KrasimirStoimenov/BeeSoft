@@ -13,4 +13,6 @@ public interface IExpensesService
     Task UpdateAsync(ExpenseServiceModel model);
 
     Task<bool> DeleteAsync(int id);
+
+    Task<decimal> GetTotalAmountOfExpensesAsync();
 }

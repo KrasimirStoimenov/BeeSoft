@@ -126,10 +126,16 @@
   <data name="ExpensesList" xml:space="preserve">
     <value>Expenses List</value>
   </data>
+  <data name="Lv" xml:space="preserve">
+    <value>lv.</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="TotalExpenseAmount" xml:space="preserve">
+    <value>Total expense amount</value>
   </data>
 </root>

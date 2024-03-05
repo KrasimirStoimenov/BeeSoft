@@ -126,10 +126,16 @@
   <data name="ExpensesList" xml:space="preserve">
     <value>Списък разходи</value>
   </data>
+  <data name="Lv" xml:space="preserve">
+    <value>лв.</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Име</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Цена</value>
+  </data>
+  <data name="TotalExpenseAmount" xml:space="preserve">
+    <value>Обща сума разходи</value>
   </data>
 </root>
