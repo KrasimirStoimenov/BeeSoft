@@ -63,8 +63,4 @@ public sealed class ExpensesService(BeeSoftDbContext dbContext, IMapper mapper) 
             return false;
         }
     }
-
-    public async Task<decimal> GetTotalAmountOfExpensesAsync()
-        => await dbContext.Expenses
-            .SumAsync(x => x.Price);
 }

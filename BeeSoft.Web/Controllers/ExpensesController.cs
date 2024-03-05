@@ -13,7 +13,7 @@ public class ExpensesController(IExpensesService expensesService) : Administrato
     public async Task<IActionResult> Index(int page = 1)
     {
         var expenses = await expensesService.GetExpensesAsync();
-        var expensesTotalAmount = await expensesService.GetTotalAmountOfExpensesAsync();
+        var expensesTotalAmount = expenses.Sum(x => x.Price);
 
         var expensesViewModel = new ExpenseViewModel
         {
