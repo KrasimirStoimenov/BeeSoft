@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Age" xml:space="preserve">
-    <value>Години</value>
+  <data name="ColorMark" xml:space="preserve">
+    <value>Цвят на макрата</value>
   </data>
   <data name="IsAlive" xml:space="preserve">
     <value>Пчелната майка е жива</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Година</value>
   </data>
 </root>

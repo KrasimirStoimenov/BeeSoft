@@ -15,11 +15,18 @@
         <div class="row">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col-2">
-                <label asp-for="Age" class="control-label pt-1" style="font-size:20px;"></label>
+                <label asp-for="Year" class="control-label pt-1" style="font-size:20px;"></label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Age" type="number" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
+                <input asp-for="Year" type="number" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label asp-for="ColorMark" class="control-label pt-1" style="font-size:20px;"></label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="ColorMark" class="form-control" />
+                <span asp-validation-for="ColorMark" class="text-danger"></span>
             </div>
             <div class="col-2">
                 <label asp-for="HiveId" class="control-label pt-1" style="font-size:20px;"></label>

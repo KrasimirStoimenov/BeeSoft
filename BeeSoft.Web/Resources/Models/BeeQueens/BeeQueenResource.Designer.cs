@@ -61,11 +61,11 @@ namespace BeeSoft.Web.Resources.Models.BeeQueens {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Age.
+        ///   Looks up a localized string similar to Color Mark.
         /// </summary>
-        public static string Age {
+        public static string ColorMark {
             get {
-                return ResourceManager.GetString("Age", resourceCulture);
+                return ResourceManager.GetString("ColorMark", resourceCulture);
             }
         }
         
@@ -75,6 +75,15 @@ namespace BeeSoft.Web.Resources.Models.BeeQueens {
         public static string IsAlive {
             get {
                 return ResourceManager.GetString("IsAlive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        public static string Year {
+            get {
+                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

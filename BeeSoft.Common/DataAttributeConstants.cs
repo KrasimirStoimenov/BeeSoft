@@ -25,8 +25,7 @@ public class DataAttributeConstants
 
     public class BeeQueen
     {
-        public const int AgeMinValue = 0;
-        public const int AgeMaxValue = 10;
+        public const int ColorMarkMaxLength = 15;
     }
 
     public class Inspection

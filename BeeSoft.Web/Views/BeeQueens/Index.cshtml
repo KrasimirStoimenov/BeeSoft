@@ -20,7 +20,10 @@
         <thead>
             <tr>
                 <th>
-                    @Localizer["Age"]
+                    @Localizer["Year"]
+                </th>
+                <th>
+                    @Localizer["ColorMark"]
                 </th>
                 <th>
                     @Localizer["IsAlive"]
@@ -36,7 +39,10 @@
             {
                 <tr>
                     <td>
-                        @beeQueen.Age
+                        @beeQueen.Year
+                    </td>
+                    <td>
+                        @beeQueen.ColorMark
                     </td>
                     <td>
                         @if (beeQueen.IsAlive)

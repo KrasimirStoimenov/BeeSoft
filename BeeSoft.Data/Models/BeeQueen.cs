@@ -10,8 +10,10 @@ public class BeeQueen
     [Key]
     public int Id { get; init; }
 
-    [Range(AgeMinValue, AgeMaxValue)]
-    public int Age { get; init; }
+    public int Year { get; init; }
+
+    [MaxLength(ColorMarkMaxLength)]
+    public string? ColorMark { get; init; }
 
     public bool IsAlive { get; init; }
 

@@ -42,7 +42,8 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
         {
             var beeQueenServiceModel = new BaseBeeQueenServiceModel
             {
-                Age = beeQueenFormModel.Age,
+                Year = beeQueenFormModel.Year,
+                ColorMark = beeQueenFormModel.ColorMark,
                 HiveId = beeQueenFormModel.HiveId,
                 IsAlive = true,
             };
@@ -68,7 +69,8 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
             return this.View(new UpdateBeeQueenFormModel
             {
                 Id = beeQueen.Id,
-                Age = beeQueen.Age,
+                Year = beeQueen.Year,
+                ColorMark = beeQueen.ColorMark,
                 HiveId = beeQueen.HiveId,
                 Hives = hives,
             });
@@ -85,7 +87,8 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
             var beeQueenServiceModel = new BaseBeeQueenServiceModel
             {
                 Id = beeQueenFormModel.Id,
-                Age = beeQueenFormModel.Age,
+                Year = beeQueenFormModel.Year,
+                ColorMark = beeQueenFormModel.ColorMark,
                 HiveId = beeQueenFormModel.HiveId,
                 IsAlive = beeQueenFormModel.IsAlive,
             };

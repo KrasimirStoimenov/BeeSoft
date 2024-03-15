@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Age" xml:space="preserve">
-    <value>Age</value>
-  </data>
   <data name="BeeQueensList" xml:space="preserve">
     <value>Bee Queens List</value>
+  </data>
+  <data name="ColorMark" xml:space="preserve">
+    <value>Color Mark</value>
   </data>
   <data name="CreateNewBeeQueen" xml:space="preserve">
     <value>Create new bee queen</value>
@@ -134,6 +134,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

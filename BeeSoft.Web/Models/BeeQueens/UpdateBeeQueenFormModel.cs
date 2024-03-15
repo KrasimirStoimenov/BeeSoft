@@ -21,14 +21,15 @@ public sealed record UpdateBeeQueenFormModel
     public int Id { get; init; }
 
     [Display(
-        Name = BeeQueenResourceName.Age,
+        Name = BeeQueenResourceName.Year,
         ResourceType = typeof(BeeQueenResource))]
-    [Range(
-        AgeMinValue,
-        AgeMaxValue,
-        ErrorMessageResourceName = ErrorMessage.RangeErrorMessageName,
-        ErrorMessageResourceType = typeof(SharedResource))]
-    public int Age { get; init; }
+    public int Year { get; init; }
+
+    [Display(
+        Name = BeeQueenResourceName.ColorMark,
+        ResourceType = typeof(BeeQueenResource))]
+    [MaxLength(ColorMarkMaxLength)]
+    public string? ColorMark { get; init; }
 
     [Display(
         Name = BeeQueenResourceName.IsAlive,

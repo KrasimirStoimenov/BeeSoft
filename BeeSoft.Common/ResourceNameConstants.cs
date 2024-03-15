@@ -26,7 +26,8 @@ public sealed class ResourceNameConstants
 
     public sealed class BeeQueenResourceName
     {
-        public const string Age = "Age";
+        public const string Year = "Year";
+        public const string ColorMark = "ColorMark";
         public const string IsAlive = "IsAlive";
     }
 
