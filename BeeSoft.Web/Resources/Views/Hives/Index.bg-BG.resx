@@ -129,23 +129,11 @@
   <data name="CreateNewHive" xml:space="preserve">
     <value>Създай нов кошер</value>
   </data>
-  <data name="Diseases" xml:space="preserve">
-    <value>Болести</value>
-  </data>
-  <data name="Harvests" xml:space="preserve">
-    <value>Реколти</value>
-  </data>
   <data name="HivesList" xml:space="preserve">
     <value>Списък кошери</value>
   </data>
-  <data name="Inspections" xml:space="preserve">
-    <value>Прегледи</value>
-  </data>
   <data name="Number" xml:space="preserve">
     <value>Номер</value>
-  </data>
-  <data name="Queens" xml:space="preserve">
-    <value>Пчелни майки</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Статус</value>
