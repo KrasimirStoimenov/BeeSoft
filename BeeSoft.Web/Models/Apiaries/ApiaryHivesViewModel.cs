@@ -6,10 +6,10 @@ public sealed record ApiaryHivesViewModel
 {
     public ApiaryHivesViewModel()
     {
-        Hives = new HashSet<HiveListingServiceModel>();
+        Hives = new HashSet<BaseHiveServiceModel>();
     }
 
     public required string ApiaryName { get; init; }
 
-    public IEnumerable<HiveListingServiceModel> Hives { get; init; }
+    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

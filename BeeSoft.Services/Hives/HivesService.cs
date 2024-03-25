@@ -21,11 +21,11 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
             .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
-    public async Task<ICollection<HiveListingServiceModel>> GetHivesInApiaryAsync(int apiaryId)
+    public async Task<ICollection<BaseHiveServiceModel>> GetHivesInApiaryAsync(int apiaryId)
         => await dbContext.Hives
             .Where(x => x.ApiaryId == apiaryId)
             .Include(a => a.Apiary)
-            .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
+            .ProjectTo<BaseHiveServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
     public async Task<ICollection<BaseHiveServiceModel>> GetHivesWithoutQueenAsync()
