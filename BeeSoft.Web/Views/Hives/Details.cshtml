@@ -8,7 +8,8 @@
     var hiveId = Model.Id;
 }
 
-<h1 style="margin-top:20px;margin-bottom:50px">@ViewBag.Title №@Model.Number</h1>
+<h1 >@ViewBag.Title №@Model.Number</h1>
+<h3 style="margin-top:20px;margin-bottom:25px">@Localizer["Apiary"] - <a asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@Model.ApiaryId">@Model.ApiaryName</a></h3>
 
 <div class="container">
     <div class="row">
@@ -35,19 +36,16 @@
                 <span class="fw-bold">@Localizer["TimesUsed"]</span> - @Model.TimesUsedCount
             </div>
             <div class="mb-4">
-                <span class="fw-bold">@Localizer["Queens"] - <a asp-action="HiveBeeQueens" asp-route-hiveId="@hiveId">@Model.BeeQueens.Count</a></span>
+                <span class="fw-bold"><a asp-action="HiveBeeQueens" asp-route-hiveId="@hiveId">@Localizer["Queens"] - @Model.BeeQueens.Count</a></span>
             </div>
             <div class="mb-4">
-                <span class="fw-bold">@Localizer["Inspections"] - <a asp-action="HiveInspections" asp-route-hiveId="@hiveId">@Model.Inspections.Count</a></span>
+                <span class="fw-bold"><a asp-action="HiveInspections" asp-route-hiveId="@hiveId">@Localizer["Inspections"] - @Model.Inspections.Count</a></span>
             </div>
             <div class="mb-4">
-                <span class="fw-bold">@Localizer["Diseases"] - <a asp-action="HiveDiseases" asp-route-hiveId="@hiveId">@Model.Diseases.Count</a></span>
+                <span class="fw-bold"><a asp-action="HiveDiseases" asp-route-hiveId="@hiveId">@Localizer["Diseases"] - @Model.Diseases.Count</a></span>
             </div>
             <div class="mb-4">
-                <span class="fw-bold">@Localizer["Harvests"] - <a asp-action="HiveHarvests" asp-route-hiveId="@hiveId">@Model.Harvests.Count</a></span>
-            </div>
-            <div class="mb-4">
-                <span class="fw-bold">@Localizer["Apiary"] - <a asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@Model.ApiaryId">@Model.ApiaryName</a></span>
+                <span class="fw-bold"><a asp-action="HiveHarvests" asp-route-hiveId="@hiveId">@Localizer["Harvests"] - @Model.Harvests.Count</a></span>
             </div>
         </div>
     </div>
