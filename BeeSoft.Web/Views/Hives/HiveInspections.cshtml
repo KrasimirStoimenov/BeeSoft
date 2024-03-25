@@ -3,6 +3,8 @@
 
 @{
     ViewBag.Title = @Localizer["InspectionsForHive"];
+    var inspectionServiceModel = Model.Resources.FirstOrDefault() as InspectionListingServiceModel;
+    var hiveId = inspectionServiceModel != null ? inspectionServiceModel.HiveId : 0;
 }
 
 <br />
@@ -11,6 +13,9 @@
     <div class="row pb-2">
         <div class="col">
             <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-controller="Inspections" asp-action="CreateInspection" asp-route-hiveId="@hiveId" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHive"]</a>
         </div>
     </div>
     <table class="table">
