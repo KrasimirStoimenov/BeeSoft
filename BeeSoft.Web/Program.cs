@@ -60,6 +60,10 @@ builder.Services
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen();
+
 builder.Services.AddTransient<IApiariesService, ApiariesService>();
 builder.Services.AddTransient<IHivesService, HivesService>();
 builder.Services.AddTransient<IBeeQueensService, BeeQueensService>();
@@ -90,6 +94,8 @@ app
     {
         endpoints.MapDefaultControllerRoute();
         endpoints.MapRazorPages();
-    });
+    })
+    .UseSwagger()
+    .UseSwaggerUI();
 
 app.Run();
