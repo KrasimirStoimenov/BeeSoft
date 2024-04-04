@@ -3,8 +3,7 @@
 
 @{
     ViewBag.Title = @Localizer["InspectionsForHive"];
-    var inspectionServiceModel = Model.Resources.FirstOrDefault() as InspectionListingServiceModel;
-    var hiveId = inspectionServiceModel != null ? inspectionServiceModel.HiveId : 0;
+    var hiveId = this.Context.Request.Query.FirstOrDefault(x => x.Key == "hiveId").Value;
 }
 
 <br />
@@ -15,7 +14,7 @@
             <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-controller="Inspections" asp-action="CreateInspection" asp-route-hiveId="@hiveId" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHive"]</a>
+            <a asp-controller="Inspections" asp-action="CreateInspection" asp-route-hiveId="@hiveId" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewInspection"]</a>
         </div>
     </div>
     <table class="table">
@@ -33,6 +32,7 @@
                 <th>
                     @Localizer["ActionsTaken"]
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -50,6 +50,10 @@
                     </td>
                     <td>
                         @inspection.ActionsTaken
+                    </td>
+                    <td style="text-align:right">
+                        <a class="btn btn-success" asp-controller="Inspections" asp-action="UpdateInspection" asp-route-inspectionId="@inspection.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger" asp-controller="Inspections" asp-action="DeleteInspection" asp-route-inspectionId="@inspection.Id"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }

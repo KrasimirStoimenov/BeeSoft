@@ -2,7 +2,6 @@
 
 using System.ComponentModel.DataAnnotations;
 
-using BeeSoft.Services.Hives.Models;
 using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 
@@ -11,10 +10,6 @@ using static Common.ResourceNameConstants;
 
 public sealed record UpdateInspectionFormModel
 {
-    public UpdateInspectionFormModel()
-    {
-        this.Hives = new HashSet<BaseHiveServiceModel>();
-    }
     public int Id { get; init; }
 
     [Display(
@@ -41,6 +36,4 @@ public sealed record UpdateInspectionFormModel
         ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
-
-    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

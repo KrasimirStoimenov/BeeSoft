@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeeSoft.Services", "BeeSoft
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeeSoft.Data", "BeeSoft.Data\BeeSoft.Data.csproj", "{834871E1-5BD5-44F8-8420-04F38A16324C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeSoft.Common", "BeeSoft.Common\BeeSoft.Common.csproj", "{DE846933-B543-4334-81A4-B993B9FD2598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeeSoft.Common", "BeeSoft.Common\BeeSoft.Common.csproj", "{DE846933-B543-4334-81A4-B993B9FD2598}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

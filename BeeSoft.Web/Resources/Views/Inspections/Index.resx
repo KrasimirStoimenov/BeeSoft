@@ -120,9 +120,6 @@
   <data name="ActionsTaken" xml:space="preserve">
     <value>Actions Taken</value>
   </data>
-  <data name="CreateNewInspection" xml:space="preserve">
-    <value>Create new inspection</value>
-  </data>
   <data name="HiveNumber" xml:space="preserve">
     <value>Hive Number</value>
   </data>

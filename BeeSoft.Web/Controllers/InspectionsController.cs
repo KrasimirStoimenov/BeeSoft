@@ -1,6 +1,5 @@
 ﻿namespace BeeSoft.Web.Controllers;
 
-using BeeSoft.Services.Hives;
 using BeeSoft.Services.Inspections;
 using BeeSoft.Services.Inspections.Models;
 using BeeSoft.Web.Models;
@@ -10,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using static Common.GlobalConstants;
 
-public class InspectionsController(IInspectionsService inspectionsService, IHivesService hivesService) : AdministratorController
+public class InspectionsController(IInspectionsService inspectionsService) : AdministratorController
 {
     public async Task<IActionResult> Index(int page = 1)
     {
@@ -29,10 +28,12 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
         return this.View(inspectionsViewModel);
     }
 
-    public async Task<IActionResult> CreateInspection()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+    public async Task<IActionResult> CreateInspection(int hiveId)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View(new CreateInspectionFormModel
         {
-            Hives = await hivesService.GetHivesAsync()
+            HiveId = hiveId
         });
 
     [HttpPost]
@@ -53,7 +54,10 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
 
             if (inspectionId > 0)
             {
-                return this.RedirectToAction(nameof(this.Index));
+                return this.RedirectToAction(
+                    actionName: "HiveInspections",
+                    controllerName: "Hives",
+                    routeValues: new { hiveId = inspectionFormModel.HiveId });
             }
         }
         return this.View(inspectionFormModel);
@@ -65,7 +69,6 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
 
         if (inspection is not null)
         {
-            var hives = await hivesService.GetHivesAsync();
             return this.View(new UpdateInspectionFormModel
             {
                 Id = inspection.Id,
@@ -74,7 +77,6 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
                 Observations = inspection.Observations,
                 ActionsTaken = inspection.ActionsTaken,
                 HiveId = inspection.HiveId,
-                Hives = hives,
             });
         }
 
@@ -98,7 +100,10 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
 
             await inspectionsService.UpdateAsync(inspectionServiceModel);
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(
+                actionName: "HiveInspections",
+                controllerName: "Hives",
+                routeValues: new { hiveId = inspectionFormModel.HiveId });
         }
         return this.View(inspectionFormModel);
     }
@@ -120,7 +125,10 @@ public class InspectionsController(IInspectionsService inspectionsService, IHive
         var isDeleted = await inspectionsService.DeleteAsync(model.Id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(
+                actionName: "HiveInspections",
+                controllerName: "Hives",
+                routeValues: new { hiveId = model.HiveId });
         }
 
         return BadRequest();

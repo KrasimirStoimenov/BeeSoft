@@ -120,6 +120,9 @@
   <data name="ActionsTaken" xml:space="preserve">
     <value>Взети мерки</value>
   </data>
+  <data name="CreateNewInspection" xml:space="preserve">
+    <value>Създай нов преглед</value>
+  </data>
   <data name="InspectionDate" xml:space="preserve">
     <value>Дата на прегледа</value>
   </data>

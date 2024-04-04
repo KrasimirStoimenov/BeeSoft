@@ -2,7 +2,6 @@
 
 using System.ComponentModel.DataAnnotations;
 
-using BeeSoft.Services.Hives.Models;
 using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 using BeeSoft.Web.Resources.Models.Inspections;
@@ -15,7 +14,6 @@ public sealed record CreateInspectionFormModel
     public CreateInspectionFormModel()
     {
         this.InspectionDate = DateTime.Now;
-        this.Hives = new HashSet<BaseHiveServiceModel>();
     }
 
     [Display(
@@ -51,6 +49,4 @@ public sealed record CreateInspectionFormModel
         ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
-
-    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

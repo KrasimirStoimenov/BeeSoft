@@ -120,9 +120,6 @@
   <data name="ActionsTaken" xml:space="preserve">
     <value>Взети мерки</value>
   </data>
-  <data name="CreateNewInspection" xml:space="preserve">
-    <value>Създай нов преглед</value>
-  </data>
   <data name="HiveNumber" xml:space="preserve">
     <value>Номер на кошер</value>
   </data>
