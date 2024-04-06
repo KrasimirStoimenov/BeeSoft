@@ -12,6 +12,9 @@ using static Common.GlobalConstants;
 
 public class DiseasesController(IDiseasesService diseasesService, IHivesService hivesService) : AdministratorController
 {
+    private const string HivesControllerName = "Hives";
+    private const string HiveDiseasesActionName = "HiveDiseases";
+
     public async Task<IActionResult> Index(int page = 1)
     {
         var diseases = await diseasesService.GetDiseasesAsync();
@@ -29,10 +32,12 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
         return this.View(diseasesViewModel);
     }
 
-    public async Task<IActionResult> CreateDisease()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+    public async Task<IActionResult> CreateDisease(int hiveId)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View(new CreateDiseaseFormModel
         {
-            Hives = await hivesService.GetHivesAsync()
+            HiveId = hiveId
         });
 
     [HttpPost]
@@ -52,7 +57,10 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
 
             if (diseaseId > 0)
             {
-                return this.RedirectToAction(nameof(this.Index));
+                return this.RedirectToAction(
+                    actionName: HiveDiseasesActionName,
+                    controllerName: HivesControllerName,
+                    routeValues: new { hiveId = diseaseFormModel.HiveId });
             }
         }
 
@@ -73,7 +81,6 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
                 Description = disease.Description,
                 Treatment = disease.Treatment,
                 HiveId = disease.HiveId,
-                Hives = hives,
             });
         }
 
@@ -96,7 +103,10 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
 
             await diseasesService.UpdateAsync(diseaseServiceModel);
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(
+                actionName: HiveDiseasesActionName,
+                controllerName: HivesControllerName,
+                routeValues: new { hiveId = diseaseFormModel.HiveId });
         }
 
         return this.View(diseaseFormModel);
@@ -120,7 +130,10 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
         var isDeleted = await diseasesService.DeleteAsync(model.Id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(
+                actionName: HiveDiseasesActionName,
+                controllerName: HivesControllerName,
+                routeValues: new { hiveId = model.HiveId });
         }
 
         return BadRequest();

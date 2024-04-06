@@ -42,9 +42,6 @@ public sealed record CreateInspectionFormModel
     [MaxLength(ActionsTakenMaxLength)]
     public string? ActionsTaken { get; init; }
 
-    [Display(
-        Name = CommonResourceName.Hive,
-        ResourceType = typeof(SharedResource))]
     [IsValidHiveId(
         ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]

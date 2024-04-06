@@ -6,9 +6,12 @@
 
     var hiveColor = Model.Color is null ? "N/A" : Model.Color;
     var hiveId = Model.Id;
+    var hiveBeeQueen = Model.BeeQueens.FirstOrDefault(x => x.IsAlive);
+    var hiveBeeQueenYear = hiveBeeQueen is not null ? hiveBeeQueen.Year : 0;
+    var hiveBeeQueenColorMark = hiveBeeQueen is not null && hiveBeeQueen.ColorMark is not null ? hiveBeeQueen.ColorMark : "N/A";
 }
 
-<h1 >@ViewBag.Title №@Model.Number</h1>
+<h1>@ViewBag.Title №@Model.Number</h1>
 <h3 style="margin-top:20px;margin-bottom:25px">@Localizer["Apiary"] - <a asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@Model.ApiaryId">@Model.ApiaryName</a></h3>
 
 <div class="container">
@@ -36,7 +39,18 @@
                 <span class="fw-bold">@Localizer["TimesUsed"]</span> - @Model.TimesUsedCount
             </div>
             <div class="mb-4">
-                <span class="fw-bold"><a asp-action="HiveBeeQueens" asp-route-hiveId="@hiveId">@Localizer["Queens"] - @Model.BeeQueens.Count</a></span>
+                @if (hiveBeeQueen is not null)
+                {
+                    var beeQueenColorMark = hiveBeeQueen.ColorMark is not null ? hiveBeeQueen.ColorMark : "N/A";
+
+                    <span class="fw-bold" style="color:forestgreen">Has alive bee queen from @hiveBeeQueen.Year year with mark: @beeQueenColorMark</span>
+                }
+                else
+                {
+
+                    <span class="fw-bold" style="color:red">Hive is queenless. There is no live bee queen for the hive.</span>
+                    <a class="btn btn-outline-primary form-control text-start" asp-controller="BeeQueens" asp-action="CreateBeeQueen">Click to add new bee queen.</a>
+                }
             </div>
             <div class="mb-4">
                 <span class="fw-bold"><a asp-action="HiveInspections" asp-route-hiveId="@hiveId">@Localizer["Inspections"] - @Model.Inspections.Count</a></span>
@@ -50,4 +64,3 @@
         </div>
     </div>
 </div>
-

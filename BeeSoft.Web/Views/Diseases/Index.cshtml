@@ -12,9 +12,6 @@
         <div class="col">
             <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
-        <div class="col text-end pt-1">
-            <a asp-action="CreateDisease" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewDisease"]</a>
-        </div>
     </div>
     <table class="table">
         <thead>
@@ -31,7 +28,6 @@
                 <th>
                     @Localizer["HiveNumber"]
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -49,10 +45,6 @@
                     </td>
                     <td>
                         <a class="nav-link" asp-controller="Hives" asp-action="HiveDiseases" asp-route-hiveId="@disease.HiveId">№@disease.HiveNumber</a>
-                    </td>
-                    <td style="text-align:right">
-                        <a asp-action="UpdateDisease" class="btn btn-success" asp-route-diseaseId="@disease.Id"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-action="DeleteDisease" class="btn btn-danger" asp-route-diseaseId="@disease.Id"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }

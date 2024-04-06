@@ -2,7 +2,6 @@
 
 using BeeSoft.Services.Harvests;
 using BeeSoft.Services.Harvests.Models;
-using BeeSoft.Services.Hives;
 using BeeSoft.Web.Models;
 using BeeSoft.Web.Models.Harvests;
 
@@ -10,8 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 using static Common.GlobalConstants;
 
-public class HarvestsController(IHarvestsService harvestsService, IHivesService hivesService) : AdministratorController
+public class HarvestsController(IHarvestsService harvestsService) : AdministratorController
 {
+    private const string HivesControllerName = "Hives";
+    private const string HiveHarvestsActionName = "HiveHarvests";
+
     public async Task<IActionResult> Index(int page = 1)
     {
         var harvests = await harvestsService.GetHarvestsAsync();
@@ -29,10 +31,12 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
         return this.View(harvestsViewModel);
     }
 
-    public async Task<IActionResult> CreateHarvest()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+    public async Task<IActionResult> CreateHarvest(int hiveId)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View(new CreateHarvestFormModel
         {
-            Hives = await hivesService.GetHivesAsync()
+            HiveId = hiveId
         });
 
     [HttpPost]
@@ -52,7 +56,10 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
 
             if (harvestId > 0)
             {
-                return this.RedirectToAction(nameof(this.Index));
+                return this.RedirectToAction(
+                    actionName: HiveHarvestsActionName,
+                    controllerName: HivesControllerName,
+                    routeValues: new { hiveId = harvestFormModel.HiveId });
             }
         }
         return this.View(harvestFormModel);
@@ -64,7 +71,6 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
 
         if (harvest is not null)
         {
-            var hives = await hivesService.GetHivesAsync();
             return this.View(new UpdateHarvestFormModel
             {
                 Id = harvest.Id,
@@ -72,7 +78,6 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
                 HarvestedAmount = harvest.HarvestedAmount,
                 HarvestedProduct = harvest.HarvestedProduct,
                 HiveId = harvest.HiveId,
-                Hives = hives,
             });
         }
 
@@ -95,7 +100,10 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
 
             await harvestsService.UpdateAsync(harvestServiceModel);
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(
+                actionName: HiveHarvestsActionName,
+                controllerName: HivesControllerName,
+                routeValues: new { hiveId = harvestFormModel.HiveId });
         }
         return this.View(harvestFormModel);
     }
@@ -117,7 +125,10 @@ public class HarvestsController(IHarvestsService harvestsService, IHivesService 
         var isDeleted = await harvestsService.DeleteAsync(model.Id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(
+                actionName: HiveHarvestsActionName,
+                controllerName: HivesControllerName,
+                routeValues: new { hiveId = model.HiveId });
         }
 
         return BadRequest();
