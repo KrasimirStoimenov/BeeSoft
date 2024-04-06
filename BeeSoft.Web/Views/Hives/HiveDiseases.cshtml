@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = @Localizer["DiseasesForHive"];
+    var hiveId = this.Context.Request.Query.FirstOrDefault(x => x.Key == "hiveId").Value;
 }
 
 <br />
@@ -11,6 +12,9 @@
     <div class="row pb-2">
         <div class="col">
             <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a class="btn btn-outline-primary" asp-controller="Diseases" asp-action="CreateDisease" asp-route-hiveId="@hiveId"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewDisease"]</a>
         </div>
     </div>
     <table class="table">
@@ -25,6 +29,7 @@
                 <th>
                     @Localizer["Treatment"]
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +44,10 @@
                     </td>
                     <td>
                         @disease.Treatment
+                    </td>
+                    <td style="text-align:right">
+                        <a class="btn btn-success" asp-controller="Diseases" asp-action="UpdateDisease" asp-route-diseaseId="@disease.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger"  asp-controller="Diseases" asp-action="DeleteDisease" asp-route-diseaseId="@disease.Id"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }

@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = @Localizer["HarvestsForHive"];
+    var hiveId = this.Context.Request.Query.FirstOrDefault(x => x.Key == "hiveId").Value;
 }
 
 <br />
@@ -11,6 +12,9 @@
     <div class="row pb-2">
         <div class="col">
             <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a class="btn btn-outline-primary" asp-controller="Harvests" asp-action="CreateHarvest" asp-route-hiveId="@hiveId"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHarvest"]</a>
         </div>
     </div>
     <table class="table">
@@ -25,6 +29,7 @@
                 <th>
                     @Localizer["HarvestedProduct"]
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +44,10 @@
                     </td>
                     <td>
                         @harvest.HarvestedProduct
+                    </td>
+                    <td style="text-align:right">
+                        <a asp-controller="Harvests" asp-action="UpdateHarvest" class="btn btn-success" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Harvests" asp-action="DeleteHarvest" class="btn btn-danger" asp-route-harvestId="@harvest.Id"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }

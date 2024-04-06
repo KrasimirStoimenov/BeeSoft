@@ -2,7 +2,6 @@
 
 using System.ComponentModel.DataAnnotations;
 
-using BeeSoft.Services.Hives.Models;
 using BeeSoft.Web.Infrastructure.ValidationAttributes.Hives;
 using BeeSoft.Web.Resources;
 using BeeSoft.Web.Resources.Models.Diseases;
@@ -12,11 +11,6 @@ using static Common.ResourceNameConstants;
 
 public sealed record CreateDiseaseFormModel
 {
-    public CreateDiseaseFormModel()
-    {
-        this.Hives = new HashSet<BaseHiveServiceModel>();
-    }
-
     [Display(
         Name = CommonResourceName.Name,
         ResourceType = typeof(SharedResource))]
@@ -51,6 +45,4 @@ public sealed record CreateDiseaseFormModel
         ErrorMessageResourceName = ErrorMessage.NotExistingItemErrorMessageName,
         ErrorMessageResourceType = typeof(SharedResource))]
     public int HiveId { get; init; }
-
-    public IEnumerable<BaseHiveServiceModel> Hives { get; init; }
 }

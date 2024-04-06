@@ -6,6 +6,7 @@
 }
 
 <form asp-action="CreateDisease">
+    <input asp-for="HiveId" hidden />
     <br />
     <div class="container border p-3">
         <h1 class="text-primary">@ViewBag.Title</h1>
@@ -33,24 +34,6 @@
             <div class="col-10 pb-3">
                 <input asp-for="Treatment" class="form-control" />
                 <span asp-validation-for="Treatment" class="text-danger"></span>
-            </div>
-            <div class="col-2">
-                <label asp-for="HiveId" class="control-label pt-1" style="font-size:20px;"></label>
-            </div>
-            <div class="col-10 pb-3">
-                <select asp-for="HiveId" class="form-control">
-                    @foreach (var hive in Model.Hives)
-                    {
-                        if (hive.Color is null)
-                        {
-                            <option value="@hive.Id">@hive.Number</option>
-                        }
-                        else
-                        {
-                            <option value="@hive.Id">@hive.Number - @hive.Color</option>
-                        }
-                    }
-                </select>
             </div>
             <div class="col-5 offset-2">
                 <partial name="~/Views/Shared/ButtonsPartials/_BackButtonPartial.cshtml" />
