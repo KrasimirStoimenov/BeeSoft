@@ -46,7 +46,7 @@ builder.Services
     {
         var supportedCultures = new[]
         {
-            new CultureInfo("en-US"),
+            new CultureInfo("en-GB"),
             new CultureInfo("bg-BG"),
         };
         opt.DefaultRequestCulture = new RequestCulture(supportedCultures[0]);
