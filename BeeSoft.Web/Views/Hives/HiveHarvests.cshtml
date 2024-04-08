@@ -46,14 +46,14 @@
                         @harvest.HarvestedProduct
                     </td>
                     <td style="text-align:right">
-                        <a asp-controller="Harvests" asp-action="UpdateHarvest" class="btn btn-success" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-controller="Harvests" asp-action="DeleteHarvest" class="btn btn-danger" asp-route-harvestId="@harvest.Id"><i class="bi bi-trash-fill"></i></a>
+                        <a class="btn btn-success" asp-controller="Harvests" asp-action="UpdateHarvest" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger" asp-controller="Harvests" asp-action="DeleteHarvest" asp-route-harvestId="@harvest.Id"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
     <div>
-        <partial name="~/Views/Shared/ButtonsPartials/_BackButtonPartial.cshtml" />
+        <a class="btn-primary btn form-control" asp-action="Details" asp-route-hiveId="@hiveId">@Localizer["Back"]</a>
     </div>
 </div>
