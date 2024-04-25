@@ -127,30 +127,6 @@ public class HivesController(
         return this.View(hiveFormModel);
     }
 
-    public async Task<IActionResult> DeleteHive(int hiveId)
-    {
-        var hive = await hivesService.GetByIdAsync(hiveId);
-
-        if (hive is not null)
-        {
-            return this.View(hive);
-        }
-
-        return this.NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteHive(BaseHiveServiceModel model)
-    {
-        var isDeleted = await hivesService.DeleteAsync(model.Id);
-        if (isDeleted)
-        {
-            return this.RedirectToAction(nameof(this.Index));
-        }
-
-        return BadRequest();
-    }
-
     public async Task<IActionResult> Details(int hiveId)
     {
         var hive = await hivesService.GetDetailsByIdAsync(hiveId);
@@ -225,5 +201,16 @@ public class HivesController(
         }
 
         return this.NotFound();
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        var isDeleted = await hivesService.DeleteAsync(id);
+        if (isDeleted)
+        {
+            return this.Ok();
+        }
+
+        return BadRequest();
     }
 }

@@ -111,27 +111,12 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
         return this.View(inspectionFormModel);
     }
 
-    public async Task<IActionResult> DeleteInspection(int inspectionId)
+    public async Task<IActionResult> Delete(int id)
     {
-        var inspection = await inspectionsService.GetByIdAsync(inspectionId);
-
-        if (inspection is not null)
-        {
-            return this.View(inspection);
-        }
-        return this.NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteInspection(BaseInspectionServiceModel model)
-    {
-        var isDeleted = await inspectionsService.DeleteAsync(model.Id);
+        var isDeleted = await inspectionsService.DeleteAsync(id);
         if (isDeleted)
         {
-            return this.RedirectToAction(
-                actionName: InspectionsActionName,
-                controllerName: HivesControllerName,
-                routeValues: new { hiveId = model.HiveId });
+            return this.Ok();
         }
 
         return BadRequest();

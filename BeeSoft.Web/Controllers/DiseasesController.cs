@@ -112,28 +112,12 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
         return this.View(diseaseFormModel);
     }
 
-    public async Task<IActionResult> DeleteDisease(int diseaseId)
+    public async Task<IActionResult> Delete(int id)
     {
-        var disease = await diseasesService.GetByIdAsync(diseaseId);
-
-        if (disease is not null)
-        {
-            return this.View(disease);
-        }
-
-        return this.NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteDisease(BaseDiseaseServiceModel model)
-    {
-        var isDeleted = await diseasesService.DeleteAsync(model.Id);
+        var isDeleted = await diseasesService.DeleteAsync(id);
         if (isDeleted)
         {
-            return this.RedirectToAction(
-                actionName: DiseasesActionName,
-                controllerName: HivesControllerName,
-                routeValues: new { hiveId = model.HiveId });
+            return this.Ok();
         }
 
         return BadRequest();

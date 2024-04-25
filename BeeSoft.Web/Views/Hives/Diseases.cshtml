@@ -47,7 +47,7 @@
                     </td>
                     <td style="text-align:right">
                         <a class="btn btn-success" asp-controller="Diseases" asp-action="UpdateDisease" asp-route-diseaseId="@disease.Id"><i class="bi bi-pencil-square"></i></a>
-                        <a class="btn btn-danger"  asp-controller="Diseases" asp-action="DeleteDisease" asp-route-diseaseId="@disease.Id"><i class="bi bi-trash-fill"></i></a>
+                        <button type="button" class="btn btn-danger" id="deleteBtn" onclick="showDeleteModal(@disease.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }
@@ -57,3 +57,5 @@
         <a class="btn-primary btn form-control" asp-action="Details" asp-route-hiveId="@hiveId">@Localizer["Back"]</a>
     </div>
 </div>
+
+<partial name="_DeleteModalPartial" />

@@ -70,7 +70,7 @@
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>
-                        <button type="button" class="btn btn-danger" id="deleteBtn" data-item-id="@hive.Id" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash-fill"></i></button>
+                        <button type="button" class="btn btn-danger" onclick="showDeleteModal(@hive.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }

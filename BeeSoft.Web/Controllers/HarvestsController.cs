@@ -108,27 +108,12 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
         return this.View(harvestFormModel);
     }
 
-    public async Task<IActionResult> DeleteHarvest(int harvestId)
+    public async Task<IActionResult> Delete(int id)
     {
-        var harvest = await harvestsService.GetByIdAsync(harvestId);
-
-        if (harvest is not null)
-        {
-            return this.View(harvest);
-        }
-        return this.NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteHarvest(BaseHarvestServiceModel model)
-    {
-        var isDeleted = await harvestsService.DeleteAsync(model.Id);
+        var isDeleted = await harvestsService.DeleteAsync(id);
         if (isDeleted)
         {
-            return this.RedirectToAction(
-                actionName: HarvestsActionName,
-                controllerName: HivesControllerName,
-                routeValues: new { hiveId = model.HiveId });
+            return this.Ok();
         }
 
         return BadRequest();

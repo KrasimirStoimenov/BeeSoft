@@ -96,25 +96,12 @@ public class ExpensesController(IExpensesService expensesService) : Administrato
         return this.View(expenseFormModel);
     }
 
-    public async Task<IActionResult> DeleteExpense(int expenseId)
+    public async Task<IActionResult> Delete(int id)
     {
-        var expense = await expensesService.GetByIdAsync(expenseId);
-
-        if (expense is not null)
-        {
-            return this.View(expense);
-        }
-
-        return this.NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteExpense(ExpenseServiceModel model)
-    {
-        var isDeleted = await expensesService.DeleteAsync(model.Id);
+        var isDeleted = await expensesService.DeleteAsync(id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.Index));
+            return this.Ok();
         }
 
         return BadRequest();

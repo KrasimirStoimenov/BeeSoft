@@ -101,25 +101,12 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
         return this.View(beeQueenFormModel);
     }
 
-    public async Task<IActionResult> DeleteBeeQueen(int beeQueenId)
+    public async Task<IActionResult> Delete(int id)
     {
-        var beeQueen = await beeQueensService.GetByIdAsync(beeQueenId);
-
-        if (beeQueen is not null)
-        {
-            return this.View(beeQueen);
-        }
-
-        return this.NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteBeeQueen(BaseBeeQueenServiceModel model)
-    {
-        var isDeleted = await beeQueensService.DeleteAsync(model.Id);
+        var isDeleted = await beeQueensService.DeleteAsync(id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.Index));
+            return this.Ok();
         }
 
         return BadRequest();

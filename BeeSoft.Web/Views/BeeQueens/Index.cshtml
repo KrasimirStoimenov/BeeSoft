@@ -59,7 +59,7 @@
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateBeeQueen" class="btn btn-success" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-action="DeleteBeeQueen" class="btn btn-danger" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-trash-fill"></i></a>
+                        <button type="button" class="btn btn-danger" id="deleteBtn" onclick="showDeleteModal(@beeQueen.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }
@@ -68,3 +68,4 @@
 </div>
 
 <partial name="_PagingPartial" model="@this.Model" />
+<partial name="_DeleteModalPartial" />

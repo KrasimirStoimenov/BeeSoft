@@ -46,11 +46,13 @@
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateApiary" class="btn btn-success" asp-route-apiaryId="@apiary.Id"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-action="DeleteApiary" class="btn btn-danger" asp-route-apiaryId="@apiary.Id"><i class="bi bi-trash-fill"></i></a>
+                        <button type="button" class="btn btn-danger" id="deleteBtn" onclick="showDeleteModal(@apiary.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
 <partial name="_PagingPartial" model="@this.Model" />
+<partial name="_DeleteModalPartial" />

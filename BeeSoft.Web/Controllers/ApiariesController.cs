@@ -114,25 +114,12 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         return this.View(apiaryFormModel);
     }
 
-    public async Task<IActionResult> DeleteApiary(int apiaryId)
+    public async Task<IActionResult> Delete(int id)
     {
-        var apiary = await apiariesService.GetByIdAsync(apiaryId);
-
-        if (apiary is not null)
-        {
-            return this.View(apiary);
-        }
-
-        return this.NotFound();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> DeleteApiary(ApiaryServiceModel model)
-    {
-        var isDeleted = await apiariesService.DeleteAsync(model.Id);
+        var isDeleted = await apiariesService.DeleteAsync(id);
         if (isDeleted)
         {
-            return this.RedirectToAction(nameof(this.Index));
+            return this.Ok();
         }
 
         return BadRequest();
