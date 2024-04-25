@@ -12,7 +12,7 @@ using static Common.GlobalConstants;
 public class HarvestsController(IHarvestsService harvestsService) : AdministratorController
 {
     private const string HivesControllerName = "Hives";
-    private const string HiveHarvestsActionName = "HiveHarvests";
+    private const string HarvestsActionName = "Harvests";
 
     public async Task<IActionResult> Index(int page = 1)
     {
@@ -57,7 +57,7 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
             if (harvestId > 0)
             {
                 return this.RedirectToAction(
-                    actionName: HiveHarvestsActionName,
+                    actionName: HarvestsActionName,
                     controllerName: HivesControllerName,
                     routeValues: new { hiveId = harvestFormModel.HiveId });
             }
@@ -101,7 +101,7 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
             await harvestsService.UpdateAsync(harvestServiceModel);
 
             return this.RedirectToAction(
-                actionName: HiveHarvestsActionName,
+                actionName: HarvestsActionName,
                 controllerName: HivesControllerName,
                 routeValues: new { hiveId = harvestFormModel.HiveId });
         }
@@ -126,7 +126,7 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
         if (isDeleted)
         {
             return this.RedirectToAction(
-                actionName: HiveHarvestsActionName,
+                actionName: HarvestsActionName,
                 controllerName: HivesControllerName,
                 routeValues: new { hiveId = model.HiveId });
         }

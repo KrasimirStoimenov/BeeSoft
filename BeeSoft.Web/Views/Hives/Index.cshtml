@@ -70,7 +70,7 @@
                     </td>
                     <td style="text-align:right">
                         <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-action="DeleteHive" class="btn btn-danger" asp-route-hiveId="@hive.Id"><i class="bi bi-trash-fill"></i></a>
+                        <button type="button" class="btn btn-danger" id="deleteBtn" data-item-id="@hive.Id" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }
@@ -79,3 +79,4 @@
 </div>
 
 <partial name="_PagingPartial" model="@this.Model" />
+<partial name="_DeleteModalPartial" />

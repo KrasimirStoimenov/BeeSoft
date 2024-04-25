@@ -12,7 +12,7 @@ using static Common.GlobalConstants;
 public class InspectionsController(IInspectionsService inspectionsService) : AdministratorController
 {
     private const string HivesControllerName = "Hives";
-    private const string HiveInspectionsActionName = "HiveInspections";
+    private const string InspectionsActionName = "Inspections";
 
     public async Task<IActionResult> Index(int page = 1)
     {
@@ -58,7 +58,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
             if (inspectionId > 0)
             {
                 return this.RedirectToAction(
-                    actionName: HiveInspectionsActionName,
+                    actionName: InspectionsActionName,
                     controllerName: HivesControllerName,
                     routeValues: new { hiveId = inspectionFormModel.HiveId });
             }
@@ -104,7 +104,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
             await inspectionsService.UpdateAsync(inspectionServiceModel);
 
             return this.RedirectToAction(
-                actionName: HiveInspectionsActionName,
+                actionName: InspectionsActionName,
                 controllerName: HivesControllerName,
                 routeValues: new { hiveId = inspectionFormModel.HiveId });
         }
@@ -129,7 +129,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
         if (isDeleted)
         {
             return this.RedirectToAction(
-                actionName: HiveInspectionsActionName,
+                actionName: InspectionsActionName,
                 controllerName: HivesControllerName,
                 routeValues: new { hiveId = model.HiveId });
         }

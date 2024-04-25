@@ -163,7 +163,7 @@ public class HivesController(
         return this.BadRequest();
     }
 
-    public async Task<IActionResult> HiveBeeQueens(int hiveId)
+    public async Task<IActionResult> BeeQueens(int hiveId)
     {
         var hive = await hivesService.GetByIdAsync(hiveId);
         var beeQueens = await beeQueensService.GetBeeQueensInHiveAsync(hiveId);
@@ -179,7 +179,7 @@ public class HivesController(
         return this.NotFound();
     }
 
-    public async Task<IActionResult> HiveInspections(int hiveId)
+    public async Task<IActionResult> Inspections(int hiveId)
     {
         var hive = await hivesService.GetByIdAsync(hiveId);
         var inspections = await inspectionsService.GetInspectionsForHiveAsync(hiveId);
@@ -195,7 +195,7 @@ public class HivesController(
         return this.NotFound();
     }
 
-    public async Task<IActionResult> HiveDiseases(int hiveId)
+    public async Task<IActionResult> Diseases(int hiveId)
     {
         var hive = await hivesService.GetByIdAsync(hiveId);
         var diseases = await diseasesService.GetDiseasesForHiveAsync(hiveId);
@@ -211,7 +211,7 @@ public class HivesController(
         return this.NotFound();
     }
 
-    public async Task<IActionResult> HiveHarvests(int hiveId)
+    public async Task<IActionResult> Harvests(int hiveId)
     {
         var hive = await hivesService.GetByIdAsync(hiveId);
         var harvests = await harvestsService.GetHarvestsForHiveAsync(hiveId);
