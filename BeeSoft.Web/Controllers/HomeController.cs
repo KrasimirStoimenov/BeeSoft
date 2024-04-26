@@ -16,7 +16,7 @@ public class HomeController(IApiariesService apiariesService, IHivesService hive
 {
     public async Task<IActionResult> Index()
     {
-        if (this.User.Identity.IsAuthenticated)
+        if (this.User.Identity!.IsAuthenticated)
         {
             ICollection<ApiaryHivesViewModel> apiariesWithHivesViewModel = new List<ApiaryHivesViewModel>();
 

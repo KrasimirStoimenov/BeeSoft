@@ -32,7 +32,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
     }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    public async Task<IActionResult> CreateInspection(int hiveId)
+    public async Task<IActionResult> Create(int hiveId)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View(new CreateInspectionFormModel
         {
@@ -40,7 +40,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
         });
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateInspection(CreateInspectionFormModel inspectionFormModel)
+    public async Task<ActionResult<int>> Create(CreateInspectionFormModel inspectionFormModel)
     {
         if (ModelState.IsValid)
         {
@@ -66,7 +66,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
         return this.View(inspectionFormModel);
     }
 
-    public async Task<IActionResult> UpdateInspection(int inspectionId)
+    public async Task<IActionResult> Update(int inspectionId)
     {
         var inspection = await inspectionsService.GetByIdAsync(inspectionId);
 
@@ -87,7 +87,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Adm
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateInspection(UpdateInspectionFormModel inspectionFormModel)
+    public async Task<IActionResult> Update(UpdateInspectionFormModel inspectionFormModel)
     {
         if (this.ModelState.IsValid)
         {

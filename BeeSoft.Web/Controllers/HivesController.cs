@@ -42,14 +42,14 @@ public class HivesController(
         return this.View(hivesViewModel);
     }
 
-    public async Task<IActionResult> CreateHive()
+    public async Task<IActionResult> Create()
         => this.View(new CreateHiveFormModel
         {
             Apiaries = await apiariesService.GetApiariesAsync()
         });
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateHive(CreateHiveFormModel hiveFormModel)
+    public async Task<ActionResult<int>> Create(CreateHiveFormModel hiveFormModel)
     {
         if (ModelState.IsValid)
         {
@@ -77,7 +77,7 @@ public class HivesController(
         return this.View(hiveFormModel);
     }
 
-    public async Task<IActionResult> UpdateHive(int hiveId)
+    public async Task<IActionResult> Update(int hiveId)
     {
         var hive = await hivesService.GetByIdAsync(hiveId);
 
@@ -102,7 +102,7 @@ public class HivesController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateHive(UpdateHiveFormModel hiveFormModel)
+    public async Task<IActionResult> Update(UpdateHiveFormModel hiveFormModel)
     {
         if (this.ModelState.IsValid)
         {
@@ -125,6 +125,17 @@ public class HivesController(
 
         hiveFormModel.Apiaries = await apiariesService.GetApiariesAsync();
         return this.View(hiveFormModel);
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        var isDeleted = await hivesService.DeleteAsync(id);
+        if (isDeleted)
+        {
+            return this.Ok();
+        }
+
+        return BadRequest();
     }
 
     public async Task<IActionResult> Details(int hiveId)
@@ -201,16 +212,5 @@ public class HivesController(
         }
 
         return this.NotFound();
-    }
-
-    public async Task<IActionResult> Delete(int id)
-    {
-        var isDeleted = await hivesService.DeleteAsync(id);
-        if (isDeleted)
-        {
-            return this.Ok();
-        }
-
-        return BadRequest();
     }
 }

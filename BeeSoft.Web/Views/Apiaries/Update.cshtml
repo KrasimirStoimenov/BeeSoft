@@ -1,13 +1,12 @@
-﻿@model UpdateDiseaseFormModel
+﻿@model UpdateApiaryFormModel
 @inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = @Localizer["UpdateDisease"];
+    ViewBag.Title = @Localizer["UpdateApiary"];
 }
 
-<form asp-action="UpdateDisease">
+<form asp-action="Update">
     <input asp-for="Id" hidden />
-    <input asp-for="HiveId" hidden />
     <br />
     <div class="container border p-3">
         <h1 class="text-primary">@ViewBag.Title</h1>
@@ -23,18 +22,11 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="col-2">
-                <label asp-for="Description" class="control-label pt-1" style="font-size:20px;"></label>
+                <label asp-for="Location" class="control-label pt-1" style="font-size:20px;"></label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="col-2">
-                <label asp-for="Treatment" class="control-label pt-1" style="font-size:20px;"></label>
-            </div>
-            <div class="col-10 pb-3">
-                <input asp-for="Treatment" class="form-control" />
-                <span asp-validation-for="Treatment" class="text-danger"></span>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
             </div>
             <div class="col-5 offset-2">
                 <partial name="~/Views/Shared/ButtonsPartials/_BackButtonPartial.cshtml" />

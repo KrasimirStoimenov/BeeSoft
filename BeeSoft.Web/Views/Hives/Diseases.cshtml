@@ -14,7 +14,7 @@
             <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
         </div>
         <div class="col text-end pt-1">
-            <a class="btn btn-outline-primary" asp-controller="Diseases" asp-action="CreateDisease" asp-route-hiveId="@hiveId"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewDisease"]</a>
+            <a class="btn btn-outline-primary" asp-controller="Diseases" asp-action="Create" asp-route-hiveId="@hiveId"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewDisease"]</a>
         </div>
     </div>
     <table class="table">
@@ -46,8 +46,8 @@
                         @disease.Treatment
                     </td>
                     <td style="text-align:right">
-                        <a class="btn btn-success" asp-controller="Diseases" asp-action="UpdateDisease" asp-route-diseaseId="@disease.Id"><i class="bi bi-pencil-square"></i></a>
-                        <button type="button" class="btn btn-danger" id="deleteBtn" onclick="showDeleteModal(@disease.Id)"><i class="bi bi-trash-fill"></i></button>
+                        <a class="btn btn-success" asp-controller="Diseases" asp-action="Update" asp-route-diseaseId="@disease.Id"><i class="bi bi-pencil-square"></i></a>
+                        <button type="button" class="btn btn-danger" onclick="showDeleteModal(@disease.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }

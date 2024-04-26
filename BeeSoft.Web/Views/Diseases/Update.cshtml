@@ -1,11 +1,12 @@
-﻿@model CreateDiseaseFormModel
+﻿@model UpdateDiseaseFormModel
 @inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = @Localizer["CreateDisease"];
+    ViewBag.Title = @Localizer["UpdateDisease"];
 }
 
-<form asp-action="CreateDisease">
+<form asp-action="Update">
+    <input asp-for="Id" hidden />
     <input asp-for="HiveId" hidden />
     <br />
     <div class="container border p-3">
@@ -39,12 +40,11 @@
                 <partial name="~/Views/Shared/ButtonsPartials/_BackButtonPartial.cshtml" />
             </div>
             <div class="col-5">
-                <partial name="~/Views/Shared/ButtonsPartials/_CreateButtonPartial.cshtml" />
+                <partial name="~/Views/Shared/ButtonsPartials/_UpdateButtonPartial.cshtml" />
             </div>
         </div>
     </div>
 </form>
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

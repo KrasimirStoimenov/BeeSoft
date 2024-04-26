@@ -13,7 +13,7 @@
             <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateBeeQueen" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewBeeQueen"]</a>
+            <a asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewBeeQueen"]</a>
         </div>
     </div>
     <table class="table">
@@ -58,8 +58,8 @@
                         <a class="nav-link" asp-controller="Hives" asp-action="BeeQueens" asp-route-hiveId="@beeQueen.HiveId">№@beeQueen.HiveNumber</a>
                     </td>
                     <td style="text-align:right">
-                        <a asp-action="UpdateBeeQueen" class="btn btn-success" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-pencil-square"></i></a>
-                        <button type="button" class="btn btn-danger" id="deleteBtn" onclick="showDeleteModal(@beeQueen.Id)"><i class="bi bi-trash-fill"></i></button>
+                        <a class="btn btn-success" asp-action="Update" asp-route-beeQueenId="@beeQueen.Id"><i class="bi bi-pencil-square"></i></a>
+                        <button type="button" class="btn btn-danger" onclick="showDeleteModal(@beeQueen.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }
