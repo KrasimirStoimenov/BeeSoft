@@ -13,7 +13,7 @@
             <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateApiary" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewApiary"]</a>
+            <a asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewApiary"]</a>
         </div>
     </div>
     <table class="table">
@@ -42,11 +42,11 @@
                         @apiary.Location
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@apiary.Id">@apiary.Hives.Count</a>
+                        <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="Hives" asp-route-apiaryId="@apiary.Id">@apiary.Hives.Count</a>
                     </td>
                     <td style="text-align:right">
-                        <a asp-action="UpdateApiary" class="btn btn-success" asp-route-apiaryId="@apiary.Id"><i class="bi bi-pencil-square"></i></a>
-                        <button type="button" class="btn btn-danger" id="deleteBtn" onclick="showDeleteModal(@apiary.Id)"><i class="bi bi-trash-fill"></i></button>
+                        <a asp-action="Update" class="btn btn-success" asp-route-apiaryId="@apiary.Id"><i class="bi bi-pencil-square"></i></a>
+                        <button type="button" class="btn btn-danger" onclick="showDeleteModal(@apiary.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }

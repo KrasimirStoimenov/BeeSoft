@@ -30,12 +30,12 @@ public class ExpensesController(IExpensesService expensesService) : Administrato
     }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    public async Task<IActionResult> CreateExpense()
+    public async Task<IActionResult> Create()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View(new CreateExpenseFormModel());
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateExpense(CreateExpenseFormModel expenseFormModel)
+    public async Task<ActionResult<int>> Create(CreateExpenseFormModel expenseFormModel)
     {
         if (ModelState.IsValid)
         {
@@ -57,7 +57,7 @@ public class ExpensesController(IExpensesService expensesService) : Administrato
         return this.View(expenseFormModel);
     }
 
-    public async Task<IActionResult> UpdateExpense(int expenseId)
+    public async Task<IActionResult> Update(int expenseId)
     {
         var expense = await expensesService.GetByIdAsync(expenseId);
 
@@ -76,7 +76,7 @@ public class ExpensesController(IExpensesService expensesService) : Administrato
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateExpense(UpdateExpenseFormModel expenseFormModel)
+    public async Task<IActionResult> Update(UpdateExpenseFormModel expenseFormModel)
     {
         if (this.ModelState.IsValid)
         {

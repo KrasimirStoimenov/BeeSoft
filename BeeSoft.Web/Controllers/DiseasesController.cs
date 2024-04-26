@@ -33,7 +33,7 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
     }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    public async Task<IActionResult> CreateDisease(int hiveId)
+    public async Task<IActionResult> Create(int hiveId)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View(new CreateDiseaseFormModel
         {
@@ -41,7 +41,7 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
         });
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateDisease(CreateDiseaseFormModel diseaseFormModel)
+    public async Task<ActionResult<int>> Create(CreateDiseaseFormModel diseaseFormModel)
     {
         if (ModelState.IsValid)
         {
@@ -67,7 +67,7 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
         return this.View(diseaseFormModel);
     }
 
-    public async Task<IActionResult> UpdateDisease(int diseaseId)
+    public async Task<IActionResult> Update(int diseaseId)
     {
         var disease = await diseasesService.GetByIdAsync(diseaseId);
 
@@ -88,7 +88,7 @@ public class DiseasesController(IDiseasesService diseasesService, IHivesService 
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateDisease(UpdateDiseaseFormModel diseaseFormModel)
+    public async Task<IActionResult> Update(UpdateDiseaseFormModel diseaseFormModel)
     {
         if (this.ModelState.IsValid)
         {

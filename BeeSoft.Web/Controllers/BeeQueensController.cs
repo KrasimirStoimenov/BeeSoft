@@ -29,14 +29,14 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
         return this.View(beeQueensViewModel);
     }
 
-    public async Task<IActionResult> CreateBeeQueen()
+    public async Task<IActionResult> Create()
         => this.View(new CreateBeeQueenFormModel
         {
             Hives = await hivesService.GetHivesWithoutQueenAsync()
         });
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateBeeQueen(CreateBeeQueenFormModel beeQueenFormModel)
+    public async Task<ActionResult<int>> Create(CreateBeeQueenFormModel beeQueenFormModel)
     {
         if (ModelState.IsValid)
         {
@@ -59,7 +59,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
         return this.View(beeQueenFormModel);
     }
 
-    public async Task<IActionResult> UpdateBeeQueen(int beeQueenId)
+    public async Task<IActionResult> Update(int beeQueenId)
     {
         var beeQueen = await beeQueensService.GetByIdAsync(beeQueenId);
 
@@ -80,7 +80,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateBeeQueen(UpdateBeeQueenFormModel beeQueenFormModel)
+    public async Task<IActionResult> Update(UpdateBeeQueenFormModel beeQueenFormModel)
     {
         if (this.ModelState.IsValid)
         {

@@ -12,7 +12,7 @@
 }
 
 <h1>@ViewBag.Title №@Model.Number</h1>
-<h3 style="margin-top:20px;margin-bottom:25px">@Localizer["Apiary"] - <a asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@Model.ApiaryId">@Model.ApiaryName</a></h3>
+<h3 style="margin-top:20px;margin-bottom:25px">@Localizer["Apiary"] - <a asp-controller="Apiaries" asp-action="Hives" asp-route-apiaryId="@Model.ApiaryId">@Model.ApiaryName</a></h3>
 
 <div class="container">
     <div class="row">
@@ -49,7 +49,7 @@
                 {
 
                     <span class="fw-bold" style="color:red">Hive is queenless. There is no live bee queen for the hive.</span>
-                    <a class="btn btn-outline-primary form-control text-start" asp-controller="BeeQueens" asp-action="CreateBeeQueen">Click to add new bee queen.</a>
+                    <a class="btn btn-outline-primary form-control text-start" asp-controller="BeeQueens" asp-action="Create">Click to add new bee queen.</a>
                 }
             </div>
             <div class="mb-4">

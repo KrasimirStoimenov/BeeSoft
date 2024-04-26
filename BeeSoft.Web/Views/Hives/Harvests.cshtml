@@ -14,7 +14,7 @@
             <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
         </div>
         <div class="col text-end pt-1">
-            <a class="btn btn-outline-primary" asp-controller="Harvests" asp-action="CreateHarvest" asp-route-hiveId="@hiveId"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHarvest"]</a>
+            <a class="btn btn-outline-primary" asp-controller="Harvests" asp-action="Create" asp-route-hiveId="@hiveId"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHarvest"]</a>
         </div>
     </div>
     <table class="table">
@@ -46,8 +46,8 @@
                         @harvest.HarvestedProduct
                     </td>
                     <td style="text-align:right">
-                        <a class="btn btn-success" asp-controller="Harvests" asp-action="UpdateHarvest" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>
-                        <button type="button" class="btn btn-danger" id="deleteBtn" onclick="showDeleteModal(@harvest.Id)"><i class="bi bi-trash-fill"></i></button>
+                        <a class="btn btn-success" asp-controller="Harvests" asp-action="Update" asp-route-harvestId="@harvest.Id"><i class="bi bi-pencil-square"></i></a>
+                        <button type="button" class="btn btn-danger" onclick="showDeleteModal(@harvest.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             }

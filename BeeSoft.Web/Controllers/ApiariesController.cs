@@ -29,29 +29,13 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         return this.View(apiariesViewModel);
     }
 
-    public async Task<IActionResult> ApiaryHives(int apiaryId)
-    {
-        var apiary = await apiariesService.GetByIdAsync(apiaryId);
-        var hives = await hivesService.GetHivesInApiaryAsync(apiaryId);
-        if (apiary is not null)
-        {
-            return this.View(new ApiaryHivesViewModel
-            {
-                ApiaryName = apiary.Name,
-                Hives = hives,
-            });
-        }
-
-        return this.NotFound();
-    }
-
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    public async Task<IActionResult> CreateApiary()
+    public async Task<IActionResult> Create()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View();
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateApiary(CreateApiaryFormModel apiaryFormModel)
+    public async Task<ActionResult<int>> Create(CreateApiaryFormModel apiaryFormModel)
     {
         var apiaryWithSameNameAndLocationAlreadyExists = await apiariesService.IsApiaryExistsAsync(apiaryFormModel.Name, apiaryFormModel.Location);
         if (apiaryWithSameNameAndLocationAlreadyExists)
@@ -77,7 +61,7 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         return this.View(apiaryFormModel);
     }
 
-    public async Task<IActionResult> UpdateApiary(int apiaryId)
+    public async Task<IActionResult> Update(int apiaryId)
     {
         var apiary = await apiariesService.GetByIdAsync(apiaryId);
 
@@ -95,7 +79,7 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateApiary(UpdateApiaryFormModel apiaryFormModel)
+    public async Task<IActionResult> Update(UpdateApiaryFormModel apiaryFormModel)
     {
         if (this.ModelState.IsValid)
         {
@@ -123,5 +107,21 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         }
 
         return BadRequest();
+    }
+
+    public async Task<IActionResult> Hives(int apiaryId)
+    {
+        var apiary = await apiariesService.GetByIdAsync(apiaryId);
+        var hives = await hivesService.GetHivesInApiaryAsync(apiaryId);
+        if (apiary is not null)
+        {
+            return this.View(new ApiaryHivesViewModel
+            {
+                ApiaryName = apiary.Name,
+                Hives = hives,
+            });
+        }
+
+        return this.NotFound();
     }
 }

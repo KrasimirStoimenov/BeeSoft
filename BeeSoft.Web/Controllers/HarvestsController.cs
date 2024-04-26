@@ -32,7 +32,7 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
     }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    public async Task<IActionResult> CreateHarvest(int hiveId)
+    public async Task<IActionResult> Create(int hiveId)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         => this.View(new CreateHarvestFormModel
         {
@@ -40,7 +40,7 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
         });
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateHarvest(CreateHarvestFormModel harvestFormModel)
+    public async Task<ActionResult<int>> Create(CreateHarvestFormModel harvestFormModel)
     {
         if (ModelState.IsValid)
         {
@@ -65,7 +65,7 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
         return this.View(harvestFormModel);
     }
 
-    public async Task<IActionResult> UpdateHarvest(int harvestId)
+    public async Task<IActionResult> Update(int harvestId)
     {
         var harvest = await harvestsService.GetByIdAsync(harvestId);
 
@@ -85,7 +85,7 @@ public class HarvestsController(IHarvestsService harvestsService) : Administrato
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateHarvest(UpdateHarvestFormModel harvestFormModel)
+    public async Task<IActionResult> Update(UpdateHarvestFormModel harvestFormModel)
     {
         if (this.ModelState.IsValid)
         {

@@ -13,7 +13,7 @@
             <h1 class="text-primary">@ViewBag.Title</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="CreateHive" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHive"]</a>
+            <a asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewHive"]</a>
         </div>
     </div>
     <table class="table">
@@ -66,10 +66,10 @@
                         @hive.TimesUsedCount
                     </td>
                     <td>
-                        <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="ApiaryHives" asp-route-apiaryId="@hive.ApiaryId">@hive.ApiaryName</a>
+                        <a class="nav-link" asp-area="" asp-controller="Apiaries" asp-action="Hives" asp-route-apiaryId="@hive.ApiaryId">@hive.ApiaryName</a>
                     </td>
                     <td style="text-align:right">
-                        <a asp-action="UpdateHive" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Update" class="btn btn-success" asp-route-hiveId="@hive.Id"><i class="bi bi-pencil-square"></i></a>
                         <button type="button" class="btn btn-danger" onclick="showDeleteModal(@hive.Id)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
