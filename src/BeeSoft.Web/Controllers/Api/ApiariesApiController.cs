@@ -4,14 +4,19 @@ using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.Apiaries.Models;
 using BeeSoft.Services.Hives;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using static Common.GlobalConstants;
 
 [ApiController]
 [Route("api/v1/Apiaries")]
+[Authorize("api", Roles = AdministratorRoleName)]
 public class ApiariesApiController(IApiariesService apiariesService, IHivesService hivesService) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ApiaryServiceModel>), 200)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<IEnumerable<ApiaryServiceModel>>> GetApiaries()
     {
         IEnumerable<ApiaryServiceModel> result = await apiariesService.GetApiariesAsync();

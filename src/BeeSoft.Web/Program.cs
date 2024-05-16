@@ -16,6 +16,9 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,9 +63,28 @@ builder.Services
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
 
+builder.Services.AddAuthentication()
+    .AddBearerToken(IdentityConstants.BearerScheme);
+
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("api", p =>
+    {
+        p.RequireAuthenticatedUser();
+        p.AddAuthenticationSchemes(IdentityConstants.BearerScheme);
+    });
+
 builder.Services
     .AddEndpointsApiExplorer()
-    .AddSwaggerGen();
+    .AddSwaggerGen(options =>
+    {
+        options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Name = "Authorization",
+            Type = SecuritySchemeType.ApiKey,
+        });
+        options.OperationFilter<SecurityRequirementsOperationFilter>();
+    });
 
 builder.Services.AddTransient<IApiariesService, ApiariesService>();
 builder.Services.AddTransient<IHivesService, HivesService>();
@@ -85,10 +107,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 app
+    .MapGroup("api/auth")
+    .MapIdentityApi<IdentityUser>();
+
+app
     .UseHttpsRedirection()
     .UseStaticFiles()
     .UseRequestLocalization()
     .UseRouting()
+    .UseAuthentication()
     .UseAuthorization()
     .UseEndpoints(endpoints =>
     {
