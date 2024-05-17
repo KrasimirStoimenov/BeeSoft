@@ -108,7 +108,7 @@ if (!app.Environment.IsDevelopment())
 
 app
     .MapGroup("api/auth")
-    .MapIdentityApi<IdentityUser>();
+    .MapCustomIdentityApi<IdentityUser>();
 
 app
     .UseHttpsRedirection()
