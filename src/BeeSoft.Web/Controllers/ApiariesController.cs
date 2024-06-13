@@ -1,4 +1,4 @@
-﻿namespace BeeSoft.Web.Controllers.Api;
+﻿namespace BeeSoft.Web.Controllers;
 
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.Apiaries.Models;

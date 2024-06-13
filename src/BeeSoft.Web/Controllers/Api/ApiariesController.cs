@@ -4,18 +4,12 @@ using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.Apiaries.Models;
 using BeeSoft.Services.Hives;
 
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using static Common.GlobalConstants;
-
-[ApiController]
-[Route("api/v1/Apiaries")]
-[Authorize("api", Roles = AdministratorRoleName)]
-public class ApiariesApiController(IApiariesService apiariesService, IHivesService hivesService) : ControllerBase
+public class ApiariesController(IApiariesService apiariesService, IHivesService hivesService) : BaseApiController
 {
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<ApiaryServiceModel>), 200)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<IEnumerable<ApiaryServiceModel>>> GetApiaries()
     {
@@ -25,7 +19,8 @@ public class ApiariesApiController(IApiariesService apiariesService, IHivesServi
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(ApiaryServiceModel), 200)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [Route("{id}")]
     public async Task<ActionResult<ApiaryServiceModel>> GetApiaryById(int id)
@@ -41,7 +36,8 @@ public class ApiariesApiController(IApiariesService apiariesService, IHivesServi
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(ApiaryServiceModel), 200)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [Route("{apiaryId}/Hives")]
     public async Task<ActionResult<ApiaryServiceModel>> GetApiaryHives(int apiaryId)
     {

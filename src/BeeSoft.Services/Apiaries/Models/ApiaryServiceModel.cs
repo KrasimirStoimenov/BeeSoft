@@ -1,6 +1,6 @@
 ﻿namespace BeeSoft.Services.Apiaries.Models;
 
-using BeeSoft.Data.Models;
+using BeeSoft.Services.Hives.Models;
 
 public sealed record ApiaryServiceModel
 {
@@ -10,5 +10,5 @@ public sealed record ApiaryServiceModel
 
     public required string Location { get; init; }
 
-    public ICollection<Hive> Hives { get; init; } = new HashSet<Hive>();
+    public ICollection<BaseHiveServiceModel> Hives { get; init; } = new HashSet<BaseHiveServiceModel>();
 }
