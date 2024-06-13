@@ -1,0 +1,38 @@
+﻿fieldset {
+    display: block;
+    max-width: 800px;
+    border: 2px solid #eee;
+    border-radius: 0.3em;
+    box-shadow: 0 0 1em 0 rgb(0,0,0,0.2);
+    padding: 2em;
+    margin: 0 auto;
+}
+
+fieldset legend {
+    display: block;
+    font-weight: bold;
+    font-size: 2em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.2em;
+    margin-bottom:1em;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5em;
+}
+
+.field label {
+    display: block;
+    font-weight: bold;
+    order: -1;
+    padding-bottom: 0.3em;
+}
+
+.field input:required ~ label::after {
+    display: inline-block;
+    content: '*';
+    padding-left: 0.3em;
+    color: #C00;
+}
