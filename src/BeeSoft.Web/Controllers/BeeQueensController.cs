@@ -71,6 +71,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService, IHivesServi
                 Id = beeQueen.Id,
                 Year = beeQueen.Year,
                 ColorMark = beeQueen.ColorMark,
+                IsAlive = beeQueen.IsAlive,
                 HiveId = beeQueen.HiveId,
                 Hives = hives,
             });
