@@ -44,12 +44,8 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<int>> Create(CreateApiaryFormModel apiaryFormModel)
     {
-        var apiaryWithSameNameAndLocationAlreadyExists = await apiariesService.IsApiaryExistsAsync(apiaryFormModel.Name, apiaryFormModel.Location);
-        if (apiaryWithSameNameAndLocationAlreadyExists)
+        try
         {
-            return BadRequest($"Apiary with name: '{apiaryFormModel.Name}' in location: '{apiaryFormModel.Location}' already exists.");
-        }
-
         var apiaryServiceModel = new ApiaryServiceModel
         {
             Name = apiaryFormModel.Name,
@@ -64,6 +60,12 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         }
 
         return this.Ok(apiaryId);
+    }
+        catch (InvalidOperationException ex)
+        {
+            return this.BadRequest(ex.Message);
+        }
+
     }
 
     [HttpPut]
