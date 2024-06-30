@@ -40,7 +40,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Bas
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<BaseInspectionServiceModel>> Create(CreateInspectionFormModel inspectionFormModel)
+    public async Task<ActionResult<BaseInspectionServiceModel>> CreateHive(CreateInspectionFormModel inspectionFormModel)
     {
         var inspectionServiceModel = new BaseInspectionServiceModel
         {
@@ -64,7 +64,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Bas
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> Update(UpdateInspectionFormModel inspectionFormModel)
+    public async Task<IActionResult> UpdateHive(UpdateInspectionFormModel inspectionFormModel)
     {
         var inspectionId = inspectionFormModel.Id;
         var inspectionServiceModel = new BaseInspectionServiceModel
@@ -87,7 +87,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Bas
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [Route("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> DeleteInspection(int id)
     {
         var isDeleted = await inspectionsService.DeleteAsync(id);
         if (isDeleted)

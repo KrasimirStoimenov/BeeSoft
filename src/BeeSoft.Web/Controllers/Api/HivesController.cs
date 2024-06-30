@@ -40,7 +40,7 @@ public class HivesController(IHivesService hivesService) : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<BaseHiveServiceModel>> Create(CreateHiveFormModel hiveFormModel)
+    public async Task<ActionResult<BaseHiveServiceModel>> CreateHive(CreateHiveFormModel hiveFormModel)
     {
         var hiveServiceModel = new BaseHiveServiceModel
         {
@@ -66,7 +66,7 @@ public class HivesController(IHivesService hivesService) : BaseApiController
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> Update(UpdateHiveFormModel hiveFormModel)
+    public async Task<IActionResult> UpdateHive(UpdateHiveFormModel hiveFormModel)
     {
         var hiveId = hiveFormModel.Id;
         var hiveServiceModel = new BaseHiveServiceModel
@@ -91,7 +91,7 @@ public class HivesController(IHivesService hivesService) : BaseApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [Route("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> DeleteHive(int id)
     {
         var isDeleted = await hivesService.DeleteAsync(id);
         if (isDeleted)

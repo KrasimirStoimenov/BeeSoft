@@ -13,7 +13,7 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<IEnumerable<ApiaryServiceModel>>> GetApiaries()
+    public async Task<ActionResult<IEnumerable<ApiaryServiceModel>>> GetAll()
     {
         var result = await apiariesService.GetApiariesAsync();
 
@@ -26,7 +26,7 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [Route("{id}")]
-    public async Task<ActionResult<ApiaryServiceModel>> GetApiaryById(int id)
+    public async Task<ActionResult<ApiaryServiceModel>> GetById(int id)
     {
         var result = await apiariesService.GetByIdAsync(id);
 
@@ -42,25 +42,25 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<int>> Create(CreateApiaryFormModel apiaryFormModel)
+    public async Task<ActionResult<int>> CreateApiary(CreateApiaryFormModel apiaryFormModel)
     {
         try
         {
-        var apiaryServiceModel = new ApiaryServiceModel
-        {
-            Name = apiaryFormModel.Name,
-            Location = apiaryFormModel.Location,
-        };
+            var apiaryServiceModel = new ApiaryServiceModel
+            {
+                Name = apiaryFormModel.Name,
+                Location = apiaryFormModel.Location,
+            };
 
-        var apiaryId = await apiariesService.CreateAsync(apiaryServiceModel);
+            var apiaryId = await apiariesService.CreateAsync(apiaryServiceModel);
 
-        if (apiaryId is 0)
-        {
-            return this.BadRequest();
+            if (apiaryId is 0)
+            {
+                return this.BadRequest();
+            }
+
+            return this.Ok(apiaryId);
         }
-
-        return this.Ok(apiaryId);
-    }
         catch (InvalidOperationException ex)
         {
             return this.BadRequest(ex.Message);
@@ -71,7 +71,7 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> Update(UpdateApiaryFormModel apiaryFormModel)
+    public async Task<IActionResult> UpdateApiary(UpdateApiaryFormModel apiaryFormModel)
     {
         var apiaryId = apiaryFormModel.Id;
         var apiaryServiceModel = new ApiaryServiceModel
