@@ -6,6 +6,7 @@ using BeeSoft.Web.Models.Inspections;
 
 using Microsoft.AspNetCore.Mvc;
 
+[Route("api/inspections")]
 public class InspectionsController(IInspectionsService inspectionsService) : BaseApiController
 {
     [HttpGet]
@@ -13,7 +14,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Bas
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<IEnumerable<InspectionListingServiceModel>>> GetAll()
     {
-        IEnumerable<InspectionListingServiceModel> result = await inspectionsService.GetInspectionsAsync();
+        var result = await inspectionsService.GetInspectionsAsync();
 
         return this.Ok(result);
     }
@@ -58,6 +59,27 @@ public class InspectionsController(IInspectionsService inspectionsService) : Bas
         }
 
         return this.Ok(result);
+    }
+
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Update(UpdateInspectionFormModel inspectionFormModel)
+    {
+        var inspectionId = inspectionFormModel.Id;
+        var inspectionServiceModel = new BaseInspectionServiceModel
+        {
+            Id = inspectionId,
+            InspectionDate = inspectionFormModel.InspectionDate,
+            WeatherConditions = inspectionFormModel.WeatherConditions,
+            Observations = inspectionFormModel.Observations!,
+            ActionsTaken = inspectionFormModel.ActionsTaken,
+            HiveId = inspectionFormModel.HiveId,
+        };
+
+        await inspectionsService.UpdateAsync(inspectionServiceModel);
+
+        return this.Ok(inspectionId);
     }
 
     [HttpDelete]

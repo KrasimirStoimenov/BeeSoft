@@ -3,9 +3,11 @@
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.Apiaries.Models;
 using BeeSoft.Services.Hives;
+using BeeSoft.Web.Models.Apiaries;
 
 using Microsoft.AspNetCore.Mvc;
 
+[Route("api/apiaries")]
 public class ApiariesController(IApiariesService apiariesService, IHivesService hivesService) : BaseApiController
 {
     [HttpGet]
@@ -13,10 +15,11 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<IEnumerable<ApiaryServiceModel>>> GetApiaries()
     {
-        IEnumerable<ApiaryServiceModel> result = await apiariesService.GetApiariesAsync();
+        var result = await apiariesService.GetApiariesAsync();
 
         return this.Ok(result);
     }
+
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -33,6 +36,52 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         }
 
         return this.Ok(result);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<int>> Create(CreateApiaryFormModel apiaryFormModel)
+    {
+        var apiaryWithSameNameAndLocationAlreadyExists = await apiariesService.IsApiaryExistsAsync(apiaryFormModel.Name, apiaryFormModel.Location);
+        if (apiaryWithSameNameAndLocationAlreadyExists)
+        {
+            return BadRequest($"Apiary with name: '{apiaryFormModel.Name}' in location: '{apiaryFormModel.Location}' already exists.");
+        }
+
+        var apiaryServiceModel = new ApiaryServiceModel
+        {
+            Name = apiaryFormModel.Name,
+            Location = apiaryFormModel.Location,
+        };
+
+        var apiaryId = await apiariesService.CreateAsync(apiaryServiceModel);
+
+        if (apiaryId is 0)
+        {
+            return this.BadRequest();
+        }
+
+        return this.Ok(apiaryId);
+    }
+
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Update(UpdateApiaryFormModel apiaryFormModel)
+    {
+        var apiaryId = apiaryFormModel.Id;
+        var apiaryServiceModel = new ApiaryServiceModel
+        {
+            Id = apiaryId,
+            Name = apiaryFormModel.Name,
+            Location = apiaryFormModel.Location,
+        };
+
+        await apiariesService.UpdateAsync(apiaryServiceModel);
+
+        return this.Ok(apiaryId);
     }
 
     [HttpGet]
