@@ -38,6 +38,17 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         return this.Ok(result);
     }
 
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [Route("{apiaryId}/Hives")]
+    public async Task<ActionResult<ApiaryServiceModel>> GetApiaryHives(int apiaryId)
+    {
+        var result = await hivesService.GetHivesInApiaryAsync(apiaryId);
+
+        return this.Ok(result);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -86,14 +97,19 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
         return this.Ok(apiaryId);
     }
 
-    [HttpGet]
+    [HttpDelete]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [Route("{apiaryId}/Hives")]
-    public async Task<ActionResult<ApiaryServiceModel>> GetApiaryHives(int apiaryId)
+    [Route("{id}")]
+    public async Task<IActionResult> DeleteApiary(int id)
     {
-        var result = await hivesService.GetHivesInApiaryAsync(apiaryId);
+        var isDeleted = await hivesService.DeleteAsync(id);
+        if (isDeleted)
+        {
+            return this.Ok();
+        }
 
-        return this.Ok(result);
+        return this.NotFound();
     }
 }

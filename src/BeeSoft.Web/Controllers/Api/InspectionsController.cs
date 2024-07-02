@@ -40,7 +40,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Bas
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<BaseInspectionServiceModel>> CreateHive(CreateInspectionFormModel inspectionFormModel)
+    public async Task<ActionResult<BaseInspectionServiceModel>> CreateInspection(CreateInspectionFormModel inspectionFormModel)
     {
         var inspectionServiceModel = new BaseInspectionServiceModel
         {
@@ -64,7 +64,7 @@ public class InspectionsController(IInspectionsService inspectionsService) : Bas
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<IActionResult> UpdateHive(UpdateInspectionFormModel inspectionFormModel)
+    public async Task<IActionResult> UpdateInspection(UpdateInspectionFormModel inspectionFormModel)
     {
         var inspectionId = inspectionFormModel.Id;
         var inspectionServiceModel = new BaseInspectionServiceModel
