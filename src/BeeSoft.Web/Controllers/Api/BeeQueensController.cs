@@ -2,7 +2,6 @@
 
 using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.BeeQueens.Models;
-using BeeSoft.Services.Inspections.Models;
 using BeeSoft.Web.Models.BeeQueens;
 
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +40,7 @@ public class BeeQueensController(IBeeQueensService beeQueensService) : BaseApiCo
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<BaseInspectionServiceModel>> CreateBeeQueen(CreateBeeQueenFormModel beeQueenFormModel)
+    public async Task<ActionResult<BaseBeeQueenServiceModel>> CreateBeeQueen(CreateBeeQueenFormModel beeQueenFormModel)
     {
 
         var beeQueenServiceModel = new BaseBeeQueenServiceModel
