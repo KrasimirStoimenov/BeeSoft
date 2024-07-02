@@ -27,6 +27,11 @@ public sealed class ApiariesService(BeeSoftDbContext dbContext, IMapper mapper) 
 
     public async Task<int> CreateAsync(ApiaryServiceModel apiaryServiceModel)
     {
+        if (await this.IsApiaryExistsAsync(apiaryServiceModel.Name, apiaryServiceModel.Location))
+        {
+            throw new InvalidOperationException($"Apiary with name: '{apiaryServiceModel.Name}' in location: '{apiaryServiceModel.Location}' already exists.");
+        }
+
         var apiary = mapper.Map<Apiary>(apiaryServiceModel);
 
         await dbContext.Apiaries.AddAsync(apiary);

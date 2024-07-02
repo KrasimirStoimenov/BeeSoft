@@ -1,4 +1,4 @@
-﻿namespace BeeSoft.Web.Controllers.Api;
+﻿namespace BeeSoft.Web.Controllers;
 
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.Apiaries.Models;
@@ -37,24 +37,26 @@ public class ApiariesController(IApiariesService apiariesService, IHivesService 
     [HttpPost]
     public async Task<ActionResult<int>> Create(CreateApiaryFormModel apiaryFormModel)
     {
-        var apiaryWithSameNameAndLocationAlreadyExists = await apiariesService.IsApiaryExistsAsync(apiaryFormModel.Name, apiaryFormModel.Location);
-        if (apiaryWithSameNameAndLocationAlreadyExists)
-        {
-            this.ModelState.AddModelError("NameAndLocationAlreadyExists", $"Apiary with name: '{apiaryFormModel.Name}' in location: '{apiaryFormModel.Location}' already exists.");
-        }
         if (ModelState.IsValid)
         {
-            var apiaryServiceModel = new ApiaryServiceModel
+            try
             {
-                Name = apiaryFormModel.Name,
-                Location = apiaryFormModel.Location,
-            };
+                var apiaryServiceModel = new ApiaryServiceModel
+                {
+                    Name = apiaryFormModel.Name,
+                    Location = apiaryFormModel.Location,
+                };
 
-            var apiaryId = await apiariesService.CreateAsync(apiaryServiceModel);
+                var apiaryId = await apiariesService.CreateAsync(apiaryServiceModel);
 
-            if (apiaryId > 0)
+                if (apiaryId > 0)
+                {
+                    return this.RedirectToAction(nameof(this.Index));
+                }
+            }
+            catch (InvalidOperationException ex)
             {
-                return this.RedirectToAction(nameof(this.Index));
+                this.ModelState.AddModelError("NameAndLocationAlreadyExists", ex.Message);
             }
         }
 
