@@ -47,7 +47,9 @@ fieldset legend {
     border: 1px solid var(--validation-invalid-color);
 }
 
-.field input:required~label::after {
+.field input:required~label::after,
+.field select:required~label::after,
+.field textarea:required~label::after {
     display: inline-block;
     content: '*';
     padding-left: 0.3em;

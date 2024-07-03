@@ -52,7 +52,7 @@ else
                 </p>
 
                 <p class="field">
-                    <select asp-for="HiveId" class="form-control">
+                    <select asp-for="HiveId" class="form-control" required>
                         @foreach (var hive in Model.Hives)
                         {
                             if (hive.Color is null)

@@ -25,7 +25,7 @@
             </p>
 
             <p class="field">
-                <select asp-for="HiveId" class="form-control">
+                <select asp-for="HiveId" class="form-control" required>
                     @foreach (var hive in Model.Hives)
                     {
                         var color = hive.Color;
