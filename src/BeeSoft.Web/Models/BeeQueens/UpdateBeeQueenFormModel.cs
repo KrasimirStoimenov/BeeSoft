@@ -14,7 +14,6 @@ public sealed record UpdateBeeQueenFormModel
 {
     public UpdateBeeQueenFormModel()
     {
-        this.IsAlive = true;
         this.Hives = new HashSet<BaseHiveServiceModel>();
     }
 
