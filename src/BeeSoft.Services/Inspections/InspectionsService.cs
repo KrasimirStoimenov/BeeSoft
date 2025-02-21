@@ -22,6 +22,7 @@ public sealed class InspectionsService(BeeSoftDbContext dbContext, IMapper mappe
         => await dbContext.Inspections
             .Where(x => x.HiveId == hiveId)
             .Include(a => a.Hive)
+            .OrderByDescending(x => x.Id)
             .ProjectTo<InspectionListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 

@@ -17,7 +17,6 @@ public sealed class HivesService(BeeSoftDbContext dbContext, IMapper mapper) : I
     public async Task<ICollection<HiveListingServiceModel>> GetHivesAsync()
         => await dbContext.Hives
             .Include(a => a.Apiary)
-            .OrderByDescending(x => x.Id)
             .ProjectTo<HiveListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 

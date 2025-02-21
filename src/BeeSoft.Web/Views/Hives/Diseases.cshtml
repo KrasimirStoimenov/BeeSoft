@@ -11,7 +11,9 @@
 <div class="container">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">@ViewBag.Title: №@Model.HiveNumber</h1>
+            <h1 class="text-primary">
+                @ViewBag.Title:<a class="link" asp-controller="Hives" asp-action="Details" asp-route-hiveId="@hiveId"> №@Model.HiveNumber</a>
+            </h1>
         </div>
         <div class="col text-end pt-1">
             <a class="btn btn-outline-primary" asp-controller="Diseases" asp-action="Create" asp-route-hiveId="@hiveId"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewDisease"]</a>

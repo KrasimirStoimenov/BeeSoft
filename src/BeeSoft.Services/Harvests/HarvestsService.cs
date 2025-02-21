@@ -22,6 +22,7 @@ public sealed class HarvestsService(BeeSoftDbContext dbContext, IMapper mapper) 
         => await dbContext.Harvests
             .Where(x => x.HiveId == hiveId)
             .Include(a => a.Hive)
+            .OrderByDescending(x => x.Id)
             .ProjectTo<HarvestListingServiceModel>(mapper.ConfigurationProvider)
             .ToListAsync();
 
