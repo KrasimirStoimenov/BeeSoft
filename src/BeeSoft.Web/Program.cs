@@ -25,7 +25,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services
     .AddDbContext<BeeSoftDbContext>(options => options
-        .UseSqlServer(builder.Configuration.GetConnectionString("BeeSoftDb")))
+        .UseSqlServer(
+            builder.Configuration.GetConnectionString("BeeSoftDb"),
+            sqlOptions => sqlOptions.EnableRetryOnFailure())
+        )
     .AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services
@@ -127,3 +130,4 @@ app
     .UseSwaggerUI();
 
 app.Run();
+}
