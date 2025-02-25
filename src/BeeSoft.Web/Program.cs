@@ -130,4 +130,3 @@ app
     .UseSwaggerUI();
 
 app.Run();
-}
