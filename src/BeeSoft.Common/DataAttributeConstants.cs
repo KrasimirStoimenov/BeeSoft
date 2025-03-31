@@ -50,6 +50,6 @@ public class DataAttributeConstants
     public class Expense
     {
         public const int NameMinLength = 3;
-        public const int NameMaxLength = 100;
+        public const int NameMaxLength = 500;
     }
 }
