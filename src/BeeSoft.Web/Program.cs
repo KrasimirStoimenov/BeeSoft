@@ -2,7 +2,6 @@ using System.Globalization;
 
 using BeeSoft.Data;
 using BeeSoft.Services.Apiaries;
-using BeeSoft.Services.AutoMappingProfile;
 using BeeSoft.Services.BeeQueens;
 using BeeSoft.Services.Diseases;
 using BeeSoft.Services.Expenses;
@@ -41,10 +40,6 @@ builder.Services
     })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BeeSoftDbContext>();
-
-builder.Services
-    .AddAutoMapper(options =>
-        options.AddProfile<MappingProfile>());
 
 builder.Services
     .AddLocalization(opt => opt.ResourcesPath = "Resources")
