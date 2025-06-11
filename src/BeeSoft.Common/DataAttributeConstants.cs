@@ -31,14 +31,14 @@ public class DataAttributeConstants
     public class Inspection
     {
         public const int WeatherConditionsMaxLength = 100;
-        public const int ObservationsMaxLength = 500;
-        public const int ActionsTakenMaxLength = 500;
+        public const int ObservationsMaxLength = 1000;
+        public const int ActionsTakenMaxLength = 1000;
     }
 
     public class Disease
     {
         public const int NameMaxLength = 100;
-        public const int DescriptionMaxLength = 100;
+        public const int DescriptionMaxLength = 1000;
         public const int TreatmentMaxLength = 100;
     }
 
