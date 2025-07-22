@@ -19,13 +19,7 @@ public sealed class ApiariesService(BeeSoftDbContext dbContext) : IApiariesServi
     public async Task<ApiaryServiceModel?> GetByIdAsync(int id)
         => await dbContext.Apiaries
             .Where(p => p.Id == id)
-            .Select(x => new ApiaryServiceModel
-            {
-                Id = x.Id,
-                Location = x.Location,
-                Name = x.Name,
-                ApiaryHivesCount = x.Hives.Count
-            })
+            .ProjectToApiaryServiceModel()
             .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(ApiaryServiceModel apiaryServiceModel)
