@@ -104,7 +104,7 @@ public class HivesController(
     [HttpPost]
     public async Task<IActionResult> Update(UpdateHiveFormModel hiveFormModel)
     {
-        if (this.ModelState.IsValid)
+        if (ModelState.IsValid)
         {
             var hiveServiceModel = new BaseHiveServiceModel
             {
@@ -135,7 +135,7 @@ public class HivesController(
             return this.Ok();
         }
 
-        return BadRequest();
+        return this.BadRequest();
     }
 
     public async Task<IActionResult> Details(int hiveId)
@@ -144,7 +144,7 @@ public class HivesController(
 
         if (hive is not null)
         {
-            return View(hive);
+            return this.View(hive);
         }
 
         return this.BadRequest();
@@ -198,12 +198,13 @@ public class HivesController(
         return this.NotFound();
     }
 
-    public async Task<IActionResult> Harvests(int hiveId)
+    public async Task<IActionResult> Harvests(int hiveId, int? year)
     {
         var hive = await hivesService.GetByIdAsync(hiveId);
-        var harvests = await harvestsService.GetHarvestsForHiveAsync(hiveId);
+        var harvests = await harvestsService.GetHarvestsForHiveAsync(hiveId, year);
         if (hive is not null)
         {
+            ViewBag.HarvestYear = year;
             return this.View(new HiveResourcesViewModel<HarvestListingServiceModel>
             {
                 HiveNumber = hive.Number,

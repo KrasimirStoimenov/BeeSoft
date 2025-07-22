@@ -15,13 +15,23 @@ public sealed class HarvestsService(BeeSoftDbContext dbContext) : IHarvestsServi
             .ProjectToHarvestListingServiceModel()
             .ToListAsync();
 
-    public async Task<ICollection<HarvestListingServiceModel>> GetHarvestsForHiveAsync(int hiveId)
-        => await dbContext.Harvests
-            .Where(x => x.HiveId == hiveId)
-            .Include(a => a.Hive)
-            .OrderByDescending(x => x.Id)
+    public async Task<ICollection<HarvestListingServiceModel>> GetHarvestsForHiveAsync(int hiveId, int? year)
+    {
+        var harvests = dbContext.Harvests
+           .Where(x => x.HiveId == hiveId)
+           .AsQueryable();
+
+        if (year is not null)
+        {
+            harvests = harvests.Where(x => x.HarvestDate.Year == year);
+        }
+
+        return await harvests
+            .OrderByDescending(x => x.HarvestDate)
             .ProjectToHarvestListingServiceModel()
             .ToListAsync();
+    }
+
 
     public async Task<BaseHarvestServiceModel?> GetByIdAsync(int id)
         => await dbContext.Harvests
