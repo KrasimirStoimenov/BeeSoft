@@ -23,8 +23,8 @@ jobs:
         
     - name: Build and Publish
       run: |
-        dotnet build BeeSoft.Web/BeeSoft.Web.csproj --configuration Release
-        dotnet publish BeeSoft.Web/BeeSoft.Web.csproj -c Release -o ${{ github.workspace }}/publish
+        dotnet build src/BeeSoft.Web/BeeSoft.Web.csproj --configuration Release
+        dotnet publish src/BeeSoft.Web/BeeSoft.Web.csproj -c Release -o ${{ github.workspace }}/publish
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
