@@ -16,5 +16,6 @@ internal static partial class BeeQueensMapper
 
     public static partial BeeQueenListingServiceModel MapToBeeQueenListingServiceModel(this BeeQueen beeQueen);
 
+    [MapperIgnoreTarget(nameof(BeeQueen.Hive))]
     public static partial BeeQueen MapToBeeQueen(this BaseBeeQueenServiceModel beeQueenServiceModel);
 }

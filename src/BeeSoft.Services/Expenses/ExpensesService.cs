@@ -1,31 +1,28 @@
 ﻿namespace BeeSoft.Services.Expenses;
 
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-
 using BeeSoft.Data;
-using BeeSoft.Data.Models;
+using BeeSoft.Services.Expenses.Mappings;
 using BeeSoft.Services.Expenses.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public sealed class ExpensesService(BeeSoftDbContext dbContext, IMapper mapper) : IExpensesService
+public sealed class ExpensesService(BeeSoftDbContext dbContext) : IExpensesService
 {
     public async Task<ICollection<ExpenseServiceModel>> GetExpensesAsync()
         => await dbContext.Expenses
             .OrderByDescending(x => x.Date)
-            .ProjectTo<ExpenseServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToExpenseServiceModel()
             .ToListAsync();
 
     public async Task<ExpenseServiceModel?> GetByIdAsync(int id)
         => await dbContext.Expenses
             .Where(p => p.Id == id)
-            .ProjectTo<ExpenseServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToExpenseServiceModel()
             .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(ExpenseServiceModel model)
     {
-        var expense = mapper.Map<Expense>(model);
+        var expense = model.MapToExpense();
 
         await dbContext.Expenses.AddAsync(expense);
         await dbContext.SaveChangesAsync();
@@ -35,7 +32,7 @@ public sealed class ExpensesService(BeeSoftDbContext dbContext, IMapper mapper) 
 
     public async Task UpdateAsync(ExpenseServiceModel model)
     {
-        var expense = mapper.Map<Expense>(model);
+        var expense = model.MapToExpense();
 
         dbContext.Update(expense);
         await dbContext.SaveChangesAsync();

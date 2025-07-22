@@ -16,5 +16,6 @@ internal static partial class DiseaseMapper
     [MapperIgnoreSource(nameof(BeeQueen.Hive))]
     public static partial BaseDiseaseServiceModel MapToBaseDiseaseServiceModel(this Disease disease);
 
+    [MapperIgnoreTarget(nameof(Disease.Hive))]
     public static partial Disease MapToDisease(this BaseDiseaseServiceModel baseDiseaseServiceModel);
 }

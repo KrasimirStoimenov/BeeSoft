@@ -28,6 +28,11 @@ internal static partial class HivesMapper
     [MapProperty(nameof(Hive.Apiary.Name), nameof(HiveDetailsServiceModel.ApiaryName))]
     public static partial HiveDetailsServiceModel MapToHiveDetailsServiceModel(this Hive hive);
 
+    [MapperIgnoreTarget(nameof(Hive.Apiary))]
+    [MapperIgnoreTarget(nameof(Hive.BeeQueens))]
+    [MapperIgnoreTarget(nameof(Hive.Inspections))]
+    [MapperIgnoreTarget(nameof(Hive.Diseases))]
+    [MapperIgnoreTarget(nameof(Hive.Harvests))]
     public static partial Hive MapToHive(this BaseHiveServiceModel baseHiveServiceModel);
 
 }

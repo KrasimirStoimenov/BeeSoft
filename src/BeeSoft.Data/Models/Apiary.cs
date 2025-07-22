@@ -17,5 +17,5 @@ public class Apiary
     [MaxLength(LocationMaxLength)]
     public required string Location { get; init; }
 
-    public ICollection<Hive> Hives { get; init; } = new HashSet<Hive>();
+    public ICollection<Hive> Hives { get; init; } = [];
 }

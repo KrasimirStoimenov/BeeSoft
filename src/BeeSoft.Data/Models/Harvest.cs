@@ -21,5 +21,5 @@ public class Harvest
     [ForeignKey(nameof(Hive))]
     public int HiveId { get; init; }
 
-    public required Hive Hive { get; init; }
+    public Hive? Hive { get; init; }
 }

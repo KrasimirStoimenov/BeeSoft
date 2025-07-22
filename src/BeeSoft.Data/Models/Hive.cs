@@ -32,13 +32,13 @@ public class Hive
     [ForeignKey(nameof(Apiary))]
     public int ApiaryId { get; init; }
 
-    public required Apiary Apiary { get; init; }
+    public Apiary? Apiary { get; init; }
 
-    public ICollection<BeeQueen> BeeQueens { get; init; } = new HashSet<BeeQueen>();
+    public ICollection<BeeQueen> BeeQueens { get; init; } = [];
 
-    public ICollection<Inspection> Inspections { get; init; } = new HashSet<Inspection>();
+    public ICollection<Inspection> Inspections { get; init; } = [];
 
-    public ICollection<Disease> Diseases { get; init; } = new HashSet<Disease>();
+    public ICollection<Disease> Diseases { get; init; } = [];
 
-    public ICollection<Harvest> Harvests { get; init; } = new HashSet<Harvest>();
+    public ICollection<Harvest> Harvests { get; init; } = [];
 }

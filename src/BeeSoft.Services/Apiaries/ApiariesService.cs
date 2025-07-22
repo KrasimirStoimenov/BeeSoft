@@ -2,37 +2,40 @@
 
 using System.Threading.Tasks;
 
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-
 using BeeSoft.Data;
-using BeeSoft.Data.Models;
+using BeeSoft.Services.Apiaries.Mappings;
 using BeeSoft.Services.Apiaries.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public sealed class ApiariesService(BeeSoftDbContext dbContext, IMapper mapper) : IApiariesService
+public sealed class ApiariesService(BeeSoftDbContext dbContext) : IApiariesService
 {
     public async Task<ICollection<ApiaryServiceModel>> GetApiariesAsync()
         => await dbContext.Apiaries
             .OrderByDescending(p => p.Id)
-            .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToApiaryServiceModel()
             .ToListAsync();
 
     public async Task<ApiaryServiceModel?> GetByIdAsync(int id)
         => await dbContext.Apiaries
             .Where(p => p.Id == id)
-            .ProjectTo<ApiaryServiceModel>(mapper.ConfigurationProvider)
+            .Select(x => new ApiaryServiceModel
+            {
+                Id = x.Id,
+                Location = x.Location,
+                Name = x.Name,
+                ApiaryHivesCount = x.Hives.Count
+            })
             .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(ApiaryServiceModel apiaryServiceModel)
     {
-        if (await this.IsApiaryExistsAsync(apiaryServiceModel.Name, apiaryServiceModel.Location))
+        if (await IsApiaryExistsAsync(apiaryServiceModel.Name, apiaryServiceModel.Location))
         {
             throw new InvalidOperationException($"Apiary with name: '{apiaryServiceModel.Name}' in location: '{apiaryServiceModel.Location}' already exists.");
         }
 
-        var apiary = mapper.Map<Apiary>(apiaryServiceModel);
+        var apiary = apiaryServiceModel.MapToApiary();
 
         await dbContext.Apiaries.AddAsync(apiary);
         await dbContext.SaveChangesAsync();
@@ -42,7 +45,7 @@ public sealed class ApiariesService(BeeSoftDbContext dbContext, IMapper mapper) 
 
     public async Task UpdateAsync(ApiaryServiceModel apiaryServiceModel)
     {
-        var apiary = mapper.Map<Apiary>(apiaryServiceModel);
+        var apiary = apiaryServiceModel.MapToApiary();
 
         dbContext.Update(apiary);
         await dbContext.SaveChangesAsync();
