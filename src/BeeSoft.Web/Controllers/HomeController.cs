@@ -16,12 +16,12 @@ public class HomeController(IApiariesService apiariesService, IHivesService hive
 {
     public async Task<IActionResult> Index()
     {
-        if (this.User.Identity!.IsAuthenticated)
+        if (User.Identity!.IsAuthenticated)
         {
-            ICollection<ApiaryHivesViewModel> apiariesWithHivesViewModel = new List<ApiaryHivesViewModel>();
+            ICollection<ApiaryHivesViewModel> apiariesWithHivesViewModel = [];
 
             var apiaries = await apiariesService.GetApiariesAsync();
-            foreach (var apiary in apiaries.Where(x => x.Hives.Count > 0))
+            foreach (var apiary in apiaries.Where(x => x.ApiaryHivesCount > 0))
             {
                 var hives = await hivesService.GetHivesInApiaryAsync(apiary.Id);
 

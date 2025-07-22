@@ -1,21 +1,18 @@
 ﻿namespace BeeSoft.Services.Harvests;
 
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-
 using BeeSoft.Data;
-using BeeSoft.Data.Models;
+using BeeSoft.Services.Harvests.Mappings;
 using BeeSoft.Services.Harvests.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public sealed class HarvestsService(BeeSoftDbContext dbContext, IMapper mapper) : IHarvestsService
+public sealed class HarvestsService(BeeSoftDbContext dbContext) : IHarvestsService
 {
     public async Task<ICollection<HarvestListingServiceModel>> GetHarvestsAsync()
         => await dbContext.Harvests
             .Include(h => h.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<HarvestListingServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToHarvestListingServiceModel()
             .ToListAsync();
 
     public async Task<ICollection<HarvestListingServiceModel>> GetHarvestsForHiveAsync(int hiveId)
@@ -23,18 +20,18 @@ public sealed class HarvestsService(BeeSoftDbContext dbContext, IMapper mapper) 
             .Where(x => x.HiveId == hiveId)
             .Include(a => a.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<HarvestListingServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToHarvestListingServiceModel()
             .ToListAsync();
 
     public async Task<BaseHarvestServiceModel?> GetByIdAsync(int id)
         => await dbContext.Harvests
                 .Where(p => p.Id == id)
-                .ProjectTo<BaseHarvestServiceModel>(mapper.ConfigurationProvider)
+                .ProjectToBaseHarvestServiceModel()
                 .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(BaseHarvestServiceModel model)
     {
-        var harvest = mapper.Map<Harvest>(model);
+        var harvest = model.MapToHarvest();
 
         await dbContext.Harvests.AddAsync(harvest);
         await dbContext.SaveChangesAsync();
@@ -44,7 +41,7 @@ public sealed class HarvestsService(BeeSoftDbContext dbContext, IMapper mapper) 
 
     public async Task UpdateAsync(BaseHarvestServiceModel model)
     {
-        var harvest = mapper.Map<Harvest>(model);
+        var harvest = model.MapToHarvest();
 
         dbContext.Update(harvest);
         await dbContext.SaveChangesAsync();

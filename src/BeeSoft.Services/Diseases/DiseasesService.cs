@@ -1,39 +1,36 @@
 ﻿namespace BeeSoft.Services.Diseases;
 
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-
 using BeeSoft.Data;
-using BeeSoft.Data.Models;
+using BeeSoft.Services.Diseases.Mappings;
 using BeeSoft.Services.Diseases.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public sealed class DiseasesService(BeeSoftDbContext dbContext, IMapper mapper) : IDiseasesService
+public sealed class DiseasesService(BeeSoftDbContext dbContext) : IDiseasesService
 {
     public async Task<ICollection<DiseaseListingServiceModel>> GetDiseasesAsync()
         => await dbContext.Diseases
             .Include(h => h.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<DiseaseListingServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToDiseaseListingServiceModel()
             .ToListAsync();
 
     public async Task<ICollection<DiseaseListingServiceModel>> GetDiseasesForHiveAsync(int hiveId)
         => await dbContext.Diseases
             .Where(x => x.HiveId == hiveId)
             .Include(a => a.Hive)
-            .ProjectTo<DiseaseListingServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToDiseaseListingServiceModel()
             .ToListAsync();
 
     public async Task<BaseDiseaseServiceModel?> GetByIdAsync(int id)
         => await dbContext.Diseases
                 .Where(p => p.Id == id)
-                .ProjectTo<BaseDiseaseServiceModel>(mapper.ConfigurationProvider)
+                .ProjectToBaseDiseaseServiceModel()
                 .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(BaseDiseaseServiceModel model)
     {
-        var disease = mapper.Map<Disease>(model);
+        var disease = model.MapToDisease();
 
         await dbContext.Diseases.AddAsync(disease);
         await dbContext.SaveChangesAsync();
@@ -43,7 +40,7 @@ public sealed class DiseasesService(BeeSoftDbContext dbContext, IMapper mapper) 
 
     public async Task UpdateAsync(BaseDiseaseServiceModel model)
     {
-        var disease = mapper.Map<Disease>(model);
+        var disease = model.MapToDisease();
 
         dbContext.Update(disease);
         await dbContext.SaveChangesAsync();

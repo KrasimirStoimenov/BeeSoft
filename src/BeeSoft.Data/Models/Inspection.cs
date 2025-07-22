@@ -25,5 +25,5 @@ public class Inspection
     [ForeignKey(nameof(Hive))]
     public int HiveId { get; init; }
 
-    public required Hive Hive { get; init; }
+    public Hive? Hive { get; init; }
 }

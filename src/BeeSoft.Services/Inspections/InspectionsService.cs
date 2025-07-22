@@ -1,21 +1,18 @@
 ﻿namespace BeeSoft.Services.Inspections;
 
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-
 using BeeSoft.Data;
-using BeeSoft.Data.Models;
+using BeeSoft.Services.Inspections.Mappings;
 using BeeSoft.Services.Inspections.Models;
 
 using Microsoft.EntityFrameworkCore;
 
-public sealed class InspectionsService(BeeSoftDbContext dbContext, IMapper mapper) : IInspectionsService
+public sealed class InspectionsService(BeeSoftDbContext dbContext) : IInspectionsService
 {
     public async Task<ICollection<InspectionListingServiceModel>> GetInspectionsAsync()
         => await dbContext.Inspections
             .Include(h => h.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<InspectionListingServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToInspectionListingServiceModel()
             .ToListAsync();
 
     public async Task<ICollection<InspectionListingServiceModel>> GetInspectionsForHiveAsync(int hiveId)
@@ -23,18 +20,18 @@ public sealed class InspectionsService(BeeSoftDbContext dbContext, IMapper mappe
             .Where(x => x.HiveId == hiveId)
             .Include(a => a.Hive)
             .OrderByDescending(x => x.Id)
-            .ProjectTo<InspectionListingServiceModel>(mapper.ConfigurationProvider)
+            .ProjectToInspectionListingServiceModel()
             .ToListAsync();
 
     public async Task<BaseInspectionServiceModel?> GetByIdAsync(int id)
         => await dbContext.Inspections
               .Where(p => p.Id == id)
-              .ProjectTo<BaseInspectionServiceModel>(mapper.ConfigurationProvider)
+              .ProjectToBaseInspectionServiceModel()
               .FirstOrDefaultAsync();
 
     public async Task<int> CreateAsync(BaseInspectionServiceModel model)
     {
-        var inspection = mapper.Map<Inspection>(model);
+        var inspection = model.MapToInspection();
 
         await dbContext.Inspections.AddAsync(inspection);
         await dbContext.SaveChangesAsync();
@@ -44,7 +41,7 @@ public sealed class InspectionsService(BeeSoftDbContext dbContext, IMapper mappe
 
     public async Task UpdateAsync(BaseInspectionServiceModel model)
     {
-        var inspection = mapper.Map<Inspection>(model);
+        var inspection = model.MapToInspection();
 
         dbContext.Update(inspection);
         await dbContext.SaveChangesAsync();
