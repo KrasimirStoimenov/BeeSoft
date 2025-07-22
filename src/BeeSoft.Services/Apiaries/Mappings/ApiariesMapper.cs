@@ -14,6 +14,7 @@ internal static partial class ApiariesMapper
     public static partial ApiaryServiceModel MapToApiaryServiceModel(this Apiary apiary);
 
     [MapperIgnoreSource(nameof(ApiaryServiceModel.ApiaryHivesCount))]
+    [MapperIgnoreTarget(nameof(Apiary.Hives))]
     public static partial Apiary MapToApiary(this ApiaryServiceModel baseApiaryServiceModel);
 
     private static int HivesCount(Apiary apiary)
