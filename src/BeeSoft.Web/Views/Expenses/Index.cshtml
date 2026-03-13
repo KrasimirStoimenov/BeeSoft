@@ -16,7 +16,7 @@
             <a asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i> @Localizer["CreateNewExpense"]</a>
         </div>
         <div>
-            <h2 class="text-center">@Localizer["TotalExpenseAmount"]: @Model.TotalAmount @Localizer["Lv"]</h2>
+            <h2 class="text-center">@Localizer["TotalExpenseAmount"]: @Model.TotalAmount €</h2>
         </div>
     </div>
     <table class="table border">
@@ -45,7 +45,7 @@
                         @expense.Name
                     </td>
                     <td>
-                        @expense.Price
+                        @expense.Price €
                     </td>
                     <td style="text-align:right">
                         <a asp-action="Update" class="btn btn-success" asp-route-expenseId="@expense.Id"><i class="bi bi-pencil-square"></i></a>
