@@ -1,5 +1,3 @@
-using System.Globalization;
-
 using BeeSoft.Data;
 using BeeSoft.Services.Apiaries;
 using BeeSoft.Services.BeeQueens;
@@ -15,9 +13,9 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
-using Swashbuckle.AspNetCore.Filters;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,13 +73,17 @@ builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen(options =>
     {
-        options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+        options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
         {
-            In = ParameterLocation.Header,
-            Name = "Authorization",
-            Type = SecuritySchemeType.ApiKey,
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer",
+            BearerFormat = "JWT",
+            Description = "JWT Authorization header using the Bearer scheme."
         });
-        options.OperationFilter<SecurityRequirementsOperationFilter>();
+        options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+        {
+            [new OpenApiSecuritySchemeReference("bearer", document)] = []
+        });
     });
 
 builder.Services.AddTransient<IApiariesService, ApiariesService>();
