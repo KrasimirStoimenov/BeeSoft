@@ -20,7 +20,9 @@
             <img src="/images/hive.jpg" class="img-fluid" height="400" width="400" alt="hive">
         </div>
         <div class="col-md-6 mb-4">
-            <p class="lead fw-bold">@Localizer["Details"]</p>
+            <p class="lead fw-bold">
+                @Localizer["Details"] - <a asp-action="Update" class="btn btn-outline-primary" asp-route-hiveId="@Model.Id"><i class="bi bi-pencil-square"></i></a>
+            </p>
             <hr />
 
             <div class="mb-4">
